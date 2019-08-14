@@ -76,6 +76,9 @@ public:
 
 IMPLEMENT_DYNCREATE(CCrystalEditView, CCrystalTextView)
 
+#define AFX_ZERO_INIT_OBJECT(base_class) \
+memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
+
 CCrystalEditView::CCrystalEditView()
 {
 	AFX_ZERO_INIT_OBJECT(CCrystalTextView);

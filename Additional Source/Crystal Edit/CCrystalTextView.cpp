@@ -67,6 +67,9 @@ static char THIS_FILE[] = __FILE__;
 
 #define SMOOTH_SCROLL_FACTOR		6
 
+#define AFX_ZERO_INIT_OBJECT(base_class) \
+memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
+
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
