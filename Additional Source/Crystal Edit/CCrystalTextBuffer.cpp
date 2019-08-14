@@ -238,7 +238,7 @@ void CCrystalTextBuffer::FreeAll()
 
 	//	Free undo buffer
 	int nBufSize = m_aUndoBuf.GetSize();
-	for (I = 0; I < nBufSize; I ++)
+	for (int I = 0; I < nBufSize; I ++)
 		m_aUndoBuf[I].FreeText();
 	m_aUndoBuf.RemoveAll();
 
@@ -316,7 +316,8 @@ BOOL CCrystalTextBuffer::LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle /*= CR
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
 			//	Try to determine current CRLF mode
-			for (DWORD I = 0; I < dwCurSize; I ++)
+			DWORD I = 0;
+			for (; I < dwCurSize; I ++)
 			{
 				if (pcBuf[I] == _T('\x0a'))
 					break;

@@ -263,7 +263,7 @@ void CDescript::OnOK()
 		LocalSettings.LastCobArr.FreeExtra();
 	}
 	//LocalSettings.LastCob = CobPath;
-	for(x=0;x<LocalSettings.LastBosArr.GetSize();x++)
+	for(int x=0;x<LocalSettings.LastBosArr.GetSize();x++)
 		if(LocalSettings.LastBosArr[x].CompareNoCase(BosPath)==0)
 			LocalSettings.LastBosArr.RemoveAt(x);
 	LocalSettings.LastBosArr.FreeExtra();

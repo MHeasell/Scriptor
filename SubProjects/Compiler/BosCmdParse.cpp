@@ -63,12 +63,12 @@ CBosCmdParse::CBosCmdParse()
 		fout<<std::setw(5)<<OpList[x].Op<<" - "<<std::setw(3)<<OpList[x].Priority<<" - "<<std::hex<<OpList[x].Val<<std::dec<<std::endl;
 	}
 	fout<<"\n\nConstants: "<<Constants.GetSize()<<"\n";
-	for(x=0;x<Constants.GetSize();x++)
+	for(int x=0;x<Constants.GetSize();x++)
 	{
 		fout<<Constants[x].Name<<" - "<<Constants[x].Val<<std::endl;
 	}
 	fout<<"\n\nCommands: "<<Commands.GetSize()<<"\n";
-	for(x=0;x<Commands.GetSize();x++)
+	for(int x=0;x<Commands.GetSize();x++)
 	{
 		fout<<Commands[x].Command<<" - "<<Commands[x].Flag<<std::endl;
 		CurFmt=Commands[x].Format;
@@ -85,7 +85,7 @@ CBosCmdParse::CBosCmdParse()
 		CurFmt=0;
 	}
 	fout<<"\n\nErrors: "<<Errors.GetSize()-1<<"\n";
-	for(x=1;x<Errors.GetSize();x++)
+	for(int x=1;x<Errors.GetSize();x++)
 	{
 		fout<<Errors[x]<<std::endl;
 	}
@@ -1770,11 +1770,11 @@ CString CBosCmdParse::GetFmtErr(WORD ErrNum,CString Str,CString Fmt)
 	{
 		Ret = Ret.Left(pos) + "=" + Ret.Right( Ret.GetLength()-(pos+2) );
 	}
-	for(pos = Ret.Find("%S");pos>=0;pos = Ret.Find("%S") )
+	for(int pos = Ret.Find("%S");pos>=0;pos = Ret.Find("%S") )
 	{
 		Ret = Ret.Left(pos) + Str + Ret.Right( Ret.GetLength()-(pos+2) );
 	}
-	for(pos = Ret.Find("%F");pos>=0;pos = Ret.Find("%F") )
+	for(int pos = Ret.Find("%F");pos>=0;pos = Ret.Find("%F") )
 	{
 		Ret = Ret.Left(pos) + Fmt + Ret.Right( Ret.GetLength()-(pos+2) );
 	}

@@ -364,7 +364,7 @@ void CCrystalTextView::ExpandChars(LPCTSTR pszChars, int nOffset, int nCount, CS
 	int nLength = nCount;
 
 	int nTabCount = 0;
-	for (I = 0; I < nLength; I ++)
+	for (int I = 0; I < nLength; I ++)
 	{
 		if (pszChars[I] == _T('\t'))
 			nTabCount ++;
@@ -374,7 +374,7 @@ void CCrystalTextView::ExpandChars(LPCTSTR pszChars, int nOffset, int nCount, CS
 	int nCurPos = 0;
 	if (nTabCount > 0 || m_bViewTabs)
 	{
-		for (I = 0; I < nLength; I ++)
+		for (int I = 0; I < nLength; I ++)
 		{
 			if (pszChars[I] == _T('\t'))
 			{

@@ -198,7 +198,7 @@ void CScriptorApp::GetProfileSettings(LPCTSTR szSec)
 		LocalSettings.LastBosArr.Add(Str);
 		WriteProfileString(szSec, "LastBos",NULL);
 	}
-	for(x=1;true;x++)
+	for(int x=1;true;x++)
 	{
 		Str.Format("DeBosFile%d",x);
 		Str = GetProfileString(szSec, Str, "");
@@ -252,7 +252,7 @@ void CScriptorApp::WriteProfileSettings(LPCTSTR szSec)
 		Str.Format("DeCobFile%d",x+1);
 		WriteProfileString(szSec, Str, LocalSettings.LastCobArr[x]);
 	}
-	for(x=0;x<LocalSettings.LastBosArr.GetSize();x++)
+	for(int x=0;x<LocalSettings.LastBosArr.GetSize();x++)
 	{
 		Str.Format("DeBosFile%d",x+1);
 		WriteProfileString(szSec, Str, LocalSettings.LastBosArr[x]);

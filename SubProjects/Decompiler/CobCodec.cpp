@@ -21,7 +21,8 @@ int CCobCodec::Push( long Val, BYTE Type )
 
 int CCobCodec::NewOpString()
 {
-	for(int Index=0;(OpPos & (1<<Index));Index++)
+	int Index = 0;
+	for(;(OpPos & (1<<Index));Index++)
 		if(Index+1==16) return -1;
 	OpPos |= (1<<Index);
 	OpString[Index].Values.Reset();
@@ -98,7 +99,7 @@ void CCobCodec::Pop( WORD Flags, int Back )
 			TmpStack.Push( &tmp );
 		}
 		STACK.Pop( &Val );
-		for(x=0;x<Back;x++)
+		for(int x=0;x<Back;x++)
 		{
 			TmpStack.Pop( &tmp );
 			STACK.Push( &tmp );
@@ -329,7 +330,8 @@ void CCobCodec::PrintConst( long Val, WORD Flags, int First )
 	}
 	else if( Flags & FLG_SIGNAL )
 	{
-		for(int x=0,y=1;x<Signals.GetSize();x++)
+		int y = 1;
+		for(int x=0;x<Signals.GetSize();x++)
 			if(Signals[x].Val==Val)
 			{
 				y=0;
