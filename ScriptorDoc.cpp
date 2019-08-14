@@ -106,7 +106,7 @@ void CScriptorDoc::DeleteContents()
 BOOL CScriptorDoc::OnOpenDocument(LPCTSTR lpszPathName) 
 {
     // If we are trying to open a cob file, intercept it, and send it on to the handler
-    LPTSTR FileType = strrchr( lpszPathName, '.' );
+    auto FileType = strrchr( lpszPathName, '.' );
     if( (FileType!=NULL)&&(stricmp(FileType+1,"cob")==0) )
     {
         strcpy( theApp.m_AllPurposeString, lpszPathName );
