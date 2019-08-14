@@ -12,6 +12,7 @@
 #include "StrParse.h"
 //#include "Defs.h"
 #include "CobScriptCode.h"
+#include "Exports.h"
 
 #define DATA unsigned char
 /*
