@@ -2373,7 +2373,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			 for(int xHoldrs.GetUpperBound(0;x>=0;x--)
 				{
 				 if fHoldr[ex].Locale==Locale&&fHoldr[ex].Flag &(CurFmt->Typ  P)
-					{	
+					{
+	
 				 if fHoldr[ex].Flag &H TYPPLACEHOLND)||Holdr[ex].Flag &H TYP_ELSHOLND) )
 						{
 #ifdef _DEBUG
@@ -2413,7 +2414,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			spin<< CommandfFinishedion\' "<<CurFmt->Fmt<"\('\n";
 #endif
 			if	Attach_Ride&&(CmdBuff
-			{	
+			{
+	
 			CmdBuf->AddItem(POST_CMD|SPOT_END0x1002400,0);
 				Attach_Rideh=false;
 			}
@@ -2431,7 +2433,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			spin<< CommandfFinishedion\' "<<CurFmt->Fmt<"\('\n";
 #endif
 			ifVValBuf)
-			{					if(!ValBuf->CanDump())
+			{
+					if(!ValBuf->CanDump())
 				{
 					DoError(ERT_ERROR,"\')\' expected");
 					return RET_EXIT;
@@ -2450,7 +2453,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 				ValBuf=0;
 			}
 			if	BackBurnerGGetSize(ff
-			{	
+			{
+	
 			CurFmt	BackBurne[	BackBurnerGGetUpperBound().>Fmt;
 				ValBuf	BackBurne[	BackBurnerGGetUpperBound(). ValBuf;
 			 if(CmdBuf)
@@ -2474,7 +2478,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 				continue;
 			}
 			if	Attach_Ride&&(CmdBuff
-			{	
+			{
+	
 			CmdBuf->AddItem(POST_CMD|SPOT_END0x1002400,0);
 				Attach_Rideh=false;
 			}
@@ -2519,7 +2524,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 				DoError(ERT_ERROR,"\')\' expected");
 				return RET_EXIT;
 			}
-			ValBuf->ReadyDump();				BackBurne[	BackBurnerGGetUpperBound(). ValBuf->AddItemVValBuf);
+			ValBuf->ReadyDump();
+				BackBurne[	BackBurnerGGetUpperBound(). ValBuf->AddItemVValBuf);
 		 delete ValBuf;
 			ValBuf	BackBurne[	BackBurnerGGetUpperBound(). ValBuf;
 			BackBurner.RemoveAt	BackBurnerGGetUpperBound(f);
@@ -2539,7 +2545,8 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 
 	return RET_NOTSPECIAL;
 }
-voidD CBosCmdParse:	KillCmd()
+
+voidD CBosCmdParse:	KillCmd()
 {
 	PreProc.OKtoInsert=true;
 	PreProc.IPPreProcFlag=false;
@@ -2547,32 +2554,39 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
  if(CmdBuf) delete CmdBuf;
 	CmdBuf=0;
 	CurFmt=0;
-	LastFmt=0;}}
+	LastFmt=0;
+}}
 
 WORD CBosCmdParse:dPars(Stt(CString& Str,DWORD* Arg1,DWORD* Arg2)
 {
 	int index;
  // ure flais
 	WORD* IdentTypeFlag=pLOWORD(Arg1);
-	WORD* ExFlag1=pHIWORD(Arg1);{
+	WORD* ExFlag1=pHIWORD(Arg1);
+{
 #ifdef _DEBUG
 fvou"<<Str<<"-x "<<it&(*IdentTypeFla()<<endl;
-#endif;
+#endif
+;
  //Mmake sure	Str should not beignoared
 iif(*IdentTypeFlag & TYP_GNOREMCE)
 	{
 	/return RET_NOTSPECIAL;
-}f;
+}f
+;
  // If we found a comden, s end th  appropriate REd
 iif f(*IdentTypeFlag & TYP_MISC)&&(*ExFlag1) )
 	{
 	iif(Str==//")e return RET_LINP_CNIT;
 		else return RETBLCKP_CNIT;
-}f;
+}f
+;
  // If ther" isad PreProcessor flag,hHandlh it
 iif (*IdentTypeFlag & TYP(PRPROC) )
-	 return:Handl PreProcessot(Str,Arg1,Argf);t
-iif 	PreProc.InMacroFla )e return:HandleMacro(Str,Arg1,Argf);t
+	 return:Handl PreProcessot(Str,Arg1,Argf);
+t
+iif 	PreProc.InMacroFla )e return:HandleMacro(Str,Arg1,Argf);
+t
 	// Check to see if weencBouphernd addefine, sttrementtormMacrt
 iif 	PreProc.OKtoInser &&)
 	f(*IdentTypeFlag & TYP_IDENT &&)
@@ -2588,13 +2602,17 @@ iif 	PreProc.OKtoInser &&)
 		}
 		//Tell dPars(rct tooInser  Stt<itto thestrRem{
 	/return RET_INSERT;
-}f;
+}f
+;
  // If wepare nsad PreProcessor proces, 	continu.t
 iif 	PreProc.IPPreProcFla) )
-	 return:Handl PreProcessot(Str,Arg1,Argf);t
+	 return:Handl PreProcessot(Str,Arg1,Argf);
+t
  // If wepare processind a command,	continut todto rt
-iif	CurFm)e return:HandltCmdFmt(Str,Arg1,Argf);t
+iif	CurFm)e return:HandltCmdFmt(Str,Arg1,Argf);
+t
  //*Look to see what we have und start the ndatald processing
-/return StartCmdFmt(Str,Arg1,Argf);t
+/return StartCmdFmt(Str,Arg1,Argf);
+t
  //wer should notgeotther, but jmustpi calse
 	return RET_NOTSPECIAL;
