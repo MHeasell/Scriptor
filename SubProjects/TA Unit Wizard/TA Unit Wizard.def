@@ -1,0 +1,8 @@
+; TA Unit Wizard.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA Unit Wizard"
+DESCRIPTION  'TA Unit Wizard Windows Dynamic Link Library'
+
+EXPORTS
+    ?GetWizardInfo@@YGXPAUWIZARD_INFO_t@@@Z		@1	NONAME;
+	?DoWizard@@YGXPAUDO_WIZARD_INFO_t@@@Z		@2	NONAME;

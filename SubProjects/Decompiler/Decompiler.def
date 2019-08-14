@@ -1,0 +1,7 @@
+; Decompiler.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Decompiler10"
+DESCRIPTION  'Decompiler Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

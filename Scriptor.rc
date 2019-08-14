@@ -1,0 +1,744 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "Additional Source\Crystal Edit\editcmd.h"
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""Additional Source\\Crystal Edit\\editcmd.h""\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\scriptor.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\scriptor.ico"
+IDR_SCRIPTTYPE          ICON    DISCARDABLE     "res\\ScriptorDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Descript\tCtrl+D",           ID_FILE_DESCRIPT
+        MENUITEM SEPARATOR
+        MENUITEM "&Unit Wizards",               ID_FILE_UNITWIZARDS
+        MENUITEM SEPARATOR
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Set Font",                   ID_EDIT_SETFONT
+    END
+    POPUP "&View"
+    BEGIN
+        POPUP "&Tollbars"
+        BEGIN
+            MENUITEM "&Standard",                   ID_VIEW_TOOLBAR
+            MENUITEM "&Edit",                       ID_VIEW_TOLLBARS_EDIT
+            MENUITEM "&Compiler",                   ID_VIEW_TOLLBARS_COMPILER
+
+            MENUITEM "&Debug",                      ID_VIEW_TOLLBARS_DEBUG
+        END
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Script"
+    BEGIN
+        MENUITEM "Settings\tAlt+F7",            ID_SCRIPT_COMPILER_SETTINGS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About scriptor...",          ID_APP_ABOUT
+    END
+END
+
+IDR_SCRIPTTYPE MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Descript\tCtrl+D",           ID_FILE_DESCRIPT
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Preview",               ID_FILE_PRINT_PREVIEW
+        MENUITEM "Pa&ge Setup...",              ID_FILE_PAGE_SETUP
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "&Delete\tDel",                ID_EDIT_DELETE
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "Find &Next\tF3",              ID_EDIT_REPEAT
+        MENUITEM "Find Previous\tShift+F3",     ID_EDIT_FIND_PREVIOUS
+        MENUITEM "R&eplace...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "Read &Only",                  ID_READ_ONLY
+        MENUITEM SEPARATOR
+        POPUP "Bookmarks"
+        BEGIN
+            MENUITEM "Clear All bookmarks",         ID_EDIT_CLEAR_BOOKMARKS
+            MENUITEM SEPARATOR
+            MENUITEM "Bookmark 0",                  ID_EDIT_TOGGLE_BOOKMARK0
+            MENUITEM "Bookmark 1",                  ID_EDIT_TOGGLE_BOOKMARK1
+            MENUITEM "Bookmark 2",                  ID_EDIT_TOGGLE_BOOKMARK2
+            MENUITEM "Bookmark 3",                  ID_EDIT_TOGGLE_BOOKMARK3
+            MENUITEM "Bookmark 4",                  ID_EDIT_TOGGLE_BOOKMARK4
+            MENUITEM "Bookmark 5",                  ID_EDIT_TOGGLE_BOOKMARK5
+            MENUITEM "Bookmark 6",                  ID_EDIT_TOGGLE_BOOKMARK6
+            MENUITEM "Bookmark 7",                  ID_EDIT_TOGGLE_BOOKMARK7
+            MENUITEM "Bookmark 8",                  ID_EDIT_TOGGLE_BOOKMARK8
+            MENUITEM "Bookmark 9",                  ID_EDIT_TOGGLE_BOOKMARK9
+        END
+        POPUP "Goto Bookmark"
+        BEGIN
+            MENUITEM "Bookmark 0",                  ID_EDIT_GO_BOOKMARK0
+            MENUITEM "Bookmark 1",                  ID_EDIT_GO_BOOKMARK1
+            MENUITEM "Bookmark 2",                  ID_EDIT_GO_BOOKMARK2
+            MENUITEM "Bookmark 3",                  ID_EDIT_GO_BOOKMARK3
+            MENUITEM "Bookmark 4",                  ID_EDIT_GO_BOOKMARK4
+            MENUITEM "Bookmark 5",                  ID_EDIT_GO_BOOKMARK5
+            MENUITEM "Bookmark 6",                  ID_EDIT_GO_BOOKMARK6
+            MENUITEM "Bookmark 7",                  ID_EDIT_GO_BOOKMARK7
+            MENUITEM "Bookmark 8",                  ID_EDIT_GO_BOOKMARK8
+            MENUITEM "Bookmark 9",                  ID_EDIT_GO_BOOKMARK9
+        END
+        POPUP "More Bookmarks (VC++)"
+        BEGIN
+            MENUITEM "Toggle Bookmark",             ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "Next Bookmark",               ID_EDIT_GOTO_NEXT_BOOKMARK
+
+            MENUITEM "Previous bookmark",           ID_EDIT_GOTO_PREV_BOOKMARK
+
+            MENUITEM "Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Backspace at start of line",  ID_EDIT_DISABLEBSATSOL
+        MENUITEM "Drag-and-drop text editing",  ID_EDIT_DISABLEDRAGANDDROP
+        MENUITEM SEPARATOR
+        MENUITEM "&Set Font",                   ID_EDIT_SETFONT
+    END
+    POPUP "&View"
+    BEGIN
+        POPUP "&Tollbars"
+        BEGIN
+            MENUITEM "&Standard",                   ID_VIEW_TOOLBAR
+            MENUITEM "&Edit",                       ID_VIEW_TOLLBARS_EDIT
+            MENUITEM "&Compiler",                   ID_VIEW_TOLLBARS_COMPILER
+
+            MENUITEM "&Debug",                      ID_VIEW_TOLLBARS_DEBUG
+        END
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Script"
+    BEGIN
+        MENUITEM "&Compile\tCtrl+F7",           ID_SCRIPT_COMPILE
+        MENUITEM SEPARATOR
+        MENUITEM "Settings\tAlt+F7",            ID_SCRIPT_COMPILER_SETTINGS
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About scriptor...",          ID_APP_ABOUT
+    END
+END
+
+IDR_SCRIPT_CONTEXT_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Toggle Bookmark",             ID_EDIT_TOGGLE_BOOKMARK
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_FILE_DESCRIPT,       VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_SCRIPT_COMPILE,      VIRTKEY, CONTROL, NOINVERT
+    VK_F7,          ID_SCRIPT_COMPILER_SETTINGS, VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 150, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Scriptor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,7,21,20
+    LTEXT           "Scriptor Version 1.0 RC1",IDC_STATIC,35,7,101,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001",IDC_STATIC,35,16,60,8
+    DEFPUSHBUTTON   "OK",IDOK,47,159,50,14,WS_GROUP
+    LTEXT           "KhalvKalash",IDC_AUTHOR,96,16,40,8,WS_TABSTOP
+    LTEXT           "For updated versions of Scriptor as well as other utilities, check the",
+                    IDC_STATIC,7,30,136,17
+    LTEXT           "home site.",IDC_HOME_LINK,84,38,33,8,WS_TABSTOP
+    LTEXT           "Colored syntax editing provided by",IDC_STATIC,17,78,
+                    109,8
+    LTEXT           "Crystal Edit - Andrei Stcherbatchenko",
+                    IDC_CRYSTAL_EDIT_LINK,17,86,118,8,WS_TABSTOP
+    LTEXT           "Debug output window provided by",IDC_STATIC,17,98,109,8
+    LTEXT           "Sizing Control Bar - Cristi Posea",IDC_SIZING_BAR_LINK,
+                    17,106,99,8,WS_TABSTOP
+    LTEXT           "Directory selection dialog provided by",IDC_STATIC,17,
+                    115,118,8
+    LTEXT           "CDirDialog - Andrew Phillips",IDC_DIRDIALOG_LINK,17,123,
+                    88,8,WS_TABSTOP
+    LTEXT           "Hyperlink control provided by",IDC_STATIC,17,132,92,8
+    LTEXT           "CHyperLink - Giancarlo Iovino",IDC_HYPERLINK_LINK,17,
+                    140,95,8,WS_TABSTOP
+    GROUPBOX        "Additional source code credits:",IDC_STATIC,7,68,136,86
+    LTEXT           "Question? Comments? E-Mail",IDC_STATIC,7,52,93,8
+    LTEXT           "KhalvKalash",IDC_AUTHOR2,103,52,40,8,WS_TABSTOP
+END
+
+IDD_SETTINGS DIALOG DISCARDABLE  0, 0, 262, 217
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Compiler Settings"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,196,60,14
+    PUSHBUTTON      "Cancel",IDCANCEL,195,196,60,14
+    GROUPBOX        "Game",IDC_STATIC,7,7,120,44,WS_GROUP
+    CONTROL         "Total Annihilation",IDC_TA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,15,19,70,10
+    CONTROL         "Total Annihilation Kingdoms",IDC_TAK,"Button",
+                    BS_AUTORADIOBUTTON,15,34,100,10
+    EDITTEXT        IDC_LINCON,173,19,75,12,ES_AUTOHSCROLL
+    LTEXT           "Linear",IDC_STATIC,145,19,21,12,SS_CENTERIMAGE
+    GROUPBOX        "Constants",IDC_STATIC,135,7,120,44
+    LTEXT           "Angular",IDC_STATIC,143,34,27,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_ANGCON,173,34,75,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_INCLUDE,13,70,196,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE_INC,213,70,36,12
+    GROUPBOX        "Include Directory",IDC_STATIC,7,54,248,40
+    GROUPBOX        "Output File",IDC_STATIC,7,97,248,45
+    CONTROL         "Same as bos file",IDC_OUT_FILE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,110,67,10
+    EDITTEXT        IDC_COBFILE,13,124,196,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE_FILE,213,124,36,12
+    GROUPBOX        "Output Directory",IDC_STATIC,7,146,248,45
+    CONTROL         "Same as bos directory",IDC_OUT_DIR_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,158,85,10
+    EDITTEXT        IDC_COBDIR,13,172,196,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE_DIR,213,172,36,12
+END
+
+IDD_DESCRIPT DIALOG DISCARDABLE  0, 0, 230, 276
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DeScript"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "DeScript",IDOK,7,85,133,20
+    PUSHBUTTON      "Cancel",IDCANCEL,148,85,75,20
+    GROUPBOX        "Cob file to DeScript",IDC_STATIC,7,7,216,35
+    PUSHBUTTON      "...",IDC_BROWSE_COB,205,20,12,12
+    GROUPBOX        "DeScripted bos file",IDC_STATIC,7,45,216,35
+    PUSHBUTTON      "...",IDC_BROWSE_BOS,205,58,12,12
+    GROUPBOX        "DeScripting Options",IDC_STATIC,7,112,216,70
+    CONTROL         "Make guesses on variable and signal names",IDC_GUESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,125,155,10
+    CONTROL         "Print the cob file's header in the beginning of the bos file",
+                    IDC_HEADER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,236,
+                    191,10
+    CONTROL         "Print the script offset in front of each statement in the bos",
+                    IDC_OFFSET,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,246,
+                    195,10
+    CONTROL         "Print extra cob information( pushes, allocations, ...) in the bos",
+                    IDC_PUSH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,256,
+                    204,10
+    CONTROL         "Include standard libraries insted of defining them",
+                    IDC_STDLIBS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,193,
+                    167,10
+    CONTROL         "Separate large animation script functions into separate local libraries. ie( walk, attack,...)",
+                    IDC_MISCLIBS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
+                    WS_TABSTOP,15,203,185,20
+    GROUPBOX        "Library Options",IDC_STATIC,7,183,216,43
+    CONTROL         "Show increment and decrement operators",IDC_INCDEC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,135,147,10
+    CONTROL         "Make large numbers in cob into linear constants",
+                    IDC_TRYKEEPSMALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    15,145,166,10
+    CONTROL         "Print all returns found in the cob",IDC_RETURN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,155,115,10
+    GROUPBOX        "Debugging Options",IDC_STATIC,7,226,216,43
+    EDITTEXT        IDC_PRECISION,15,165,23,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN,"msctls_updown32",UDS_WRAP | 
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,27,164,11,12
+    LTEXT           "Floating point precission",IDC_STATIC,41,167,76,8
+    COMBOBOX        IDC_COB_PATH,15,20,185,60,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BOS_PATH,15,58,185,60,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Bos file name same as Cob",IDC_BOS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,85,45,97,10
+END
+
+IDD_UNIT_WIZ DIALOG DISCARDABLE  0, 0, 307, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Wizard"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,169,128,60,14
+    PUSHBUTTON      "Cancel",IDCANCEL,239,128,60,14
+    LISTBOX         IDC_WIZ_LIST,7,7,157,135,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_NEW_FILENAME,231,7,69,12,ES_AUTOHSCROLL
+    LTEXT           "Unit Name",IDC_STATIC,189,7,37,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_DESC,177,40,115,76,ES_MULTILINE | ES_READONLY | NOT 
+                    WS_BORDER | NOT WS_TABSTOP
+    GROUPBOX        "Description",IDC_STATIC,169,27,130,97
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "scriptor MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "scriptor\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "scriptor.EXE\0"
+            VALUE "ProductName", "scriptor Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 143
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_DESCRIPT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_UNIT_WIZ, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 300
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 142
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+END
+
+IDR_COMPILER_TOOLS TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_COMPILER_SELECT_TA2
+    BUTTON      ID_COMPILER_SELECT_TAK
+    SEPARATOR
+    BUTTON      ID_SCRIPT_COMPILE
+END
+
+IDR_EDIT_BAR TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_EDIT_FIND
+    BUTTON      ID_EDIT_REPEAT
+    BUTTON      ID_EDIT_FIND_PREVIOUS
+    BUTTON      ID_EDIT_REPLACE
+    SEPARATOR
+    BUTTON      ID_EDIT_TOGGLE_BOOKMARK
+    BUTTON      ID_EDIT_GOTO_NEXT_BOOKMARK
+    BUTTON      ID_EDIT_GOTO_PREV_BOOKMARK
+    BUTTON      ID_EDIT_CLEAR_ALL_BOOKMARKS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDR_COMPILER_TOOLS      BITMAP  DISCARDABLE     "res\\compiler.bmp"
+IDR_EDIT_BAR            BITMAP  MOVEABLE PURE   "res\\edit_bar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "Scriptor"
+    IDR_SCRIPTTYPE          "\nScript\nNewScript\nScript Files (*.bos)\n.bos\nScriptor.Document\nScript Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Scriptor"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    IDS_OLE_INIT_FAILED     "OLE initialization failed"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+    ID_HELP_INDEX           "Opens Help\nHelp Topics"
+    ID_HELP_FINDER          "List Help topics\nHelp Topics"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the standard toolbar\nToggle Standard ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_FIND_PREVIOUS   "Find the previous occurrence of the specified text\nFind Previous"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_SETFONT         "Sets the font used for the script windows\nSet Font"
+    ID_COMPILER_SELECT_TA   "Compile this file as a Total Annihilation script\nTA Script"
+    ID_COMPILER_SELECT_TAK  "Compile this file as a TA: Kingdoms script\nKingdoms Script"
+    ID_COMPILER_COMPILE     "Compile the current file\nCompile"
+    ID_SCRIPT_COMPILE       "Compile the current file\nCompile"
+    ID_COMPILER_SELECT_TA2  "Compile this file as a Total Annihilation script\nTA Script"
+    ID_VIEW_TOLLBARS_DEBUG  "Show or hide the debug toolbar\nToggle Debug ToolBar"
+    ID_VIEW_TOLLBARS_COMPILER 
+                            "Show or hide the compiler toolbar\nToggle Compiler ToolBar"
+    IDS_CONTROL_BAR_STATES_KEY "ControlBarStates"
+    ID_VIEW_TOLLBARS_EDIT   "Show or hide the edit toolbar\nToggle Edit ToolBar"
+    ID_FILE_DESCRIPT        "Decompile a script\nDescript"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_INDICATOR_COL   "========="
+    ID_EDIT_INDICATOR_READ  "Read"
+    ID_EDIT_INDICATOR_CRLF  "========"
+    ID_EDIT_INDICATOR_POSITION "============"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PROGRESS_BAR         "===================="
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\scriptor.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
