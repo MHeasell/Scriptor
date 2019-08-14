@@ -2,6 +2,7 @@
 #include "DeCom_Exports.h"
 #include "CobCodec.h"
 #include "Defs.h"
+#include <iostream>
 
 void CCobCodec::InitStack()
 {
