@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 
 #ifdef _DEBUG
 
-CCobValBuf::CCobValBuf(ofstream& ffout,int Child)
+CCobValBuf::CCobValBuf(std::ofstream& ffout,int Child)
 {
 	MaxLength=8;
 	Buffer = new long[MaxLength];
@@ -124,7 +124,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	int x;
 	OPERATOR Op;
 #ifdef _DEBUG
-	fout<<"Adding Item"<<Type<<" - "<<Val1<<" - "<<Val2<<endl;
+	fout<<"Adding Item"<<Type<<" - "<<Val1<<" - "<<Val2<<std::endl;
 #endif
 	if(HaveChild)
 	{
@@ -146,7 +146,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	if(Type & TYP_MISC)
 	{
 #ifdef _DEBUG
-		fout<<"Got Type Misc "<<Val1<<endl;
+		fout<<"Got Type Misc "<<Val1<<std::endl;
 #endif
 		if( Val1 == 1 ) // '('
 		{
@@ -172,7 +172,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	else if(Type & TYP_OPERATOR)
 	{
 #ifdef _DEBUG
-		fout<<"Got Op "<<hex<<Val1<<dec<<endl;
+		fout<<"Got Op "<<std::hex<<Val1<<std::dec<<std::endl;
 #endif
 		Op.Val=Val1;
 		Op.Priority=Val2;
@@ -204,7 +204,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	else
 	{
 #ifdef _DEBUG
-		fout<<"Got Val "<<Val2<<endl;
+		fout<<"Got Val "<<Val2<<std::endl;
 #endif
 		if(Holding)
 		{
@@ -242,7 +242,7 @@ CCobCmdBuf::CCobCmdBuf(int NoCmd)
 	CmdPos = 0;
 	Length = (NoCmdBuf ? 0:1);
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\debug\\debug_CmdBuf.txt",ios::app);
+	fout.open("C:\\windows\\desktop\\debug\\debug_CmdBuf.txt",std::ios::app);
 	fout<<"Created\n\n";
 #endif
 }
@@ -302,15 +302,15 @@ int CCobCmdBuf::AddItem(char Flag,CCobValBuf* ValBuf)
 #ifdef _DEBUG
 	fout<<"Buffer - Added ValBuf("<<ValBuf->GetLength()<<")";
 	if(NoCmdBuf) fout<<" - NoCmd\n";
-	else fout<<endl;
+	else fout<<std::endl;
 	for(x=0;x<Length;x++)
 	{
 		if((!NoCmdBuf)&&(x==CmdPos)) fout<<"CMD- ";
 		else if(x>=10) fout<<x<<" - ";
 		else fout<<" "<<x<<" - ";
-		fout<<hex<<Buffer[x]<<dec<<endl;
+		fout<<std::hex<<Buffer[x]<<std::dec<<std::endl;
 	}
-	fout<<endl;
+	fout<<std::endl;
 #endif
 
 	return 1;
@@ -350,15 +350,15 @@ int CCobCmdBuf::AddItem(char Flag,CCobCmdBuf* CmdBuf)
 #ifdef _DEBUG
 	fout<<"Buffer - Added CmdBuf("<<CmdBuf->GetLength()<<")";
 	if(NoCmdBuf) fout<<" - NoCmd\n";
-	else fout<<endl;
+	else fout<<std::endl;
 	for(x=0;x<Length;x++)
 	{
 		if((!NoCmdBuf)&&(x==CmdPos)) fout<<"CMD- ";
 		else if(x>=10) fout<<x<<" - ";
 		else fout<<" "<<x<<" - ";
-		fout<<hex<<Buffer[x]<<dec<<endl;
+		fout<<std::hex<<Buffer[x]<<std::dec<<std::endl;
 	}
-	fout<<endl;
+	fout<<std::endl;
 #endif
 
 	return 1;
@@ -428,9 +428,9 @@ int CCobCmdBuf::AddItem(char Flag,long item1,long item2)
 		if((!NoCmdBuf)&&(x==CmdPos)) fout<<"CMD- ";
 		else if(x>=10) fout<<x<<" - ";
 		else fout<<" "<<x<<" - ";
-		fout<<hex<<Buffer[x]<<dec<<endl;
+		fout<<std::hex<<Buffer[x]<<std::dec<<std::endl;
 	}
-	fout<<endl;
+	fout<<std::endl;
 #endif
 
 	return 1;

@@ -305,15 +305,15 @@ void CCobCodec::PrintConst( long Val, WORD Flags, int First )
 	{
 		if( (Val >= 0) && ( Val < Header.NumberOfPieces) )
 			fout<<PrintPieceName(Val);
-		else fout<<dec<<Val;
+		else fout<<std::dec<<Val;
 	}
 	else if( Flags & FLG_LINEAR )
 	{
-		fout<<"["<<dec<<setprecision(FloatPrec)<<(float(Val)/(LConst))<<"]";
+		fout<<"["<<std::dec<<std::setprecision(FloatPrec)<<(float(Val)/(LConst))<<"]";
 	}
 	else if( Flags & FLG_ANGULAR )
 	{
-		fout<<"<"<<dec<<setprecision(FloatPrec)<<(float(Val)/(AConst))<<">";
+		fout<<"<"<<std::dec<<std::setprecision(FloatPrec)<<(float(Val)/(AConst))<<">";
 	}
 	else if( Flags & FLG_EXPLODE )
 	{
@@ -341,8 +341,8 @@ void CCobCodec::PrintConst( long Val, WORD Flags, int First )
 	else
 	{
 		if(TryKeepSmall && (Val >= LConst))
-			fout<<"["<<dec<<setprecision(FloatPrec)<<(float(Val)/(LConst))<<"]";
-		else fout<<dec<<Val;
+			fout<<"["<<std::dec<<std::setprecision(FloatPrec)<<(float(Val)/(LConst))<<"]";
+		else fout<<std::dec<<Val;
 	}
 }
 
@@ -397,16 +397,16 @@ void CCobCodec::PrintNumType(long Val,WORD type)
 	case TYP_BOOL:if(Val==0) fout<<"FALSE";
 				  else fout<<"TRUE";
 				  return;
-	case TYP_FLOAT:fout<<dec<<setprecision(FloatPrec)<<Val;
+	case TYP_FLOAT:fout<<std::dec<<std::setprecision(FloatPrec)<<Val;
 				   return;
 	case TYP_ANGULAR:fl=float(Val)/(AConst);
 					 //if( (fl>=Max) || (fl<=Min) )
-						fout<<"<"<<dec<<setprecision(FloatPrec)<<fl<<">";
+						fout<<"<"<<std::dec<<std::setprecision(FloatPrec)<<fl<<">";
 					 //else fout<<"0";
 					 return;
 	case TYP_LINEAR:fl=float(Val)/(LConst);
 					//if( (fl>=Max) || (fl<=Min) )
-						fout<<"["<<dec<<setprecision(FloatPrec)<<fl<<"]";
+						fout<<"["<<std::dec<<std::setprecision(FloatPrec)<<fl<<"]";
 					//else fout<<"0";
 					return;
 	case TYP_EXPLODECONSTS:PrintExpConsts(Val);
@@ -414,7 +414,7 @@ void CCobCodec::PrintNumType(long Val,WORD type)
 	case TYP_SNDCONST:PrintSndConsts(Val);
 					  return;
 	case TYP_INTEGER:
-	default:fout<<dec<<Val;
+	default:fout<<std::dec<<Val;
 	}
 }
 */
@@ -430,7 +430,7 @@ void CCobCodec::PrintUnitValue(long Val,int DoGet)
 			return;
 		}
 	//*if(DoGet)*/ fout<<"get ";
-	fout<<"UNKNOWN_UNIT_VALUE("<<dec<<Val<<")";
+	fout<<"UNKNOWN_UNIT_VALUE("<<std::dec<<Val<<")";
 }
 
 void CCobCodec::PrintSndConsts(long Val)
@@ -439,7 +439,7 @@ void CCobCodec::PrintSndConsts(long Val)
 	{
 	case 4:fout<<"PLAYSOUND_PRIORITY_BATTLE";
 		   break;
-	default:fout<<dec<<Val;
+	default:fout<<std::dec<<Val;
 	}
 }
 
@@ -469,7 +469,7 @@ void CCobCodec::PrintExpConsts(long Val)
 					break;
 		case  65536:fout<<"EXPTYPE_XLARGESMOKE";
 					break;
-		default:fout<<dec<<Val;
+		default:fout<<std::dec<<Val;
 		}
 	}
 	else
@@ -502,7 +502,7 @@ void CCobCodec::PrintExpConsts(long Val)
 					break;
 		case  16128:fout<<"BITMAPMASK";
 					break;
-		default:fout<<dec<<Val;
+		default:fout<<std::dec<<Val;
 		}
 	}
 }
@@ -651,7 +651,7 @@ int CCobCodec::GetOpPriority(long Val)
 void CCobCodec::TabSpace(int tab,long count)
 {
 	int x;
-	if (Offsets) fout<<"/*"<<hex<<setw(6)<<count<<":*/";
+	if (Offsets) fout<<"/*"<<std::hex<<std::setw(6)<<count<<":*/";
 	for(x=0;x<tab;x++) fout<<"	";
 	if(WasElse)
 	{
@@ -716,7 +716,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count+=3;
 						last=count;
 						break;
-		case 0x10003000:cout<<"	spin_piece2;\n";
+		case 0x10003000:std::cout<<"	spin_piece2;\n";
 						TabSpace(tab,count);
 						fout<<"spin "<<PrintPieceName(*(DataPtr+1))
 							<<" around "<<GetAxis(*(DataPtr+2))<<"-axis"
@@ -733,7 +733,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=3;
 						last=count;
 	 					break;
-		case 0x10004000:cout<<"	stop_spin2;\n";
+		case 0x10004000:std::cout<<"	stop_spin2;\n";
 						TabSpace(tab,count);
 						fout<<"stop-spin "<<PrintPieceName(*(DataPtr+1))
 							<<" around "<<GetAxis(*(DataPtr+2))<<"-axis";
@@ -748,7 +748,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=3;
 						last=count;
 	 					break;
-		case 0x10005000:cout<<"	show1;\n";
+		case 0x10005000:std::cout<<"	show1;\n";
 						TabSpace(tab,count);
 						fout<<"show "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
@@ -756,7 +756,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10006000:cout<<"	hide1;\n";
+		case 0x10006000:std::cout<<"	hide1;\n";
 						TabSpace(tab,count);
 						fout<<"hide "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
@@ -764,7 +764,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10007000:cout<<"	cache1;\n";
+		case 0x10007000:std::cout<<"	cache1;\n";
 						TabSpace(tab,count);
 						fout<<"cache "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
@@ -772,7 +772,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10008000:cout<<"	dont_cache1;\n";
+		case 0x10008000:std::cout<<"	dont_cache1;\n";
 						TabSpace(tab,count);
 						fout<<"dont-cache "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
@@ -780,14 +780,14 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x1000A000:cout<<"	dont_shadow\n";
+		case 0x1000A000:std::cout<<"	dont_shadow\n";
 						TabSpace(tab,count);
 						fout<<"dont-shadow "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
 						count+=2;
 						DataPtr+=2;
 						break;
-		case 0x1000E000:cout<<"	dont_shade1;\n";
+		case 0x1000E000:std::cout<<"	dont_shade1;\n";
 						TabSpace(tab,count);
 						fout<<"dont-shade "<<PrintPieceName(*(DataPtr+1))
 							<<";\n";
@@ -795,7 +795,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x1000F000:cout<<"	emit_sfx_from_piece1;\n";
+		case 0x1000F000:std::cout<<"	emit_sfx_from_piece1;\n";
 						TabSpace(tab,count);
 						fout<<"emit-sfx ";
 						Pop( 0 );
@@ -804,7 +804,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10011000:cout<<"	wait_for_turn2;\n";
+		case 0x10011000:std::cout<<"	wait_for_turn2;\n";
 						TabSpace(tab,count);
 						fout<<"wait-for-turn "<<PrintPieceName(*(DataPtr+1))
 							<<" around "<<GetAxis(*(DataPtr+2))<<"-axis;\n";
@@ -812,7 +812,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count+=3;
 						last=count;
 						break;
-		case 0x10012000:cout<<"	wait_for_move2;\n";
+		case 0x10012000:std::cout<<"	wait_for_move2;\n";
 						TabSpace(tab,count);
 						fout<<"wait-for-move "<<PrintPieceName(*(DataPtr+1))
 							<<" along "<<GetAxis(*(DataPtr+2))<<"-axis;\n";
@@ -820,7 +820,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count+=3;
 						last=count;
 						break;
-		case 0x10013000:cout<<"	sleep0;\n";
+		case 0x10013000:std::cout<<"	sleep0;\n";
 						TabSpace(tab,count);
 						fout<<"sleep ";
 						Pop( 0 );
@@ -829,7 +829,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10021001:cout<<"	push_constant1;\n";
+		case 0x10021001:std::cout<<"	push_constant1;\n";
 						pos = Push( *(DataPtr+1), TYP_CONST );
 						for(x=0;x<NumLabels;x++) 
 							if(Labels[x]==count)
@@ -840,13 +840,13 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushConst->"<<dec<<float(*(DataPtr+1))
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushConst->"<<std::dec<<float(*(DataPtr+1))
+								<<" StackPos "<<pos<<std::endl;
 						}
 						DataPtr+=2;
 						count+=2;
 	 					continue;
-		case 0x10021002:cout<<"	push_variable1;\n";
+		case 0x10021002:std::cout<<"	push_variable1;\n";
 						pos = Push( *(DataPtr+1), TYP_FVAR );
 						for(x=0;x<NumLabels;x++) 
 							if(Labels[x]==count)
@@ -857,13 +857,13 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushFVar->"<<dec<<*(DataPtr+1)
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushFVar->"<<std::dec<<*(DataPtr+1)
+								<<" StackPos "<<pos<<std::endl;
 						}
 						DataPtr+=2;
 						count+=2;
 	 					continue;
-		case 0x10021004:cout<<"	push_static_var1;\n";
+		case 0x10021004:std::cout<<"	push_static_var1;\n";
 						pos = Push( *(DataPtr+1), TYP_SVAR );
 						for(x=0;x<NumLabels;x++) 
 							if(Labels[x]==count)
@@ -874,13 +874,13 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushStatic->"<<dec<<*(DataPtr+1)
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushStatic->"<<std::dec<<*(DataPtr+1)
+								<<" StackPos "<<pos<<std::endl;
 						}
 						DataPtr+=2;
 						count+=2;
 	 					continue;
-		case 0x10022000:cout<<"	stack_allocate0;\n";
+		case 0x10022000:std::cout<<"	stack_allocate0;\n";
 						if(*(DataPtr+1)==0x10065000)
 						{
 							for(x=0;x<NumLabels;x++) 
@@ -927,7 +927,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						NumFuncVar=x;
 						last=count;
 						break;
-		case 0x10023002:cout<<"	pop_variable1;\n";
+		case 0x10023002:std::cout<<"	pop_variable1;\n";
 						TabSpace(tab,count);
 						if( Val = IsIncDec(*(DataPtr+1),TYP_FVAR) )
 						{
@@ -955,7 +955,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10023004:cout<<"	pop_static_var1;\n";
+		case 0x10023004:std::cout<<"	pop_static_var1;\n";
 						TabSpace(tab,count);
 						if( Val = IsIncDec(*(DataPtr+1),TYP_SVAR) )
 						{
@@ -983,7 +983,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10024000:cout<<"	stop-sound?0;\n";
+		case 0x10024000:std::cout<<"	stop-sound?0;\n";
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
@@ -1004,7 +1004,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10041000:cout<<"	rand0;\n";
+		case 0x10041000:std::cout<<"	rand0;\n";
 						/*STACK.Pop(&StackVal_1);
 						STACK.Pop(&StackVal_2);
 						OpString[OpPos].Val_1.Val=*DataPtr;
@@ -1031,7 +1031,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count++;
 						DataPtr++;
 	 					break;
-		case 0x10042000:cout<<"	get_unit_value0;\n";
+		case 0x10042000:std::cout<<"	get_unit_value0;\n";
 						for(x=0;x<NumLabels;x++) 
 							if(Labels[x]==count)
 							{
@@ -1064,7 +1064,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count++;
 						DataPtr++;
 	 					break;
-		case 0x10043000:cout<<"	get0;\n";
+		case 0x10043000:std::cout<<"	get0;\n";
 						/*STACK.Pop(&StackVal_1);
 						STACK.Pop(&StackVal_1);
 						STACK.Pop(&StackVal_1);
@@ -1164,7 +1164,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						count++;
 						DataPtr++;
 	 					break;
-		case 0x10061000:cout<<"	start_script2;\n";
+		case 0x10061000:std::cout<<"	start_script2;\n";
 						TabSpace(tab,count);
 						fout<<"start-script "<<PrintScriptName(*(DataPtr+1))
 							<<"(";
@@ -1186,7 +1186,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=3;
 						last=count;
 	 					break;
-		case 0x10062000:cout<<"	call_script2;\n";
+		case 0x10062000:std::cout<<"	call_script2;\n";
 						TabSpace(tab,count);
 						fout<<"call-script "<<PrintScriptName(*(DataPtr+1))
 							<<"(";
@@ -1208,18 +1208,18 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						{
 							TabSpace(tab+1,count);
 							fout<<"// Params -> "
-								<<dec<<*(DataPtr+1)<<" , "
-								<<*(DataPtr+2)<<endl;
+								<<std::dec<<*(DataPtr+1)<<" , "
+								<<*(DataPtr+2)<<std::endl;
 						}
 						count+=3;
 						DataPtr+=3;
 						last=count;
 	 					break;
-		case CMD_FAKE_JUMP:cout<<"	jump1;\n";
+		case CMD_FAKE_JUMP:std::cout<<"	jump1;\n";
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// JUMP ->"<<hex
+							fout<<"// JUMP ->"<<std::hex
 								<<*(DataPtr+1)
 								<<"\n";
 						}
@@ -1227,7 +1227,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case CMD_JUMP:cout<<"	jump1;\n";
+		case CMD_JUMP:std::cout<<"	jump1;\n";
 						for(x=0;x<NumLabels;x++) 
 							if(Labels[x]==count)
 							{
@@ -1247,7 +1247,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						else if(count>(*(DataPtr+1)))
 						{
 							TabSpace(tab,count);
-							fout<<"jump "<<hex
+							fout<<"jump "<<std::hex
 								<<*(DataPtr+1)
 								<<";\n";
 						}
@@ -1271,14 +1271,14 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 								<<"Label"<<x+1
 								<<";";
 							if(ShowPush) fout<<" -> "<<*(DataPtr+1);
-							fout<<endl;
+							fout<<std::endl;
 							if(x==NumLabels) NumLabels++;
 						}
 						count+=2;
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10065000:cout<<"	return0;\n";
+		case 0x10065000:std::cout<<"	return0;\n";
 						if(STACK.Size())
 						{
 							//STACK.Pop(&StackVal_1);
@@ -1307,7 +1307,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10066000:cout<<"	jump_if_false1;\n";
+		case 0x10066000:std::cout<<"	jump_if_false1;\n";
 						TabSpace(tab,count);
 						x=0;
 						bool WasLoop;
@@ -1351,7 +1351,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						Pop( FLG_BOOL );
 						fout<<" )";
 
-						if(ShowPush) fout<<" // else JUMP -> "<<hex<<*(DataPtr+1);
+						if(ShowPush) fout<<" // else JUMP -> "<<std::hex<<*(DataPtr+1);
 						fout<<"\n";
 
 						Val=*(DataPtr+1);
@@ -1380,7 +1380,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 #undef LAST_CMD_IN_BLOCK
 #undef JUMP_OFFSET
 						break;
-		case 0x10067000:cout<<"	signal0;\n";
+		case 0x10067000:std::cout<<"	signal0;\n";
 						TabSpace(tab,count);
 						fout<<"signal ";
 						//STACK.Pop(&StackVal_1);
@@ -1392,7 +1392,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10068000:cout<<"	set_signal0;\n";
+		case 0x10068000:std::cout<<"	set_signal0;\n";
 						TabSpace(tab,count);
 						fout<<"set-signal-mask ";
 						//STACK.Pop(&StackVal_1);
@@ -1404,7 +1404,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10071000:cout<<"	explode1;\n";
+		case 0x10071000:std::cout<<"	explode1;\n";
 						TabSpace(tab,count);
 						fout<<"explode "
 							<<PrintPieceName(*(DataPtr+1))
@@ -1417,13 +1417,13 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						last=count;
 	 					break;
-		case 0x10072000:cout<<"	play_sound1;\n";
+		case 0x10072000:std::cout<<"	play_sound1;\n";
 						pos = Push( *(DataPtr+1), TYP_CONST );
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushSound->"<<dec<<*(DataPtr+1)
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushSound->"<<std::dec<<*(DataPtr+1)
+								<<" StackPos "<<pos<<std::endl;
 						}
 						pos = PushOp( CMD_PLAY_SOUND );
 						if(ShowPush)
@@ -1440,20 +1440,20 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=2;
 						//last=count;
 	 					break;
-		case CMD_UK_MAP:cout<<"	Mission Command1;\n";
+		case CMD_UK_MAP:std::cout<<"	Mission Command1;\n";
 						pos = Push( *(DataPtr+1), TYP_CONST );
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushCommand->"<<dec<<*(DataPtr+1)
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushCommand->"<<std::dec<<*(DataPtr+1)
+								<<" StackPos "<<pos<<std::endl;
 						}
 						pos = Push( *(DataPtr+2), TYP_CONST );
 						if(ShowPush)
 						{
 							TabSpace(tab,count);
-							fout<<"// PushCommandStack->"<<dec<<*(DataPtr+1)
-								<<" StackPos "<<pos<<endl;
+							fout<<"// PushCommandStack->"<<std::dec<<*(DataPtr+1)
+								<<" StackPos "<<pos<<std::endl;
 						}
 						pos = PushOp( CMD_UK_MAP );
 						if(ShowPush)
@@ -1479,7 +1479,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr+=(3);
 						//last=count;
 	 					break;
-		case 0x10082000:cout<<"	set_value0;\n";
+		case 0x10082000:std::cout<<"	set_value0;\n";
 						TabSpace(tab,count);
 						fout<<"set ";
 						Pop( FLG_UNITVALUE, 1 );
@@ -1495,7 +1495,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10083000:cout<<"	attach-unit0;\n";
+		case 0x10083000:std::cout<<"	attach-unit0;\n";
 						TabSpace(tab,count);
 						fout<<"attach-unit ";
 						Pop( FLG_NOWRITE );
@@ -1514,7 +1514,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						DataPtr++;
 						last=count;
 	 					break;
-		case 0x10084000:cout<<"	drop-unit0;\n";
+		case 0x10084000:std::cout<<"	drop-unit0;\n";
 						TabSpace(tab,count);
 						fout<<"drop-unit ";
 						//STACK.Pop(&StackVal_1);
@@ -1526,7 +1526,7 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 						last=count;
 	 					break;
 		case COBBLER_CRAP:TabSpace(tab,count);
-						  fout<<"// "<<(char*)DataPtr<<endl;
+						  fout<<"// "<<(char*)DataPtr<<std::endl;
 						  DataPtr+=45;
 						  count+=45;
 						  break;
@@ -1536,9 +1536,9 @@ long CCobCodec::ProcessBlock(long* DataPtr,int tab,long offset,long Length)
 					count=Length;
 					break;
 				}*/
-				cout<<"	UnKnown "<<hex<<*DataPtr<<";\n";
+				std::cout<<"	UnKnown "<<std::hex<<*DataPtr<<";\n";
 				TabSpace(tab,count);
-				fout<<"UnKnown "<<hex<<*DataPtr<<";\n";
+				fout<<"UnKnown "<<std::hex<<*DataPtr<<";\n";
 				DataPtr++;
 				count++;
 				last=count;
@@ -1648,7 +1648,7 @@ long CCobCodec::ProcessScript(LPSTR Name,char* ScriptCode,long offset,long Lengt
 	long* DataPtr=reinterpret_cast < long* > ( ScriptCode );
 
 	int x,count=0;
-	fout<<endl;
+	fout<<std::endl;
 	while(*(DataPtr+count) == 0x10022000)
 	{
 		count++;
@@ -1671,7 +1671,7 @@ long CCobCodec::ProcessScript(LPSTR Name,char* ScriptCode,long offset,long Lengt
 	if(InFile)
 	{
 		fout.close();
-		fout.open(MainFile,ios::ate);
+		fout.open(MainFile,std::ios::ate);
 		fout<<"#include \""<<LastFile<<"\"\n";
 	}
 	return Length;
@@ -1694,14 +1694,14 @@ LRESULT CCobCodec::OpenCob(LPCSTR FileName)
 		NULL);
 	if (File == INVALID_HANDLE_VALUE) 
 	{
-		cout<<"Could not open file.\n";
+		std::cout<<"Could not open file.\n";
 		return 0;
 	}
 
 	if (!ReadFile(File, &Header, sizeof(Header), &BytesRead, NULL))
 	{
 		CloseHandle(File);
-		cout<<"Error Reading Header/n";
+		std::cout<<"Error Reading Header/n";
 		return 0;
 	}
 
@@ -1729,7 +1729,7 @@ LRESULT CCobCodec::MakeBos(LPCSTR FileName,CProgressCtrl* Prog)
 	fout.open(FileName);				// Open BOS file for output
 	if(!fout)
 	{
-		cout<<"Unable to open BOS";
+		std::cout<<"Unable to open BOS";
 		return 0;
 	}
 
@@ -1764,8 +1764,8 @@ LRESULT CCobCodec::MakeBos(LPCSTR FileName,CProgressCtrl* Prog)
 
 	if(HeadInfo) PrintHeader();
 
-	fout.setf(ios::fixed,ios::floatfield);			// fstream crap
-	fout.setf(ios::showpoint);						// more fstream crap
+	fout.setf(std::ios::fixed,std::ios::floatfield);			// fstream crap
+	fout.setf(std::ios::showpoint);						// more fstream crap
 
 	if(TAK) fout<<"#define TAK			// This is a TAK script\n\n";
 	else fout<<"#define TA			// This is a TA script\n\n";
@@ -1811,7 +1811,7 @@ LRESULT CCobCodec::MakeBos(LPCSTR FileName,CProgressCtrl* Prog)
 		}
 	}
 
-	if(StaticVar.GetSize()) fout<<"static-var  "<<dec;
+	if(StaticVar.GetSize()) fout<<"static-var  "<<std::dec;
 	for(x=0;x<StaticVar.GetSize();x++)
 	{
 		fout<<StaticVar[x].Name;
@@ -1825,7 +1825,7 @@ if(PrintSoundList)
 {
 	if( (TAK)&&(Header.NumberOfSounds>0) )
 	{
-		fout<<"sound  "<<dec;
+		fout<<"sound  "<<std::dec;
 		for(x=0;x<Header.NumberOfSounds;x++)
 		{
 			fout<<NameArray+GetSoundNameOffset(x);
@@ -1849,9 +1849,9 @@ if(PrintSoundList)
 			fout<<"			"<<Smoke_Flame[x].Val;
 			if(Smoke_Flame[x].Name=="MAX_DAMAGE_FLAMES")
 				fout<<" // You must have this number of damage pieces";
-			fout<<endl;
+			fout<<std::endl;
 		}
-		fout<<endl;
+		fout<<std::endl;
 	}
 
 	if(Signals.GetSize()>0)
@@ -1863,9 +1863,9 @@ if(PrintSoundList)
 			if(Signals[x].Name.GetLength()<8)
 				fout<<Signals[x].Name<<"	";
 			else fout<<Signals[x].Name;
-			fout<<"			"<<Signals[x].Val<<endl;
+			fout<<"			"<<Signals[x].Val<<std::endl;
 		}
-		fout<<endl;
+		fout<<std::endl;
 	}
 
 	if( (NumSmokePieces!=0) && (StdLibs) )
@@ -1875,9 +1875,9 @@ if(PrintSoundList)
 			fout << "#define "
 				 << "SMOKEPIECE" << (x+1) << " "
 				 << PrintPieceName(SmokePieces[x]) 
-				 << endl;
+				 << std::endl;
 		}
-		fout<<endl;
+		fout<<std::endl;
 	}
 
 	if( GotStates && !TAK )
@@ -1901,7 +1901,7 @@ if(PrintSoundList)
 		if (!ReadFile(File,ScriptBuf,Size,&BytesRead, NULL))
 		{
 			CloseHandle(File);
-			cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
+			std::cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
 			return 0;
 		}
 		Pos=ProcessScript((LPSTR)NameArray+GetScriptNameOffset(x),ScriptBuf,Pos,(Size/4)+Pos);
@@ -1913,11 +1913,11 @@ if(PrintSoundList)
 	StaticVar.RemoveAll();
 	Signals.RemoveAll();
 
-	/*fout<<endl;
+	/*fout<<std::endl;
 	for(x=0;x<Common_Funcs.GetSize();x++)
 	{
 		fout<<Common_Funcs[x].Name<<"	"
-			<<Common_Funcs[x].Game<<endl;
+			<<Common_Funcs[x].Game<<std::endl;
 	}*/
 
 	fout.close();
@@ -1964,7 +1964,7 @@ int CCobCodec::MakeSomeGuesses_TA(long Offset,long Length,long NumScripts)
 	if (!ReadFile(File,ScriptBuf,Size,&BR, NULL))
 	{
 		CloseHandle(File);
-		cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
+		std::cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
 		return 0;
 	}
 
@@ -2432,7 +2432,7 @@ int CCobCodec::MakeSomeGuesses_TAK(long Offset,long Length,long NumScripts)
 	if (!ReadFile(File,ScriptBuf,Size,&BR, NULL))
 	{
 		CloseHandle(File);
-		cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
+		std::cout<<"Error Reading Script "<<Offset<<" "<<OffsetArray[0]<<" "<<OffsetArray[1];
 		return 0;
 	}
 
@@ -3663,19 +3663,19 @@ void CCobCodec::PrintHeader()
 {
 	fout<<"//            * Header Info *\n";
 	fout<<"// VersionSignature                     "
-		<<dec<<Header.VersionSignature<<"\n";
+		<<std::dec<<Header.VersionSignature<<"\n";
 	fout<<"// NumberOfScripts                     "
 		<<Header.NumberOfScripts<<"\n";
 	fout<<"// NumberOfPieces                      "
 		<<Header.NumberOfPieces<<"\n";
 	fout<<"// LengthOfScripts                     "
-		<<hex<<Header.LengthOfScripts<<"\n";
+		<<std::hex<<Header.LengthOfScripts<<"\n";
 	fout<<"// NumberOfStaticVars                  "
-		<<dec<<Header.NumberOfStaticVars<<"\n";
+		<<std::dec<<Header.NumberOfStaticVars<<"\n";
 	fout<<"// UKZero                              "
 		<<Header.UKZero<<"\n";
 	fout<<"// OffsetToScriptCodeIndexArray        "
-		<<hex<<Header.OffsetToScriptCodeIndexArray<<"\n";
+		<<std::hex<<Header.OffsetToScriptCodeIndexArray<<"\n";
 	fout<<"// OffsetToScriptNameOffsetArray       "
 		<<Header.OffsetToScriptNameOffsetArray<<"\n";
 	fout<<"// OffsetToPieceNameOffsetArray        "
@@ -3689,10 +3689,10 @@ void CCobCodec::PrintHeader()
 	fout<<"// OffsetToSoundNameArray              "
 		<<Header.OffsetToSoundNameArray<<"\n";
 	fout<<"// NumberOfSounds                      "
-		<<dec<<Header.NumberOfSounds<<"\n";
+		<<std::dec<<Header.NumberOfSounds<<"\n";
 	}
 	fout<<"\n"
 		<<"// OffsetToFirstName                   "
-		<<hex<<OffsetToFirstName
+		<<std::hex<<OffsetToFirstName
 		<<"\n\n";
 }

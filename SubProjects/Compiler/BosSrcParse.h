@@ -22,7 +22,7 @@ private:
 	PROGRESSCALLBACK ProgressCallback;
 
 #ifdef _DEBUG
-	ofstream fout;
+	std::ofstream fout;
 #endif
 
 	virtual void Progress(long CurPos,long EndPos);

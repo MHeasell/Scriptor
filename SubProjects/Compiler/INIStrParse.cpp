@@ -408,7 +408,7 @@ void CINIStrParse::HandleVarVal(CString Var,CString Val)
 	CStringArray StrArray;
 
 #ifdef _DEBUG
-	fout<<Var<<" = "<<Val<<endl;
+	fout<<Var<<" = "<<Val<<std::endl;
 #endif
 
 	if(InCommands)
@@ -494,7 +494,7 @@ void CINIStrParse::HandleVarVal(CString Var,CString Val)
 void CINIStrParse::HandleLocaleChange(int up)
 {
 #ifdef _DEBUG
-	fout<<"Locale - "<<Locale<<" "<<((up) ? "UP":"DOWN")<<endl;
+	fout<<"Locale - "<<Locale<<" "<<((up) ? "UP":"DOWN")<<std::endl;
 #endif
 	if(up)
 	{

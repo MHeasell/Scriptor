@@ -123,10 +123,10 @@ private:
 	CStringArray KWList;
 
 #ifdef _DEBUG
-	ofstream fout;
-	ofstream spin;
-	ofstream vout;
-	ofstream PP;
+	std::ofstream fout;
+	std::ofstream spin;
+	std::ofstream vout;
+	std::ofstream PP;
 #endif
 
 	int CompareStr(CString Str1,CString Str2);

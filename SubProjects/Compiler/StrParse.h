@@ -10,7 +10,7 @@
 #endif // _MSC_VER >= 1000
 
 #ifdef _DEBUG
- #include <fstream.h>
+ #include <fstream>
 #endif
 
 class CStrParse  
@@ -18,7 +18,7 @@ class CStrParse
 protected:
 
 #ifdef _DEBUG
-	ofstream fout;
+	std::ofstream fout;
 #endif
 
 public:

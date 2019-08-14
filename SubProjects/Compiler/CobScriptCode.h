@@ -6,7 +6,7 @@
 #define AFX_COBSCRIPTCODE_H__061DC280_A457_11D3_BA39_0080C8C11E51__INCLUDED_
 
 #ifdef _DEBUG
- #include <fstream.h>
+ #include <fstream>
 #endif
 
 #if _MSC_VER >= 1000
@@ -29,7 +29,7 @@ private:
 	int IncMax(int Length2);
 public:
 #ifdef _DEBUG
-	CCobValBuf(ofstream& ffout,int Child=0);
+	CCobValBuf(std::ofstream& ffout,int Child=0);
 #else
 	CCobValBuf(int Child=0);
 #endif
@@ -38,7 +38,7 @@ public:
 	long* Buffer;
 
 #ifdef _DEBUG
-	ofstream fout;
+	std::ofstream fout;
 #endif
 
 	int AddItem(CCobValBuf* ValBuf);
@@ -67,7 +67,7 @@ public:
 	long* Buffer;
 
 #ifdef _DEBUG
-	ofstream fout;
+	std::ofstream fout;
 #endif
 
 	int AddItem(char Flag,CCobValBuf* ValBuf);

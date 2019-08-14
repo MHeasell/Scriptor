@@ -386,7 +386,7 @@ int CBosSrcParse::HandleRet(DATA* &TxtBuf,CString RetStr,WORD Ret)
 								for(TxtBuf++,temp="";isalpha(*TxtBuf);TxtBuf++)
 									temp+=*TxtBuf;
 #ifdef _DEBUG
-								fout<<"Found "<<temp<<", Locale -"<<locale<<endl;
+								fout<<"Found "<<temp<<", Locale -"<<locale<<std::endl;
 #endif
 								if( temp=="endif" )
 								{
@@ -433,7 +433,7 @@ int CBosSrcParse::HandleRet(DATA* &TxtBuf,CString RetStr,WORD Ret)
 								for(TxtBuf++,temp="";isalpha(*TxtBuf);TxtBuf++)
 									temp+=*TxtBuf;
 #ifdef _DEBUG
-								fout<<"Found "<<temp<<", Locale -"<<locale<<endl;
+								fout<<"Found "<<temp<<", Locale -"<<locale<<std::endl;
 #endif
 								if( temp=="endif" )
 								{

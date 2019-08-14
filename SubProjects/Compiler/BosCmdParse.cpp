@@ -6,8 +6,8 @@
 #include "Defs.h"
 
 #ifdef _DEBUG
- #include <fstream.h>
- #include <iomanip.h>
+ #include <fstream>
+ #include <iomanip>
 #endif
 
 #include "INIStrParse.h"
@@ -60,34 +60,34 @@ CBosCmdParse::CBosCmdParse()
 	fout<<"Operators: "<<OpList.GetSize()<<"\n";
 	for(int x=0;x<OpList.GetSize();x++)
 	{
-		fout<<setw(5)<<OpList[x].Op<<" - "<<setw(3)<<OpList[x].Priority<<" - "<<hex<<OpList[x].Val<<dec<<endl;
+		fout<<std::setw(5)<<OpList[x].Op<<" - "<<std::setw(3)<<OpList[x].Priority<<" - "<<std::hex<<OpList[x].Val<<std::dec<<std::endl;
 	}
 	fout<<"\n\nConstants: "<<Constants.GetSize()<<"\n";
 	for(x=0;x<Constants.GetSize();x++)
 	{
-		fout<<Constants[x].Name<<" - "<<Constants[x].Val<<endl;
+		fout<<Constants[x].Name<<" - "<<Constants[x].Val<<std::endl;
 	}
 	fout<<"\n\nCommands: "<<Commands.GetSize()<<"\n";
 	for(x=0;x<Commands.GetSize();x++)
 	{
-		fout<<Commands[x].Command<<" - "<<Commands[x].Flag<<endl;
+		fout<<Commands[x].Command<<" - "<<Commands[x].Flag<<std::endl;
 		CurFmt=Commands[x].Format;
 		for(;CurFmt;CurFmt=CurFmt->Next)
 		{
 			fout<<"	"
-				<<setw(2)<<int(CurFmt->Expecting)<<" - "
-				<<setw(5)<<CurFmt->Type<<" - "
-				<<setw(9)<<CurFmt->Val<<" - "
-				<<setw(5)<<CurFmt->Fmt<<" - "
-				<<setw(2)<<int(CurFmt->WhatToDo)<<" - "
-				<<setw(2)<<int(CurFmt->CmdBufFlg)<<endl;
+				<<std::setw(2)<<int(CurFmt->Expecting)<<" - "
+				<<std::setw(5)<<CurFmt->Type<<" - "
+				<<std::setw(9)<<CurFmt->Val<<" - "
+				<<std::setw(5)<<CurFmt->Fmt<<" - "
+				<<std::setw(2)<<int(CurFmt->WhatToDo)<<" - "
+				<<std::setw(2)<<int(CurFmt->CmdBufFlg)<<std::endl;
 		}
 		CurFmt=0;
 	}
 	fout<<"\n\nErrors: "<<Errors.GetSize()-1<<"\n";
 	for(x=1;x<Errors.GetSize();x++)
 	{
-		fout<<Errors[x]<<endl;
+		fout<<Errors[x]<<std::endl;
 	}
 	fout.close();
 	fout.open("C:\\windows\\desktop\\DEBUG\\debug_base.txt");
@@ -180,22 +180,22 @@ int CBosCmdParse::WriteCob(LPCTSTR Path)
 	int x;
 	unsigned long BR;
 #ifdef _DEBUG
-	ofstream fout2;
+	std::ofstream fout2;
 	fout2.open("C:\\windows\\desktop\\DEBUG\\debug_out.txt");
-	fout2<<"Lines "<<Line_Count<<endl;
+	fout2<<"Lines "<<Line_Count<<std::endl;
 	fout2<<"\nSVars:\n";
 	for(x=0;x<StaticVars.GetSize();x++)
-		fout2<<StaticVars[x]<<endl;
+		fout2<<StaticVars[x]<<std::endl;
 	fout2<<"\nSounds:\n";
 	for(x=0;x<Sounds.GetSize();x++)
-		fout2<<Sounds[x]<<endl;
+		fout2<<Sounds[x]<<std::endl;
 	fout2<<"\nPieces:\n";
 	for(x=0;x<Pieces.GetSize();x++)
-		fout2<<Pieces[x]<<endl;
+		fout2<<Pieces[x]<<std::endl;
 	fout2<<"\nConstants:\n";
 	for(x=0;x<Constants.GetSize();x++)
-		fout2<<Constants[x].Name<<" - "<<Constants[x].Val<<endl;
-	fout2<<"\nScriptCode - "<<ScriptCode->CurOffset<<endl;
+		fout2<<Constants[x].Name<<" - "<<Constants[x].Val<<std::endl;
+	fout2<<"\nScriptCode - "<<ScriptCode->CurOffset<<std::endl;
 	fout2.close();
 	fout2.open("C:\\windows\\desktop\\DEBUG\\debug_cob.txt");
 	if(WasErrors)
@@ -464,7 +464,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 	CArray <long,long> Vals;
 	Vals.SetSize(0);
 #ifdef _DEBUG
-	PP<<"Getting Value form ValBuf"<<endl;
+	PP<<"Getting Value form ValBuf"<<std::endl;
 #endif
 	for(x=0;x<ValBuff->GetLength();x++)
 	{
@@ -472,7 +472,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 		{
 		case CMD_PUSH_CON:Vals.Add(ValBuff->Buffer[x+1]);
 #ifdef _DEBUG
-						  PP<<"Got Value "<<ValBuff->Buffer[x+1]<<endl;
+						  PP<<"Got Value "<<ValBuff->Buffer[x+1]<<std::endl;
 #endif
 						  x++;
 						  break;
@@ -482,7 +482,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						   break;
 		default:found=0;
 #ifdef _DEBUG
-				PP<<"Got Suspected Op "<<hex<<ValBuff->Buffer[x]<<dec<<endl;
+				PP<<"Got Suspected Op "<<std::hex<<ValBuff->Buffer[x]<<std::dec<<std::endl;
 #endif
 				for(z=0;z<OpList.GetSize();z++)
 				{
@@ -495,7 +495,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 				if(found)
 				{
 #ifdef _DEBUG
-					PP<<"Got Op "<<OpList[z].Op<<endl;
+					PP<<"Got Op "<<OpList[z].Op<<std::endl;
 #endif
 					if(OpList[z].Op == "+")
 					{
@@ -504,7 +504,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" + "<<Vals[b]
-						  <<" = "<<Vals[a] + Vals[b]<<endl;
+						  <<" = "<<Vals[a] + Vals[b]<<std::endl;
 #endif
 						Vals[a]=(Vals[a] + Vals[b]);
 						Vals.RemoveAt(b);
@@ -516,7 +516,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" - "<<Vals[b]
-						  <<" = "<<Vals[a] - Vals[b]<<endl;
+						  <<" = "<<Vals[a] - Vals[b]<<std::endl;
 #endif
 						Vals[a]=(Vals[a] - Vals[b]);
 						Vals.RemoveAt(b);
@@ -528,7 +528,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" * "<<Vals[b]
-						  <<" = "<<Vals[a] * Vals[b]<<endl;
+						  <<" = "<<Vals[a] * Vals[b]<<std::endl;
 #endif
 						Vals[a]=(Vals[a] * Vals[b]);
 						Vals.RemoveAt(b);
@@ -540,7 +540,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" / "<<Vals[b]
-						  <<" = "<<Vals[a] / Vals[b]<<endl;
+						  <<" = "<<Vals[a] / Vals[b]<<std::endl;
 #endif
 						if(Vals[b]==0) Vals[a]=0;
 						else Vals[a]= (Vals[a] / Vals[b]);
@@ -553,7 +553,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" == "<<Vals[b]
-						  <<" = "<<(Vals[a] == Vals[b])<<endl;
+						  <<" = "<<(Vals[a] == Vals[b])<<std::endl;
 #endif
 						Vals[a] = (Vals[a] == Vals[b]);
 						Vals.RemoveAt(b);
@@ -565,7 +565,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" >= "<<Vals[b]
-						  <<" = "<<(Vals[a] >= Vals[b])<<endl;
+						  <<" = "<<(Vals[a] >= Vals[b])<<std::endl;
 #endif
 						Vals[a]= (Vals[a] >= Vals[b]);
 						Vals.RemoveAt(b);
@@ -577,7 +577,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" <= "<<Vals[b]
-						  <<" = "<<(Vals[a] <= Vals[b])<<endl;
+						  <<" = "<<(Vals[a] <= Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] <= Vals[b]);
 						Vals.RemoveAt(b);
@@ -589,7 +589,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" > "<<Vals[b]
-						  <<" = "<<(Vals[a] > Vals[b])<<endl;
+						  <<" = "<<(Vals[a] > Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] > Vals[b]);
 						Vals.RemoveAt(b);
@@ -601,7 +601,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" < "<<Vals[b]
-						  <<" = "<<(Vals[a] < Vals[b])<<endl;
+						  <<" = "<<(Vals[a] < Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] < Vals[b]);
 						Vals.RemoveAt(b);
@@ -613,7 +613,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" != "<<Vals[b]
-						  <<" = "<<(Vals[a] != Vals[b])<<endl;
+						  <<" = "<<(Vals[a] != Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] != Vals[b]);
 						Vals.RemoveAt(b);
@@ -625,7 +625,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" | "<<Vals[b]
-						  <<" = "<<(Vals[a] | Vals[b])<<endl;
+						  <<" = "<<(Vals[a] | Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] | Vals[b]);
 						Vals.RemoveAt(b);
@@ -637,7 +637,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" || "<<Vals[b]
-						  <<" = "<<(Vals[a] || Vals[b])<<endl;
+						  <<" = "<<(Vals[a] || Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] || Vals[b]);
 						Vals.RemoveAt(b);
@@ -649,7 +649,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						b=a+1;
 #ifdef _DEBUG
 						PP<<Vals[a]<<" && "<<Vals[b]
-						  <<" = "<<(Vals[a] && Vals[b])<<endl;
+						  <<" = "<<(Vals[a] && Vals[b])<<std::endl;
 #endif
 						Vals[a]=(Vals[a] && Vals[b]);
 						Vals.RemoveAt(b);
@@ -659,7 +659,7 @@ long CBosCmdParse::GetValBufValue(CCobValBuf* ValBuff)
 						ASSERT(Vals.GetSize()>0);
 						a=Vals.GetUpperBound();
 #ifdef _DEBUG
-						PP<<"!"<<Vals[a]<<" = "<<(!Vals[a])<<endl;
+						PP<<"!"<<Vals[a]<<" = "<<(!Vals[a])<<std::endl;
 #endif
 						Vals[a]=(!Vals[a]);
 					}
@@ -697,13 +697,13 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 	WORD* CharsFromLast=pHIWORD(Arg2);
 
 #ifdef _DEBUG
-	PP<<"PreProccessing on "<<Str<<" - "<<*PassedEOL<<" - "<<*CharsFromLast<<endl;
+	PP<<"PreProccessing on "<<Str<<" - "<<*PassedEOL<<" - "<<*CharsFromLast<<std::endl;
 #endif
 
 	if(PreProc.InPreProcFlag)
 	{
 #ifdef _DEBUG
-	PP<<"In PreProc Chain"<<endl;
+	PP<<"In PreProc Chain"<<std::endl;
 #endif
 		if(PreProc.LastWasDefine)
 		{
@@ -739,7 +739,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 						return RET_EXIT;
 					}
 #ifdef _DEBUG
-					PP<<"Adding "<<Def.Name<<endl;
+					PP<<"Adding "<<Def.Name<<std::endl;
 #endif
 					if(Def.Name=="TA")
 					{
@@ -778,7 +778,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					if((Str=="(")&&(*CharsFromLast<=1))
 					{
 #ifdef _DEBUG
-						PP<<"Found Arg List"<<endl;
+						PP<<"Found Arg List"<<std::endl;
 #endif
 						PreProc.GettingArgs=true;
 						PreProc.OKtoInsert=false;
@@ -791,12 +791,12 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					else
 					{
 #ifdef _DEBUG
-						PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<endl;
+						PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<std::endl;
 #endif
 						if(*IdentTypeFlag & TYP_STRING)
 						{
 #ifdef _DEBUG
-							PP<<"Got String"<<endl;
+							PP<<"Got String"<<std::endl;
 #endif
 							Str="\""+Str+"\"";
 						}
@@ -853,12 +853,12 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 				else
 				{
 #ifdef _DEBUG
-					PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<endl;
+					PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<std::endl;
 #endif
 					if(*IdentTypeFlag & TYP_STRING)
 					{
 #ifdef _DEBUG
-						PP<<"Got String"<<endl;
+						PP<<"Got String"<<std::endl;
 #endif
 						Str="\""+Str+"\"";
 					}
@@ -898,7 +898,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 			if(!PreProc.GotDEF)
 			{
 #ifdef _DEBUG
-				PP<<"undefing "<<Str<<endl;
+				PP<<"undefing "<<Str<<std::endl;
 #endif
 				if((CompareStr(Str,"TA"))||(CompareStr(Str,"TAK")))
 				{
@@ -909,7 +909,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					Constants.RemoveAt(index);
 				}
 #ifdef _DEBUG
-				else PP<<"Not Found"<<endl;
+				else PP<<"Not Found"<<std::endl;
 #endif
 				PreProc.LastWasUnDefine=false;
 				PreProc.InPreProcFlag=false;
@@ -919,7 +919,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 		else if(PreProc.LastWasInclude)
 		{
 #ifdef _DEBUG
-			PP<<"Getting Include path"<<endl;
+			PP<<"Getting Include path"<<std::endl;
 #endif
 			if(!(*IdentTypeFlag & TYP_STRING))
 			{
@@ -936,7 +936,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 			LastFile=CurrentFile;
 			CurrentFile=Settings.CurrentDirectory+Str;
 #ifdef _DEBUG
-			PP<<"Looking for "<<Settings.CurrentFile<<endl;
+			PP<<"Looking for "<<Settings.CurrentFile<<std::endl;
 #endif
 			Bos=CreateFile(CurrentFile,
 			   GENERIC_READ,
@@ -949,7 +949,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 			{
 				CurrentFile=Settings.IncludeDirectory+Str;
 #ifdef _DEBUG
-				PP<<"Looking for "<<Settings.CurrentFile<<endl;
+				PP<<"Looking for "<<Settings.CurrentFile<<std::endl;
 #endif
 				Bos=CreateFile(CurrentFile,
 					GENERIC_READ,
@@ -965,11 +965,11 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					return RET_EXIT;
 				}
 #ifdef _DEBUG
-				else PP<<"Found Include in IncDir"<<endl;
+				else PP<<"Found Include in IncDir"<<std::endl;
 #endif
 			}
 #ifdef _DEBUG
-			else PP<<"Found Include in CurDir"<<endl;
+			else PP<<"Found Include in CurDir"<<std::endl;
 #endif
 			if(OutputWin)
 			{
@@ -1233,8 +1233,8 @@ WORD CBosCmdParse::HandleMacro(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					{
 						MacDef.Val=MacDef.Val.Left(index)+PreProc.Keywords[x]+MacDef.Val.Right(MacDef.Val.GetLength()-(index+2));
 #ifdef _DEBUG
-						PP<<"@"<<x+1<<" at index "<<index<<endl
-						  <<MacDef.Val<<endl;
+						PP<<"@"<<x+1<<" at index "<<index<<std::endl
+						  <<MacDef.Val<<std::endl;
 #endif
 					}
 				}
@@ -1245,12 +1245,12 @@ WORD CBosCmdParse::HandleMacro(CString& Str,DWORD* Arg1,DWORD* Arg2)
 			else
 			{
 #ifdef _DEBUG
-				PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<endl;
+				PP<<"Adding "<<Str<<" of type "<<*IdentTypeFlag<<" to Val"<<std::endl;
 #endif
 				if(*IdentTypeFlag & TYP_STRING)
 				{
 #ifdef _DEBUG
-					PP<<"Got String"<<endl;
+					PP<<"Got String"<<std::endl;
 #endif
 					Str="\""+Str+"\"";
 				}
@@ -1266,7 +1266,7 @@ WORD CBosCmdParse::HandleMacro(CString& Str,DWORD* Arg1,DWORD* Arg2)
 					}
 				}
 #ifdef _DEBUG
-				PP<<"Got "<<Str<<endl;
+				PP<<"Got "<<Str<<std::endl;
 #endif
 				PreProc.LastStr+=Str;
 			}
@@ -1303,7 +1303,7 @@ WORD CBosCmdParse::StartCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2)
 						PreOp=NONE;
 					}
 #ifdef _DEBUG
-					spin<<"Starting new script "<<Str<<endl;
+					spin<<"Starting new script "<<Str<<std::endl;
 #endif
 					CurFmt=Commands[index].Format;
 					CmdBuf=new CCobCmdBuf(true);
@@ -1357,7 +1357,7 @@ WORD CBosCmdParse::StartCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2)
 		else if(*IdentTypeFlag & TYP_CMD)
 		{
 #ifdef _DEBUG
-			spin<<"Starting new command "<<Str<<endl;
+			spin<<"Starting new command "<<Str<<std::endl;
 #endif
 			// We found a command, so get the format pointer and process it
 			// Unless the Locale isn't right
@@ -1690,7 +1690,7 @@ WORD CBosCmdParse::GetValBuf(CString& Str,DWORD* Arg1,DWORD* Arg2,WORD Type,CCob
 					return RET_EXIT;
 				}
 #ifdef _DEBUG
-				spin<<"Starting Value Command "<<Str<<endl;
+				spin<<"Starting Value Command "<<Str<<std::endl;
 #endif
 				BURNER_ITEM Burn;
 				Burn.Fmt=CurFmt;
@@ -1800,7 +1800,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 	for(;;)
 	{	
 #ifdef _DEBUG
-		spin<<"Spinning on "<<Str<<endl;
+		spin<<"Spinning on "<<Str<<std::endl;
 #endif
 		// First we process the Expecting Flags
 
@@ -1829,7 +1829,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			temp="";
 			Strs.Add(temp);
 #ifdef _DEBUG
-			spin<<"Adding new Str at ListPos "<<Strs.GetUpperBound()<<endl;
+			spin<<"Adding new Str at ListPos "<<Strs.GetUpperBound()<<std::endl;
 #endif
 			OKtoAdvance=true;
 		}
@@ -1837,7 +1837,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		{
 			if(!Fresh) break;
 #ifdef _DEBUG
-			spin<<"Comparing "<<Str<<" with FMT_STR "<<CurFmt->Fmt<<endl;
+			spin<<"Comparing "<<Str<<" with FMT_STR "<<CurFmt->Fmt<<std::endl;
 #endif
 			if(CompareStr(Str,CurFmt->Fmt))
 			{
@@ -1858,7 +1858,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		{
 			if(!Fresh) break;
 #ifdef _DEBUG
-			spin<<"Comparing "<<Str<<" with FMT_STR {"<<endl;
+			spin<<"Comparing "<<Str<<" with FMT_STR {"<<std::endl;
 #endif
 			if(CompareStr(Str,"{"))
 			{
@@ -1876,18 +1876,18 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			tempFmt=CurFmt->Next;
 			Val=1;
 #ifdef _DEBUG
-			spin<<"Comparing "<<Str<<" with FMT_STR "<<tempFmt->Fmt<<endl;
+			spin<<"Comparing "<<Str<<" with FMT_STR "<<tempFmt->Fmt<<std::endl;
 #endif
 			while(!CompareStr(Str,tempFmt->Fmt))
 			{
 #ifdef _DEBUG
-				spin<<"Moving to next VARI"<<endl;
+				spin<<"Moving to next VARI"<<std::endl;
 #endif
                 for(int x=0;tempFmt&&(tempFmt->Expecting!=NEXT_VARI);tempFmt=tempFmt->Next)
 					if(tempFmt->Expecting==EXP_VARIES)
 					{
 #ifdef _DEBUG
-						spin<<"Incrementing Vari Locale"<<endl;
+						spin<<"Incrementing Vari Locale"<<std::endl;
 #endif
 						x++;
 					}
@@ -1896,14 +1896,14 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 						if(x)
 						{
 #ifdef _DEBUG
-							spin<<"Decrementing Vari Locale"<<endl;
+							spin<<"Decrementing Vari Locale"<<std::endl;
 #endif
 							x--;
 						}
 						else
 						{
 #ifdef _DEBUG
-							spin<<"Ending VARI loop"<<endl;
+							spin<<"Ending VARI loop"<<std::endl;
 #endif
 							Val=0;
 							break;
@@ -1914,13 +1914,13 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 						if(x)
 						{
 #ifdef _DEBUG
-							spin<<"Vari Locale not 0"<<endl;
+							spin<<"Vari Locale not 0"<<std::endl;
 #endif
 						}
 						else
 						{
 #ifdef _DEBUG
-							spin<<"Got to Else, moving on from here"<<endl;
+							spin<<"Got to Else, moving on from here"<<std::endl;
 #endif
 							Val=2;
 							break;
@@ -2174,7 +2174,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		{
 			if(!Fresh) break;
 #ifdef _DEBUG
-			spin<<"Getting Str "<<Str<<endl;
+			spin<<"Getting Str "<<Str<<std::endl;
 #endif
 			if(Str != CurFmt->Fmt)
 			{
@@ -2195,7 +2195,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 			Str = Strs[index];
 			Strs.RemoveAt(index);		
 #ifdef _DEBUG
-			spin<<Str<<endl;
+			spin<<Str<<std::endl;
 			spin<<"Finished Cmd on insert\n";
 #endif
 			if (Str!="")
@@ -2286,7 +2286,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		else if(CurFmt->WhatToDo=INITCSOUST)
 		{
 #ifdef _DEBUG
-			spin<<IndataliztingCBoupt "<CBoupr<<endl;
+			spin<<IndataliztingCBoupt "<CBoupr<<std::endl;
 #endif
 		CBoupr=0;
 		}
@@ -2294,13 +2294,13 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		{
 		CBoupe++;
 #ifdef _DEBUG
-			spin<<"Adding toCBoupt "<CBoupr<<endl;
+			spin<<"Adding toCBoupt "<CBoupr<<std::endl;
 #endif
 		}
 		else if(CurFmt->WhatToDo=PLACECSOUST)
 		{
 #ifdef _DEBUG
-			spin<<"AddingCBoupt todBu "<CBoupr<<endl;
+			spin<<"AddingCBoupt todBu "<CBoupr<<std::endl;
 #endif
 		CCmdBuf->AddItem(CurFmt->CmdBufFlgCBoup0,0);
 		}
@@ -2400,7 +2400,7 @@ WORD CBosCmdParse::HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh)
 		else if(CurFmt->WhatToDo==VELY_OCLAL)
 		{
 #ifdef _DEBUG
-			spin<<	DeladingCallt to "<<CurFmt->Fmt<<endl;
+			spin<<	DeladingCallt to "<<CurFmt->Fmt<<std::endl;
 #endif
 		=VELY 	Dela);
 			Dela].Comman+=CurFmt->Fmt;
@@ -2565,7 +2565,7 @@ WORD CBosCmdParse:dPars(Stt(CString& Str,DWORD* Arg1,DWORD* Arg2)
 	WORD* ExFlag1=pHIWORD(Arg1);
 {
 #ifdef _DEBUG
-fvou"<<Str<<"-x "<<it&(*IdentTypeFla()<<endl;
+fvou"<<Str<<"-x "<<it&(*IdentTypeFla()<<std::endl;
 #endif
 ;
  //Mmake sure	Str should not beignoared

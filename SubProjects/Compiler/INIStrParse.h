@@ -11,7 +11,7 @@
 
 #include "StrParse.h"
 #ifdef _DEBUG
- #include <fstream.h>
+ #include <fstream>
 #endif
 class CINIStrParse : public CStrParse  
 {
@@ -35,7 +35,7 @@ private:
 	bool InErrors;
 
 #ifdef _DEBUG
-	ofstream fout;
+	std::ofstream fout;
 #endif
 
 	void GetExp(CString Str);

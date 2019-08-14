@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include <iomanip.h>
-#include <fstream.h>
+#include <iomanip>
+#include <fstream>
 #include "Stack.h"
 
 struct HEADER_COB
@@ -77,7 +77,7 @@ class CCobCodec
 private:
 	HANDLE File;
 	CString MainFile;
-	ofstream fout;
+	std::ofstream fout;
 	HEADER_COB Header;
 	DWORD* OffsetArray;
 	unsigned char* NameArray;
