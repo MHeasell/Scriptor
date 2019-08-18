@@ -81,7 +81,7 @@ typedef struct _PRE_PROCESSOR
 	char NumArgs;
 } PREPROC;
 
-class CBosCmdParse : public CStrParse  
+class CBosCmdParse : public CStrParse
 {
 private:
 	PREPROC PreProc;
@@ -89,21 +89,21 @@ private:
 	CONS MacDef;
 	bool Got_INI;
 	SETTINGS Settings;
-	CArray <CMD_TYPE,CMD_TYPE&> Commands;
+	CArray<CMD_TYPE, CMD_TYPE&> Commands;
 	CMD_FMT* CurFmt;
 	CMD_FMT* LastFmt;
 	CMD_FMT* SaveFmt;
-	CArray <BURNER_ITEM,BURNER_ITEM&> BackBurner;
-	CArray <SCRIPT,SCRIPT&> Scripts;
+	CArray<BURNER_ITEM, BURNER_ITEM&> BackBurner;
+	CArray<SCRIPT, SCRIPT&> Scripts;
 	CStringArray Pieces;
 	CStringArray StaticVars;
 	CStringArray FuncVars;
 	CStringArray Sounds;
-	CArray <CONS,CONS&> Constants;
-	CArray <OPERATOR,OPERATOR&> OpList;
+	CArray<CONS, CONS&> Constants;
+	CArray<OPERATOR, OPERATOR&> OpList;
 	int Locale;
-	CArray <HOLD,HOLD&> Holds;
-	CArray <DELAY,DELAY&> Delays;
+	CArray<HOLD, HOLD&> Holds;
+	CArray<DELAY, DELAY&> Delays;
 	CStringArray Strs;
 	CStringArray Errors;
 	CString CurrentFile;
@@ -130,33 +130,33 @@ private:
 	std::ofstream PP;
 #endif
 
-	int CompareStr(CString Str1,CString Str2);
-	int CompareStr2(CString Str1,CString Str2);
-	WORD CompareTo(CString Ident,WORD ToWhat,int* Index);
-	CString GetFmtErr(WORD ErrNum,CString Str,CString Fmt);
-	void DoError(char Type,CString Error);
-	long GetNumber(CString Str,WORD Flag);
+	int CompareStr(CString Str1, CString Str2);
+	int CompareStr2(CString Str1, CString Str2);
+	WORD CompareTo(CString Ident, WORD ToWhat, int* Index);
+	CString GetFmtErr(WORD ErrNum, CString Str, CString Fmt);
+	void DoError(char Type, CString Error);
+	long GetNumber(CString Str, WORD Flag);
 	long GetValBufValue(CCobValBuf* ValBuff);
 	void KillCmd();
 	void CleanUp();
 
 	// Handling Methods
-	WORD HandlePreProcessor(CString& Str,DWORD* Arg1,DWORD* Arg2);
-	WORD HandleMacro(CString& Str,DWORD* Arg1,DWORD* Arg2);
-	WORD GetValBuf(CString& Str,DWORD* Arg1,DWORD* Arg2,WORD Type,CCobValBuf* &ValBuff);
-	WORD StartCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2);
-	WORD HandleCmdFmt(CString& Str,DWORD* Arg1,DWORD* Arg2,bool Fresh=true);
+	WORD HandlePreProcessor(CString& Str, DWORD* Arg1, DWORD* Arg2);
+	WORD HandleMacro(CString& Str, DWORD* Arg1, DWORD* Arg2);
+	WORD GetValBuf(CString& Str, DWORD* Arg1, DWORD* Arg2, WORD Type, CCobValBuf*& ValBuff);
+	WORD StartCmdFmt(CString& Str, DWORD* Arg1, DWORD* Arg2);
+	WORD HandleCmdFmt(CString& Str, DWORD* Arg1, DWORD* Arg2, bool Fresh = true);
 
 public:
 	CBosCmdParse();
 	virtual ~CBosCmdParse();
 
-	int CmdLen(){ return KWList.GetSize(); };
-	CString GetCmd(int index){ return KWList[index]; };
+	int CmdLen() { return KWList.GetSize(); };
+	CString GetCmd(int index) { return KWList[index]; };
 	void PrepareKWList();
-	int Initialize(SETTINGS Set,OUTPUTWINCALLBACK Out=0,PROGRESSCALLBACK pProgressCallback=0);
+	int Initialize(SETTINGS Set, OUTPUTWINCALLBACK Out = 0, PROGRESSCALLBACK pProgressCallback = 0);
 	int WriteCob(LPCTSTR Path);
-	virtual WORD ParseStr(CString& Str,DWORD* Arg1,DWORD* Arg2);
+	virtual WORD ParseStr(CString& Str, DWORD* Arg1, DWORD* Arg2);
 };
 
 #endif // !defined(AFX_BOSCMDPARSE_H__B04E66E6_9DA1_11D3_BA39_0080C8C11E51__INCLUDED_)

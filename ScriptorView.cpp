@@ -19,13 +19,13 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CScriptorView, CCrystalEditView)
 
 BEGIN_MESSAGE_MAP(CScriptorView, CCrystalEditView)
-	//{{AFX_MSG_MAP(CScriptorView)
-	ON_WM_CONTEXTMENU()
-	//}}AFX_MSG_MAP
-	// Standard printing commands
-	ON_COMMAND(ID_FILE_PRINT, CCrystalEditView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_DIRECT, CCrystalEditView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
+//{{AFX_MSG_MAP(CScriptorView)
+ON_WM_CONTEXTMENU()
+//}}AFX_MSG_MAP
+// Standard printing commands
+ON_COMMAND(ID_FILE_PRINT, CCrystalEditView::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, CCrystalEditView::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,6 @@ END_MESSAGE_MAP()
 CScriptorView::CScriptorView()
 {
 	// TODO: add construction code here
-
 }
 
 CScriptorView::~CScriptorView()
@@ -71,13 +70,13 @@ CScriptorDoc* CScriptorView::GetDocument() // non-debug version is inline
 #endif //_DEBUG
 
 
-void CScriptorView::GotoErrorLine( int iLineIndex )
+void CScriptorView::GotoErrorLine(int iLineIndex)
 {
-    CPoint      ptError( 0, iLineIndex );
+	CPoint ptError(0, iLineIndex);
 
-    SetCursorPos( ptError );
-    EnsureVisible( ptError );
-/*
+	SetCursorPos(ptError);
+	EnsureVisible(ptError);
+	/*
     if (m_pTextBuffer != NULL)
 	{
 		DWORD dwFlags = GetLineFlags( iLineIndex );
@@ -90,28 +89,28 @@ void CScriptorView::GotoErrorLine( int iLineIndex )
 /////////////////////////////////////////////////////////////////////////////
 // CScriptorView message handlers
 
-CCrystalTextBuffer *CScriptorView::LocateTextBuffer()
+CCrystalTextBuffer* CScriptorView::LocateTextBuffer()
 {
 	return &GetDocument()->m_xTextBuffer;
 }
 
-void CScriptorView::OnInitialUpdate() 
+void CScriptorView::OnInitialUpdate()
 {
 	CCrystalEditView::OnInitialUpdate();
 
 	//SetFont(GetDocument()->m_lf);
-    SetFont( theApp.m_CurrentFont );
+	SetFont(theApp.m_CurrentFont);
 }
 
-void CScriptorView::OnContextMenu(CWnd* pWnd, CPoint point) 
+void CScriptorView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-    // Load the custom context menu
-    CMenu pScriptMenu;
-    pScriptMenu.LoadMenu( IDR_SCRIPT_CONTEXT_MENU );
+	// Load the custom context menu
+	CMenu pScriptMenu;
+	pScriptMenu.LoadMenu(IDR_SCRIPT_CONTEXT_MENU);
 
-    // Get the edit sub menu
-    CMenu* pEditMenu = pScriptMenu.GetSubMenu(0);
+	// Get the edit sub menu
+	CMenu* pEditMenu = pScriptMenu.GetSubMenu(0);
 
-    // Use the it as the popup
-	pEditMenu->TrackPopupMenu(TPM_LEFTALIGN|TPM_LEFTBUTTON,point.x,point.y,this);
+	// Use the it as the popup
+	pEditMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON, point.x, point.y, this);
 }

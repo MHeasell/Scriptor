@@ -24,11 +24,11 @@ static LPTSTR s_apszCppKeywordList[] =
 
 static BOOL IsBosKeyword(LPCTSTR pszChars, int nLength)
 {
-    BOS_KEYWORD_t*      pKW = g_BosKeywords;
-	for(; pKW!=NULL; pKW=pKW->Next )
+	BOS_KEYWORD_t* pKW = g_BosKeywords;
+	for (; pKW != NULL; pKW = pKW->Next)
 	{
 		if (strnicmp(pKW->Keyword, pszChars, nLength) == 0
-				&& pKW->Keyword[nLength] == 0)
+			&& pKW->Keyword[nLength] == 0)
 			return TRUE;
 	}
 	return FALSE;
@@ -40,54 +40,53 @@ static BOOL IsCppNumber(LPCTSTR pszChars, int nLength)
 	{
 		for (int I = 2; I < nLength; I++)
 		{
-			if (isdigit(pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-										(pszChars[I] >= 'a' && pszChars[I] <= 'f'))
+			if (isdigit(pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') || (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
 				continue;
 			return FALSE;
 		}
 		return TRUE;
 	}
-	if (! isdigit(pszChars[0]))
+	if (!isdigit(pszChars[0]))
 		return FALSE;
 	for (int I = 1; I < nLength; I++)
 	{
-		if (! isdigit(pszChars[I]) && pszChars[I] != '+' &&
-			pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-			pszChars[I] != 'E')
+		if (!isdigit(pszChars[I]) && pszChars[I] != '+' && pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' && pszChars[I] != 'E')
 			return FALSE;
 	}
 	return TRUE;
 }
 
-#define DEFINE_BLOCK(pos, colorindex)	\
-	ASSERT((pos) >= 0 && (pos) <= nLength);\
-	if (pBuf != NULL)\
-	{\
-		if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
-		pBuf[nActualItems].m_nCharPos = (pos);\
-		pBuf[nActualItems].m_nColorIndex = (colorindex);\
-		nActualItems ++;}\
+#define DEFINE_BLOCK(pos, colorindex)                                        \
+	ASSERT((pos) >= 0 && (pos) <= nLength);                                  \
+	if (pBuf != NULL)                                                        \
+	{                                                                        \
+		if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)) \
+		{                                                                    \
+			pBuf[nActualItems].m_nCharPos = (pos);                           \
+			pBuf[nActualItems].m_nColorIndex = (colorindex);                 \
+			nActualItems++;                                                  \
+		}                                                                    \
 	}
 
-#define COOKIE_COMMENT			0x0001
-#define COOKIE_PREPROCESSOR		0x0002
-#define COOKIE_EXT_COMMENT		0x0004
-#define COOKIE_STRING			0x0008
-#define COOKIE_CHAR				0x0010
+#define COOKIE_COMMENT 0x0001
+#define COOKIE_PREPROCESSOR 0x0002
+#define COOKIE_EXT_COMMENT 0x0004
+#define COOKIE_STRING 0x0008
+#define COOKIE_CHAR 0x0010
 
-DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, int &nActualItems)
+DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK* pBuf, int& nActualItems)
 {
 	int nLength = GetLineLength(nLineIndex);
 	if (nLength <= 0)
 		return dwCookie & COOKIE_EXT_COMMENT;
 
-	LPCTSTR pszChars    = GetLineChars(nLineIndex);
-	BOOL bFirstChar     = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+	LPCTSTR pszChars = GetLineChars(nLineIndex);
+	BOOL bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
 	BOOL bRedefineBlock = TRUE;
-	BOOL bDecIndex  = FALSE;
+	BOOL bDecIndex = FALSE;
 	int nIdentBegin = -1;
 	int I = 0;
-	for (; ; I++)
+	for (;; I++)
 	{
 		if (bRedefineBlock)
 		{
@@ -98,13 +97,11 @@ DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, 
 			{
 				DEFINE_BLOCK(nPos, COLORINDEX_COMMENT);
 			}
-			else
-			if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
+			else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
 			{
 				DEFINE_BLOCK(nPos, COLORINDEX_STRING);
 			}
-			else
-			if (dwCookie & COOKIE_PREPROCESSOR)
+			else if (dwCookie & COOKIE_PREPROCESSOR)
 			{
 				DEFINE_BLOCK(nPos, COLORINDEX_PREPROCESSOR);
 			}
@@ -113,7 +110,7 @@ DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, 
 				DEFINE_BLOCK(nPos, COLORINDEX_NORMALTEXT);
 			}
 			bRedefineBlock = FALSE;
-			bDecIndex      = FALSE;
+			bDecIndex = FALSE;
 		}
 
 		if (I == nLength)
@@ -205,19 +202,16 @@ DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, 
 				dwCookie |= COOKIE_PREPROCESSOR;
 				continue;
 			}
-			if (! isspace(pszChars[I]))
+			if (!isspace(pszChars[I]))
 				bFirstChar = FALSE;
 		}
 
 		if (pBuf == NULL)
-			continue;	//	We don't need to extract keywords,
-						//	for faster parsing skip the rest of loop
+			continue; //	We don't need to extract keywords,
+				//	for faster parsing skip the rest of loop
 
-		if( (isalnum(pszChars[I])) ||
-            (pszChars[I]=='_') ||
-            (pszChars[I]=='.') ||
-            (pszChars[I]=='-') )
-            //((nIdentBegin>0)&&(pszChars[I]=='-')) )
+		if ((isalnum(pszChars[I])) || (pszChars[I] == '_') || (pszChars[I] == '.') || (pszChars[I] == '-'))
+		//((nIdentBegin>0)&&(pszChars[I]=='-')) )
 		{
 			if (nIdentBegin == -1)
 				nIdentBegin = I;
@@ -230,8 +224,7 @@ DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, 
 				{
 					DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
 				}
-				else
-				if (IsCppNumber(pszChars + nIdentBegin, I - nIdentBegin))
+				else if (IsCppNumber(pszChars + nIdentBegin, I - nIdentBegin))
 				{
 					DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
 				}
@@ -248,8 +241,7 @@ DWORD CScriptorView::ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, 
 		{
 			DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
 		}
-		else
-		if (IsCppNumber(pszChars + nIdentBegin, I - nIdentBegin))
+		else if (IsCppNumber(pszChars + nIdentBegin, I - nIdentBegin))
 		{
 			DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
 		}

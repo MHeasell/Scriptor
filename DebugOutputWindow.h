@@ -12,32 +12,32 @@
 
 class CDebugOutputWindow : public CEdit
 {
-// Construction
+	// Construction
 public:
 	CDebugOutputWindow();
 
-// Attributes
+	// Attributes
 public:
-    struct ErrorListElement
-    {
-        char        FilePath[MAX_PATH];
-        WORD        ErrorLineNumber;
-    };
+	struct ErrorListElement
+	{
+		char FilePath[MAX_PATH];
+		WORD ErrorLineNumber;
+	};
 
-    CMap<int,int,ErrorListElement,ErrorListElement&>      m_ErrorList;
+	CMap<int, int, ErrorListElement, ErrorListElement&> m_ErrorList;
 
-// Operations
+	// Operations
 public:
-    BOOL AddTextLine( LPCTSTR strText=NULL );
-    BOOL AddErrorLine( LPCTSTR strText, LPCTSTR strFile, WORD wLine );
-    void ClearOutputWindow();
+	BOOL AddTextLine(LPCTSTR strText = NULL);
+	BOOL AddErrorLine(LPCTSTR strText, LPCTSTR strFile, WORD wLine);
+	void ClearOutputWindow();
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDebugOutputWindow)
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CDebugOutputWindow();
 

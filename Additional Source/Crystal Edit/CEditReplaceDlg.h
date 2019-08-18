@@ -35,40 +35,42 @@ class CCrystalEditView;
 class CEditReplaceDlg : public CDialog
 {
 private:
-	CCrystalEditView *m_pBuddy;
+	CCrystalEditView* m_pBuddy;
 	BOOL m_bFound;
 	CPoint m_ptFoundAt;
 	BOOL DoHighlightText();
 
-// Construction
+	// Construction
 public:
-	CEditReplaceDlg(CCrystalEditView *pBuddy);
+	CEditReplaceDlg(CCrystalEditView* pBuddy);
 
 	BOOL m_bEnableScopeSelection;
 	CPoint m_ptCurrentPos;
 	CPoint m_ptBlockBegin, m_ptBlockEnd;
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CEditReplaceDlg)
-	enum { IDD = IDD_EDIT_REPLACE };
-	BOOL	m_bMatchCase;
-	BOOL	m_bWholeWord;
-	CString	m_sText;
-	CString	m_sNewText;
-	int		m_nScope;
+	enum
+	{
+		IDD = IDD_EDIT_REPLACE
+	};
+	BOOL m_bMatchCase;
+	BOOL m_bWholeWord;
+	CString m_sText;
+	CString m_sNewText;
+	int m_nScope;
 	//}}AFX_DATA
 
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CEditReplaceDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
+	// Implementation
+protected:
 	// Generated message map functions
 	//{{AFX_MSG(CEditReplaceDlg)
 	afx_msg void OnChangeEditText();

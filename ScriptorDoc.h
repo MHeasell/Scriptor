@@ -17,28 +17,30 @@ protected: // create from serialization only
 	CScriptorDoc();
 	DECLARE_DYNCREATE(CScriptorDoc)
 
-// Attributes
+	// Attributes
 public:
 	class CScriptorTextBuffer : public CCrystalTextBuffer
 	{
 	private:
-		CScriptorDoc *m_pOwnerDoc;
+		CScriptorDoc* m_pOwnerDoc;
+
 	public:
-		CScriptorTextBuffer(CScriptorDoc *pDoc) { m_pOwnerDoc = pDoc; };
+		CScriptorTextBuffer(CScriptorDoc* pDoc) { m_pOwnerDoc = pDoc; };
 		virtual void SetModified(BOOL bModified = TRUE)
-			{ m_pOwnerDoc->SetModifiedFlag(bModified); };
+		{
+			m_pOwnerDoc->SetModifiedFlag(bModified);
+		};
 	};
 
 	CScriptorTextBuffer m_xTextBuffer;
 	LOGFONT m_lf;
 
-// Operations
+	// Operations
 public:
-
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CScriptorDoc)
-	public:
+public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 	virtual void DeleteContents();
@@ -46,7 +48,7 @@ public:
 	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CScriptorDoc();
 #ifdef _DEBUG
@@ -55,8 +57,7 @@ public:
 #endif
 
 protected:
-
-// Generated message map functions
+	// Generated message map functions
 protected:
 	//{{AFX_MSG(CScriptorDoc)
 	afx_msg void OnScriptCompile();

@@ -12,32 +12,34 @@
 
 class CUnitWizards : public CDialog
 {
-// Construction
+	// Construction
 public:
-	CUnitWizards(CWnd* pParent = NULL);   // standard constructor
+	CUnitWizards(CWnd* pParent = NULL); // standard constructor
 
-// Attributes
+	// Attributes
 public:
-    BOOL        m_WizardCompleted;
-    char        m_FileToOpen[MAX_PATH];
+	BOOL m_WizardCompleted;
+	char m_FileToOpen[MAX_PATH];
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CUnitWizards)
-	enum { IDD = IDD_UNIT_WIZ };
-		// NOTE: the ClassWizard will add data members here
+	enum
+	{
+		IDD = IDD_UNIT_WIZ
+	};
+	// NOTE: the ClassWizard will add data members here
 	//}}AFX_DATA
 
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CUnitWizards)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
+	// Implementation
+protected:
 	// Generated message map functions
 	//{{AFX_MSG(CUnitWizards)
 	virtual BOOL OnInitDialog();

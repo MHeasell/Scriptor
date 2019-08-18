@@ -18,25 +18,25 @@
 
 class CDebugOutputBar : public baseCMyBar
 {
-// Construction
+	// Construction
 public:
 	CDebugOutputBar();
 
-// Attributes
+	// Attributes
 protected:
-	CDebugOutputWindow      m_wndChild;
-	CFont	                m_font;
+	CDebugOutputWindow m_wndChild;
+	CFont m_font;
 
-// Operations
+	// Operations
 public:
-    CDebugOutputWindow* GetDebugWindow(){return (&m_wndChild);};
+	CDebugOutputWindow* GetDebugWindow() { return (&m_wndChild); };
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDebugOutputBar)
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CDebugOutputBar();
 

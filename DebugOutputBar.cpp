@@ -16,9 +16,9 @@ static char THIS_FILE[] = __FILE__;
 
 CDebugOutputBar::CDebugOutputBar()
 {
-    m_szHorz = CSize(200, 100);
-    m_szVert = CSize(100, 200);
-    m_szFloat = CSize(400, 100);
+	m_szHorz = CSize(200, 100);
+	m_szVert = CSize(100, 200);
+	m_szFloat = CSize(400, 100);
 }
 
 CDebugOutputBar::~CDebugOutputBar()
@@ -27,30 +27,28 @@ CDebugOutputBar::~CDebugOutputBar()
 
 
 BEGIN_MESSAGE_MAP(CDebugOutputBar, baseCMyBar)
-	//{{AFX_MSG_MAP(CDebugOutputBar)
-	ON_WM_CREATE()
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CDebugOutputBar)
+ON_WM_CREATE()
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CDebugOutputBar message handlers
 
-int CDebugOutputBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CDebugOutputBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (baseCMyBar::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
-	SetSCBStyle( GetSCBStyle() | SCBS_SHOWEDGES | SCBS_SIZECHILD );
 
-	if( !m_wndChild.Create( WS_CHILD | WS_VISIBLE |
-                            WS_HSCROLL | WS_VSCROLL |
-			                ES_MULTILINE | ES_WANTRETURN |
-                            ES_AUTOVSCROLL | ES_READONLY,
-		                    CRect(0,0,0,0), this,
-                            IDC_DEBUG_OUTPUT_WINDOW) )
+	SetSCBStyle(GetSCBStyle() | SCBS_SHOWEDGES | SCBS_SIZECHILD);
+
+	if (!m_wndChild.Create(WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL | ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL | ES_READONLY,
+			CRect(0, 0, 0, 0),
+			this,
+			IDC_DEBUG_OUTPUT_WINDOW))
 		return -1;
 
-	m_wndChild.ModifyStyleEx( 0, WS_EX_CLIENTEDGE );
+	m_wndChild.ModifyStyleEx(0, WS_EX_CLIENTEDGE);
 
 	// older versions of Windows* (NT 3.51 for instance)
 	// fail with DEFAULT_GUI_FONT
@@ -60,7 +58,7 @@ int CDebugOutputBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndChild.SetFont(&m_font);
 
-    m_wndChild.AddTextLine( "-------------------- Welcome to Scriptor v1 --------------------" );
-	
+	m_wndChild.AddTextLine("-------------------- Welcome to Scriptor v1 --------------------");
+
 	return 0;
 }

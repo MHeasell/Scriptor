@@ -5,7 +5,7 @@
 //
 // Copyright Giancarlo Iovino, 1997 (giancarlo@saria.com)
 // This code is based on CHyperlink by Chris Maunder.
-// Feel free to use and distribute. May not be sold for profit. 
+// Feel free to use and distribute. May not be sold for profit.
 
 #if !defined(AFX_HYPERLINK_H_04ET323B01_023500_0204251998_ENG_INCLUDED_)
 #define AFX_HYPERLINK_H_04ET323B01_023500_0204251998_ENG_INCLUDED_
@@ -15,11 +15,12 @@
 #endif // _MSC_VER >= 1000
 
 // Structure used to get/set hyperlink colors
-typedef struct tagHYPERLINKCOLORS {
-	COLORREF	crLink;
-	COLORREF	crActive;
-	COLORREF	crVisited;
-	COLORREF	crHover;
+typedef struct tagHYPERLINKCOLORS
+{
+	COLORREF crLink;
+	COLORREF crActive;
+	COLORREF crVisited;
+	COLORREF crHover;
 } HYPERLINKCOLORS;
 
 
@@ -31,7 +32,7 @@ class CHyperLink : public CStatic
 	DECLARE_DYNAMIC(CHyperLink)
 
 public:
-// Link styles
+	// Link styles
 	static const DWORD StyleUnderline;
 	static const DWORD StyleUseHover;
 	static const DWORD StyleAutoSize;
@@ -40,77 +41,77 @@ public:
 	static const DWORD StyleNoHandCursor;
 	static const DWORD StyleNoActiveColor;
 
-// Construction/destruction
+	// Construction/destruction
 	CHyperLink();
 	virtual ~CHyperLink();
 
-// Attributes
+	// Attributes
 public:
-
-// Operations
-public:	
+	// Operations
+public:
 	static void GetColors(HYPERLINKCOLORS& linkColors);
 
 	static HCURSOR GetLinkCursor();
 	static void SetLinkCursor(HCURSOR hCursor);
-    
-    static void SetColors(COLORREF crLinkColor, COLORREF crActiveColor, 
-				   COLORREF crVisitedColor, COLORREF crHoverColor = -1);
-    static void SetColors(HYPERLINKCOLORS& colors);
+
+	static void SetColors(COLORREF crLinkColor, COLORREF crActiveColor, COLORREF crVisitedColor, COLORREF crHoverColor = -1);
+	static void SetColors(HYPERLINKCOLORS& colors);
 
 	void SetURL(CString strURL);
-    CString GetURL() const;
+	CString GetURL() const;
 
 	DWORD GetLinkStyle() const;
-	BOOL ModifyLinkStyle(DWORD dwRemove, DWORD dwAdd, BOOL bApply=TRUE);	
-    
+	BOOL ModifyLinkStyle(DWORD dwRemove, DWORD dwAdd, BOOL bApply = TRUE);
+
 	void SetWindowText(LPCTSTR lpszText);
-	void SetFont(CFont *pFont);
-	
+	void SetFont(CFont* pFont);
+
 	BOOL IsVisited() const;
 	void SetVisited(BOOL bVisited = TRUE);
-	
+
 	// Use this if you want to subclass and also set different URL
-	BOOL SubclassDlgItem(UINT nID, CWnd* pParent, LPCTSTR lpszURL=NULL) {
+	BOOL SubclassDlgItem(UINT nID, CWnd* pParent, LPCTSTR lpszURL = NULL)
+	{
 		m_strURL = lpszURL;
 		return CStatic::SubclassDlgItem(nID, pParent);
 	}
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CHyperLink)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);	
-	protected:
-	virtual void PreSubclassWindow();	
+public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+
+protected:
+	virtual void PreSubclassWindow();
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
 	static void SetDefaultCursor();
 	static LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
-	static void ReportError(int nError);	
+	static void ReportError(int nError);
 	static HINSTANCE GotoURL(LPCTSTR url, int showcmd);
 
-	void AdjustWindow();	
+	void AdjustWindow();
 	void FollowLink();
 	inline void SwitchUnderline();
-	
-// Protected attributes
-protected:
-	static COLORREF g_crLinkColor;		// Link normal color
-	static COLORREF g_crActiveColor;	// Link active color
-	static COLORREF g_crVisitedColor;	// Link visited color
-	static COLORREF g_crHoverColor;		// Hover color
-	static HCURSOR  g_hLinkCursor;		// Hyperlink mouse cursor
 
-	BOOL	 m_bLinkActive;				// Is the link active?
-	BOOL     m_bOverControl;			// Is cursor over control?
-	BOOL	 m_bVisited;				// Has link been visited?
-	DWORD	 m_dwStyle;					// Link styles
-	CString  m_strURL;					// Hyperlink URL string
-	CFont    m_Font;					// Underlined font (if required)	
-	CToolTipCtrl m_ToolTip;				// The link tooltip	
+	// Protected attributes
+protected:
+	static COLORREF g_crLinkColor;	// Link normal color
+	static COLORREF g_crActiveColor;  // Link active color
+	static COLORREF g_crVisitedColor; // Link visited color
+	static COLORREF g_crHoverColor;   // Hover color
+	static HCURSOR g_hLinkCursor;	 // Hyperlink mouse cursor
+
+	BOOL m_bLinkActive;		// Is the link active?
+	BOOL m_bOverControl;	// Is cursor over control?
+	BOOL m_bVisited;		// Has link been visited?
+	DWORD m_dwStyle;		// Link styles
+	CString m_strURL;		// Hyperlink URL string
+	CFont m_Font;			// Underlined font (if required)
+	CToolTipCtrl m_ToolTip; // The link tooltip
 
 	// Generated message map functions
 protected:

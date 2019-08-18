@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 // CEditReplaceDlg dialog
 
 
-CEditReplaceDlg::CEditReplaceDlg(CCrystalEditView *pBuddy) : CDialog(CEditReplaceDlg::IDD, NULL)
+CEditReplaceDlg::CEditReplaceDlg(CCrystalEditView* pBuddy) : CDialog(CEditReplaceDlg::IDD, NULL)
 {
 	ASSERT(pBuddy != NULL);
 	m_pBuddy = pBuddy;
@@ -58,35 +58,35 @@ void CEditReplaceDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CEditReplaceDlg, CDialog)
-	//{{AFX_MSG_MAP(CEditReplaceDlg)
-	ON_EN_CHANGE(IDC_EDIT_TEXT, OnChangeEditText)
-	ON_BN_CLICKED(IDC_EDIT_REPLACE, OnEditReplace)
-	ON_BN_CLICKED(IDC_EDIT_REPLACE_ALL, OnEditReplaceAll)
-	ON_BN_CLICKED(IDC_EDIT_SKIP, OnEditSkip)
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CEditReplaceDlg)
+ON_EN_CHANGE(IDC_EDIT_TEXT, OnChangeEditText)
+ON_BN_CLICKED(IDC_EDIT_REPLACE, OnEditReplace)
+ON_BN_CLICKED(IDC_EDIT_REPLACE_ALL, OnEditReplaceAll)
+ON_BN_CLICKED(IDC_EDIT_SKIP, OnEditSkip)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditReplaceDlg message handlers
 
-void CEditReplaceDlg::OnChangeEditText() 
+void CEditReplaceDlg::OnChangeEditText()
 {
 	CString text;
 	GetDlgItem(IDC_EDIT_TEXT)->GetWindowText(text);
 	GetDlgItem(IDC_EDIT_SKIP)->EnableWindow(text != _T(""));
 }
 
-void CEditReplaceDlg::OnCancel() 
+void CEditReplaceDlg::OnCancel()
 {
 	VERIFY(UpdateData());
 
 	CDialog::OnCancel();
 }
 
-BOOL CEditReplaceDlg::OnInitDialog() 
+BOOL CEditReplaceDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	
+
 	GetDlgItem(IDC_EDIT_SKIP)->EnableWindow(m_sText != _T(""));
 	GetDlgItem(IDC_EDIT_SCOPE_SELECTION)->EnableWindow(m_bEnableScopeSelection);
 	m_bFound = FALSE;
@@ -107,8 +107,7 @@ BOOL CEditReplaceDlg::DoHighlightText()
 	if (m_nScope == 0)
 	{
 		//	Searching selection only
-		bFound = m_pBuddy->FindTextInBlock(m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
-											dwSearchFlags, FALSE, &m_ptFoundAt);
+		bFound = m_pBuddy->FindTextInBlock(m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd, dwSearchFlags, FALSE, &m_ptFoundAt);
 	}
 	else
 	{
@@ -116,7 +115,7 @@ BOOL CEditReplaceDlg::DoHighlightText()
 		bFound = m_pBuddy->FindText(m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
 	}
 
-	if (! bFound)
+	if (!bFound)
 	{
 		CString prompt;
 		prompt.Format(IDS_EDIT_TEXT_NOT_FOUND, m_sText);
@@ -129,12 +128,12 @@ BOOL CEditReplaceDlg::DoHighlightText()
 	return TRUE;
 }
 
-void CEditReplaceDlg::OnEditSkip() 
+void CEditReplaceDlg::OnEditSkip()
 {
-	if (! UpdateData())
+	if (!UpdateData())
 		return;
 
-	if (! m_bFound)
+	if (!m_bFound)
 	{
 		m_ptFoundAt = m_ptCurrentPos;
 		m_bFound = DoHighlightText();
@@ -145,12 +144,12 @@ void CEditReplaceDlg::OnEditSkip()
 	m_bFound = DoHighlightText();
 }
 
-void CEditReplaceDlg::OnEditReplace() 
+void CEditReplaceDlg::OnEditReplace()
 {
-	if (! UpdateData())
+	if (!UpdateData())
 		return;
 
-	if (! m_bFound)
+	if (!m_bFound)
 	{
 		m_ptFoundAt = m_ptCurrentPos;
 		m_bFound = DoHighlightText();
@@ -178,12 +177,12 @@ void CEditReplaceDlg::OnEditReplace()
 	m_bFound = DoHighlightText();
 }
 
-void CEditReplaceDlg::OnEditReplaceAll() 
+void CEditReplaceDlg::OnEditReplaceAll()
 {
-	if (! UpdateData())
+	if (!UpdateData())
 		return;
 
-	if (! m_bFound)
+	if (!m_bFound)
 	{
 		m_ptFoundAt = m_ptCurrentPos;
 		m_bFound = DoHighlightText();

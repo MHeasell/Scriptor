@@ -39,37 +39,37 @@ class CRYSEDIT_CLASS_DECL CCrystalEditView : public CCrystalTextView
 	DECLARE_DYNCREATE(CCrystalEditView)
 
 private:
-	BOOL	m_bOvrMode;
-	BOOL	m_bDropPosVisible;
-	CPoint	m_ptSavedCaretPos;
-	CPoint	m_ptDropPos;
-	BOOL	m_bSelectionPushed;
-	CPoint	m_ptSavedSelStart, m_ptSavedSelEnd;
-	BOOL	m_bAutoIndent;
+	BOOL m_bOvrMode;
+	BOOL m_bDropPosVisible;
+	CPoint m_ptSavedCaretPos;
+	CPoint m_ptDropPos;
+	BOOL m_bSelectionPushed;
+	CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
+	BOOL m_bAutoIndent;
 
 	//	[JRT]
-	BOOL m_bDisableBSAtSOL;								// Disable BS At Start Of Line
+	BOOL m_bDisableBSAtSOL; // Disable BS At Start Of Line
 
-	BOOL   DeleteCurrentSelection();
+	BOOL DeleteCurrentSelection();
 
 protected:
-	CEditDropTargetImpl *m_pDropTarget;
+	CEditDropTargetImpl* m_pDropTarget;
 	virtual DROPEFFECT GetDropEffect();
 	virtual void OnDropSource(DROPEFFECT de);
 	void Paste();
 	void Cut();
 	virtual void ResetView();
 
-// Attributes
+	// Attributes
 public:
-	BOOL GetAutoIndent() const; 
+	BOOL GetAutoIndent() const;
 	void SetAutoIndent(BOOL bAutoIndent);
 
 	//	[JRT]
 	void SetDisableBSAtSOL(BOOL bDisableBSAtSOL);
 	BOOL GetDisableBSAtSOL() const;
 
-// Operations
+	// Operations
 public:
 	CCrystalEditView();
 	~CCrystalEditView();
@@ -77,27 +77,26 @@ public:
 	BOOL GetOverwriteMode() const;
 	void SetOverwriteMode(BOOL bOvrMode = TRUE);
 
-	void ShowDropIndicator(const CPoint &point);
+	void ShowDropIndicator(const CPoint& point);
 	void HideDropIndicator();
 
-	BOOL DoDropText(COleDataObject *pDataObject, const CPoint &ptClient);
-	void DoDragScroll(const CPoint &point);
+	BOOL DoDropText(COleDataObject* pDataObject, const CPoint& ptClient);
+	void DoDragScroll(const CPoint& point);
 
 	virtual BOOL QueryEditable();
-	virtual void UpdateView(CCrystalTextView *pSource, CUpdateContext *pContext, DWORD dwFlags, int nLineIndex = -1);
+	virtual void UpdateView(CCrystalTextView* pSource, CUpdateContext* pContext, DWORD dwFlags, int nLineIndex = -1);
 
 	BOOL ReplaceSelection(LPCTSTR pszNewText);
 
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText);
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCrystalEditView)
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
-
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CCrystalEditView)
@@ -112,7 +111,7 @@ protected:
 	afx_msg void OnEditTab();
 	afx_msg void OnEditSwitchOvrmode();
 	afx_msg void OnUpdateEditSwitchOvrmode(CCmdUI* pCmdUI);
-	afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnDestroy();
 	afx_msg void OnEditReplace();
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
@@ -128,7 +127,7 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
+#if !(defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
 #include "CCrystalEditView.inl"
 #endif
 

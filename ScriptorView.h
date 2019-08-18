@@ -19,28 +19,28 @@ protected: // create from serialization only
 	CScriptorView();
 	DECLARE_DYNCREATE(CScriptorView)
 
-// Attributes
+	// Attributes
 public:
 	CScriptorDoc* GetDocument();
 
-	virtual CCrystalTextBuffer *LocateTextBuffer();
+	virtual CCrystalTextBuffer* LocateTextBuffer();
 
 protected:
-	virtual DWORD ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK *pBuf, int &nActualItems);
+	virtual DWORD ParseLine(DWORD dwCookie, int nLineIndex, TEXTBLOCK* pBuf, int& nActualItems);
 
-// Operations
+	// Operations
 public:
-    void GotoErrorLine( int iLineIndex );
+	void GotoErrorLine(int iLineIndex);
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CScriptorView)
-	public:
+public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void OnInitialUpdate();
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CScriptorView();
 #ifdef _DEBUG
@@ -49,8 +49,7 @@ public:
 #endif
 
 protected:
-
-// Generated message map functions
+	// Generated message map functions
 protected:
 	//{{AFX_MSG(CScriptorView)
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
@@ -58,9 +57,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-#ifndef _DEBUG  // debug version in ScriptorView.cpp
+#ifndef _DEBUG // debug version in ScriptorView.cpp
 inline CScriptorDoc* CScriptorView::GetDocument()
-   { return (CScriptorDoc*)m_pDocument; }
+{
+	return (CScriptorDoc*)m_pDocument;
+}
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

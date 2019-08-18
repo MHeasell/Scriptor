@@ -34,32 +34,34 @@ class CCrystalTextView;
 class CFindTextDlg : public CDialog
 {
 private:
-	CCrystalTextView *m_pBuddy;
+	CCrystalTextView* m_pBuddy;
 
-// Construction
+	// Construction
 public:
-	CFindTextDlg(CCrystalTextView *pBuddy);
+	CFindTextDlg(CCrystalTextView* pBuddy);
 
 	CPoint m_ptCurrentPos;
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CFindTextDlg)
-	enum { IDD = IDD_EDIT_FIND };
-	int		m_nDirection;
-	BOOL	m_bMatchCase;
-	CString	m_sText;
-	BOOL	m_bWholeWord;
+	enum
+	{
+		IDD = IDD_EDIT_FIND
+	};
+	int m_nDirection;
+	BOOL m_bMatchCase;
+	CString m_sText;
+	BOOL m_bWholeWord;
 	//}}AFX_DATA
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CFindTextDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
+	// Implementation
+protected:
 	// Generated message map functions
 	//{{AFX_MSG(CFindTextDlg)
 	virtual void OnOK();

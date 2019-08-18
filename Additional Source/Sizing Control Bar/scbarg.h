@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////
 // Copyright (C) 1998-2000 by Cristi Posea. All rights reserved.
 //
-// This code is free for personal and commercial use, providing this 
+// This code is free for personal and commercial use, providing this
 // notice remains intact in the source files and all eventual changes are
 // clearly marked with comments.
 //
@@ -39,17 +39,17 @@
 class CSCBButton
 {
 public:
-    CSCBButton();
+	CSCBButton();
 
-    void Move(CPoint ptTo) {ptOrg = ptTo; };
-    CRect GetRect() { return CRect(ptOrg, CSize(11, 11)); };
-    void Paint(CDC* pDC);
+	void Move(CPoint ptTo) { ptOrg = ptTo; };
+	CRect GetRect() { return CRect(ptOrg, CSize(11, 11)); };
+	void Paint(CDC* pDC);
 
-    BOOL    bPushed;
-    BOOL    bRaised;
+	BOOL bPushed;
+	BOOL bRaised;
 
 protected:
-    CPoint  ptOrg;
+	CPoint ptOrg;
 };
 
 /////////////////////////////////////////////////////////////////////////
@@ -61,51 +61,49 @@ protected:
 
 class CSizingControlBarG : public baseCSizingControlBarG
 {
-    DECLARE_DYNAMIC(CSizingControlBarG);
+	DECLARE_DYNAMIC(CSizingControlBarG);
 
-// Construction
+	// Construction
 public:
-    CSizingControlBarG();
+	CSizingControlBarG();
 
-// Attributes
+	// Attributes
 public:
-    virtual BOOL HasGripper() const;
+	virtual BOOL HasGripper() const;
 
-// Operations
+	// Operations
 public:
+	// Overridables
+	virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
 
-// Overridables
-    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
-
-// Overrides
+	// Overrides
 public:
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSizingControlBarG)
-    //}}AFX_VIRTUAL
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CSizingControlBarG)
+	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
-    virtual ~CSizingControlBarG();
-    
-protected:
-    // implementation helpers
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
-    virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
+	virtual ~CSizingControlBarG();
 
 protected:
-    int     m_cyGripper;
+	// implementation helpers
+	virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
+	virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
 
-    CSCBButton m_biHide;
-
-// Generated message map functions
 protected:
-    //{{AFX_MSG(CSizingControlBarG)
-    afx_msg LRESULT OnNcHitTest(CPoint point);
-    afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
-    //}}AFX_MSG
+	int m_cyGripper;
 
-    DECLARE_MESSAGE_MAP()
+	CSCBButton m_biHide;
+
+	// Generated message map functions
+protected:
+	//{{AFX_MSG(CSizingControlBarG)
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
+	//}}AFX_MSG
+
+	DECLARE_MESSAGE_MAP()
 };
 
 #endif // !defined(__SCBARG_H__)
-

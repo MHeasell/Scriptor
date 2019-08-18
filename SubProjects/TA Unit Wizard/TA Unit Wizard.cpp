@@ -28,7 +28,7 @@ static char THIS_FILE[] = __FILE__;
 //
 //		It is very important that this macro appear in each
 //		function, prior to any calls into MFC.  This means that
-//		it must appear as the first statement within the 
+//		it must appear as the first statement within the
 //		function, even before any object variable declarations
 //		as their constructors may generate calls into the MFC
 //		DLL.
@@ -38,28 +38,27 @@ static char THIS_FILE[] = __FILE__;
 //
 
 
-void WINAPI GetWizardInfo( LPWIZARD_INFO_t pWizInfo )
+void WINAPI GetWizardInfo(LPWIZARD_INFO_t pWizInfo)
 {
-    strcpy( pWizInfo->Title, "Total Annihilation Script Creation Wizard" );
-    strcpy( pWizInfo->Description,
-        "Automates the redundant process of making a new unit script from scratch"
-        );
-    pWizInfo->Validation = WIZARD_VALIDATION;
+	strcpy(pWizInfo->Title, "Total Annihilation Script Creation Wizard");
+	strcpy(pWizInfo->Description,
+		"Automates the redundant process of making a new unit script from scratch");
+	pWizInfo->Validation = WIZARD_VALIDATION;
 }
 
-void WINAPI DoWizard( LPDO_WIZARD_INFO_t pDoWizInfo )
+void WINAPI DoWizard(LPDO_WIZARD_INFO_t pDoWizInfo)
 {
-    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-    // Initialize the completion flag to FALSE just in case
-    pDoWizInfo->bWizardCompleted = FALSE;
+	// Initialize the completion flag to FALSE just in case
+	pDoWizInfo->bWizardCompleted = FALSE;
 
-    // Sanity check
-    if( pDoWizInfo==NULL )
-        return;
+	// Sanity check
+	if (pDoWizInfo == NULL)
+		return;
 
-    // Set the global pointer
-    g_pDoWizardInfo = pDoWizInfo;
+	// Set the global pointer
+	g_pDoWizardInfo = pDoWizInfo;
 }
 
 
@@ -67,10 +66,10 @@ void WINAPI DoWizard( LPDO_WIZARD_INFO_t pDoWizInfo )
 // CTAUnitWizardApp
 
 BEGIN_MESSAGE_MAP(CTAUnitWizardApp, CWinApp)
-	//{{AFX_MSG_MAP(CTAUnitWizardApp)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CTAUnitWizardApp)
+// NOTE - the ClassWizard will add and remove mapping macros here.
+//    DO NOT EDIT what you see in these blocks of generated code!
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -87,5 +86,4 @@ CTAUnitWizardApp::CTAUnitWizardApp()
 
 CTAUnitWizardApp theApp;
 
-LPDO_WIZARD_INFO_t       g_pDoWizardInfo;
-
+LPDO_WIZARD_INFO_t g_pDoWizardInfo;

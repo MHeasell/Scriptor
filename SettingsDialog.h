@@ -12,32 +12,34 @@
 
 class CSettingsDialog : public CDialog
 {
-// Attributes
+	// Attributes
 protected:
-    CString     m_LastCobFile;
-    CString     m_LastCobDir;
+	CString m_LastCobFile;
+	CString m_LastCobDir;
 
-// Construction
+	// Construction
 public:
-	CSettingsDialog(CWnd* pParent = NULL);   // standard constructor
+	CSettingsDialog(CWnd* pParent = NULL); // standard constructor
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CSettingsDialog)
-	enum { IDD = IDD_SETTINGS };
-		// NOTE: the ClassWizard will add data members here
+	enum
+	{
+		IDD = IDD_SETTINGS
+	};
+	// NOTE: the ClassWizard will add data members here
 	//}}AFX_DATA
 
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSettingsDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
+	// Implementation
+protected:
 	// Generated message map functions
 	//{{AFX_MSG(CSettingsDialog)
 	virtual BOOL OnInitDialog();

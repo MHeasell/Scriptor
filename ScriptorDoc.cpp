@@ -21,22 +21,21 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CScriptorDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CScriptorDoc, CDocument)
-	//{{AFX_MSG_MAP(CScriptorDoc)
-	ON_COMMAND(ID_SCRIPT_COMPILE, OnScriptCompile)
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CScriptorDoc)
+ON_COMMAND(ID_SCRIPT_COMPILE, OnScriptCompile)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CScriptorDoc construction/destruction
 
-#pragma warning(disable:4355)  // Otherwise it would complain about using
-                               // 'this' in the initializer list
-CScriptorDoc::CScriptorDoc():
-    m_xTextBuffer(this)
+#pragma warning(disable : 4355) // Otherwise it would complain about using \
+								// 'this' in the initializer list
+CScriptorDoc::CScriptorDoc() : m_xTextBuffer(this)
 {
 	// TODO: add one-time construction code here
 
-    //	Initialize LOGFONT structure
+	//	Initialize LOGFONT structure
 	memset(&m_lf, 0, sizeof(m_lf));
 	m_lf.lfWeight = FW_NORMAL;
 	m_lf.lfCharSet = ANSI_CHARSET;
@@ -60,7 +59,6 @@ BOOL CScriptorDoc::OnNewDocument()
 
 	return TRUE;
 }
-
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,23 +94,23 @@ void CScriptorDoc::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CScriptorDoc commands
 
-void CScriptorDoc::DeleteContents() 
+void CScriptorDoc::DeleteContents()
 {
 	CDocument::DeleteContents();
 
 	m_xTextBuffer.FreeAll();
 }
 
-BOOL CScriptorDoc::OnOpenDocument(LPCTSTR lpszPathName) 
+BOOL CScriptorDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {
-    // If we are trying to open a cob file, intercept it, and send it on to the handler
-    auto FileType = strrchr( lpszPathName, '.' );
-    if( (FileType!=NULL)&&(stricmp(FileType+1,"cob")==0) )
-    {
-        strcpy( theApp.m_AllPurposeString, lpszPathName );
-        PostMessage( NULL, SCRIPTOR_OPENCOB, 0, 0 );
-        return FALSE;
-    }
+	// If we are trying to open a cob file, intercept it, and send it on to the handler
+	auto FileType = strrchr(lpszPathName, '.');
+	if ((FileType != NULL) && (stricmp(FileType + 1, "cob") == 0))
+	{
+		strcpy(theApp.m_AllPurposeString, lpszPathName);
+		PostMessage(NULL, SCRIPTOR_OPENCOB, 0, 0);
+		return FALSE;
+	}
 
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
@@ -120,55 +118,55 @@ BOOL CScriptorDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	return m_xTextBuffer.LoadFromFile(lpszPathName);
 }
 
-BOOL CScriptorDoc::OnSaveDocument(LPCTSTR lpszPathName) 
+BOOL CScriptorDoc::OnSaveDocument(LPCTSTR lpszPathName)
 {
 	m_xTextBuffer.SaveToFile(lpszPathName);
 
 	return TRUE;
 }
 
-LRESULT WINAPI CompileDebugOutput( LPCTSTR File, LPCTSTR ErrStr, WORD Line, char ErrType )
+LRESULT WINAPI CompileDebugOutput(LPCTSTR File, LPCTSTR ErrStr, WORD Line, char ErrType)
 {
-    // Get a pointer to the debug window
-    CDebugOutputWindow* pDebugWindow = ((CMainFrame*)theApp.m_pMainWnd)->m_DebugOutputBar.GetDebugWindow();
+	// Get a pointer to the debug window
+	CDebugOutputWindow* pDebugWindow = ((CMainFrame*)theApp.m_pMainWnd)->m_DebugOutputBar.GetDebugWindow();
 
-    // Check for a simple message string
-	if( Line==0 )
+	// Check for a simple message string
+	if (Line == 0)
 	{
-        pDebugWindow->AddTextLine( ErrStr );
+		pDebugWindow->AddTextLine(ErrStr);
 	}
-    else
-    {
-        // Format and output the error string
-        CString     NewErrorString;
-        NewErrorString.Format( "%s (%d): %s    [ %s ]",
-            ErrType ? "Error":"Warning",
-            Line,
-            ErrStr,
-            File );
-        pDebugWindow->AddErrorLine( NewErrorString, File, Line );
-    }
+	else
+	{
+		// Format and output the error string
+		CString NewErrorString;
+		NewErrorString.Format("%s (%d): %s    [ %s ]",
+			ErrType ? "Error" : "Warning",
+			Line,
+			ErrStr,
+			File);
+		pDebugWindow->AddErrorLine(NewErrorString, File, Line);
+	}
 
 	return 1;
 }
 
-LRESULT WINAPI CompileProgress( DWORD BytesRead, DWORD TotalBytes )
+LRESULT WINAPI CompileProgress(DWORD BytesRead, DWORD TotalBytes)
 {
-	if(TotalBytes>1000)
+	if (TotalBytes > 1000)
 	{
-		BytesRead/=1000;
-		TotalBytes/=1000;
+		BytesRead /= 1000;
+		TotalBytes /= 1000;
 	}
 	CMainFrame* pFrame = ((CMainFrame*)theApp.m_pMainWnd);
-	if(pFrame->m_bScriptProgressCtrlCreated)
+	if (pFrame->m_bScriptProgressCtrlCreated)
 	{
-		pFrame->m_ScriptProgress.SetRange(0,(short)TotalBytes);
+		pFrame->m_ScriptProgress.SetRange(0, (short)TotalBytes);
 		pFrame->m_ScriptProgress.SetPos(BytesRead);
 	}
 	return 1;
 }
 
-void CScriptorDoc::OnScriptCompile() 
+void CScriptorDoc::OnScriptCompile()
 {
 	int Ret;
 	int pos;
@@ -179,80 +177,79 @@ void CScriptorDoc::OnScriptCompile()
 
 	theApp.DoWaitCursor(1);
 
-	OnFileSave();		// Save current file
+	OnFileSave(); // Save current file
 
-	FilePath=GetPathName();
-	if(FilePath!="")
+	FilePath = GetPathName();
+	if (FilePath != "")
 	{
-		pos=FilePath.ReverseFind('.');
-		if(pos==(-1))
+		pos = FilePath.ReverseFind('.');
+		if (pos == (-1))
 		{
-			CobPath=FilePath+".cob";
+			CobPath = FilePath + ".cob";
 		}
-		else if((FilePath[pos+1]=='h')||(FilePath[pos+1]=='H'))
+		else if ((FilePath[pos + 1] == 'h') || (FilePath[pos + 1] == 'H'))
 		{
 			AfxMessageBox("Cannot compile \'.h\' libraries");
 			return;
 		}
 		else
 		{
-			CobPath=FilePath.Left(pos)+".cob";
+			CobPath = FilePath.Left(pos) + ".cob";
 		}
 		pos = CobPath.ReverseFind('\\');
-		if(LocalSettings.CobFile_SameAsBos)
+		if (LocalSettings.CobFile_SameAsBos)
 		{
-			CobFile = CobPath.Right(CobPath.GetLength()-(pos+1));
+			CobFile = CobPath.Right(CobPath.GetLength() - (pos + 1));
 		}
 		else
 		{
 			CobFile = LocalSettings.CobFile;
 		}
-		if(LocalSettings.CobDir_SameAsBos)
+		if (LocalSettings.CobDir_SameAsBos)
 		{
-			CobPath = CobPath.Left(pos+1);
+			CobPath = CobPath.Left(pos + 1);
 		}
 		else
 		{
 			CobPath = LocalSettings.CobDir;
 		}
-		CobPath+=CobFile;
+		CobPath += CobFile;
 
 		((CMainFrame*)AfxGetMainWnd())->InitializeScriptControls();
 
-		Dir = FilePath.Left(FilePath.ReverseFind('\\')+1);
-		if(CompilerSettings.CurrentDirectory) delete [] CompilerSettings.CurrentDirectory;
-		CompilerSettings.CurrentDirectory = new char[Dir.GetLength()+1];
-		strcpy(CompilerSettings.CurrentDirectory,Dir);
-		if(CompilerSettings.CurrentFile) delete [] CompilerSettings.CurrentFile;
-		CompilerSettings.CurrentFile = new char[FilePath.GetLength()+1];
-		strcpy(CompilerSettings.CurrentFile,FilePath);
+		Dir = FilePath.Left(FilePath.ReverseFind('\\') + 1);
+		if (CompilerSettings.CurrentDirectory)
+			delete[] CompilerSettings.CurrentDirectory;
+		CompilerSettings.CurrentDirectory = new char[Dir.GetLength() + 1];
+		strcpy(CompilerSettings.CurrentDirectory, Dir);
+		if (CompilerSettings.CurrentFile)
+			delete[] CompilerSettings.CurrentFile;
+		CompilerSettings.CurrentFile = new char[FilePath.GetLength() + 1];
+		strcpy(CompilerSettings.CurrentFile, FilePath);
 
 		// Call the compile function from the CompilerXX.dll
-		Ret=BOSCOM_Compile(BosCom,FilePath,CobPath,
-						   CompilerSettings,
-						   CompileDebugOutput,
-						   CompileProgress );
+		Ret = BOSCOM_Compile(BosCom, FilePath, CobPath, CompilerSettings, CompileDebugOutput, CompileProgress);
 
-        // Get a pointer to the debug window
-        CDebugOutputWindow* pDebugWindow = ((CMainFrame*)theApp.m_pMainWnd)->m_DebugOutputBar.GetDebugWindow();
+		// Get a pointer to the debug window
+		CDebugOutputWindow* pDebugWindow = ((CMainFrame*)theApp.m_pMainWnd)->m_DebugOutputBar.GetDebugWindow();
 
-		if(Ret==0)
-        {
-			PlaySound("SystemExclamation",0,SND_ALIAS|SND_NOWAIT);
-            pDebugWindow->AddTextLine();
-            pDebugWindow->AddTextLine( "One or more errors occured while compiling the script." );
-            //pDebugWindow->AddTextLine( "Find " );
-        }
-		else if(Ret==2)
-        {
-			PlaySound("SystemQuestion",0,SND_ALIAS|SND_NOWAIT);
-            pDebugWindow->AddTextLine();
-            pDebugWindow->AddTextLine( "One or more warnings occured while compiling the script." );
-        }
+		if (Ret == 0)
+		{
+			PlaySound("SystemExclamation", 0, SND_ALIAS | SND_NOWAIT);
+			pDebugWindow->AddTextLine();
+			pDebugWindow->AddTextLine("One or more errors occured while compiling the script.");
+			//pDebugWindow->AddTextLine( "Find " );
+		}
+		else if (Ret == 2)
+		{
+			PlaySound("SystemQuestion", 0, SND_ALIAS | SND_NOWAIT);
+			pDebugWindow->AddTextLine();
+			pDebugWindow->AddTextLine("One or more warnings occured while compiling the script.");
+		}
 		else
-        {
-			PlaySound("SystemAsterisk",0,SND_ALIAS|SND_NOWAIT);
-        }
+		{
+			PlaySound("SystemAsterisk", 0, SND_ALIAS | SND_NOWAIT);
+		}
 
 		((CMainFrame*)AfxGetMainWnd())->DestroyScriptControls();
 	}

@@ -13,14 +13,14 @@
 
 #define DATA unsigned char
 
-class CINITxtParse : public CTxtParse  
+class CINITxtParse : public CTxtParse
 {
 private:
 	CString INI_Path;
 
 	virtual int PassFilter(char c);
-	virtual CString GetStr(DATA* &TxtBuf,DWORD* Arg1,DWORD* Arg2);
-	virtual int HandleRet(DATA* &TxtBuf,CString RetStr,WORD Ret);
+	virtual CString GetStr(DATA*& TxtBuf, DWORD* Arg1, DWORD* Arg2);
+	virtual int HandleRet(DATA*& TxtBuf, CString RetStr, WORD Ret);
 
 public:
 	CINITxtParse();
@@ -28,8 +28,7 @@ public:
 	virtual ~CINITxtParse();
 
 	LRESULT ParseTxt(CStrParse& StrParse);
-	LRESULT ParseTxt(CString Path,CStrParse& StrParse);
-
+	LRESULT ParseTxt(CString Path, CStrParse& StrParse);
 };
 
 #endif // !defined(AFX_INITXTPARSE_H__AFE6C034_A1EE_11D3_BA39_0080C8C11E51__INCLUDED_)

@@ -28,7 +28,7 @@ static char THIS_FILE[] = __FILE__;
 //
 //		It is very important that this macro appear in each
 //		function, prior to any calls into MFC.  This means that
-//		it must appear as the first statement within the 
+//		it must appear as the first statement within the
 //		function, even before any object variable declarations
 //		as their constructors may generate calls into the MFC
 //		DLL.
@@ -41,10 +41,10 @@ static char THIS_FILE[] = __FILE__;
 // CDecompilerApp
 
 BEGIN_MESSAGE_MAP(CDecompilerApp, CWinApp)
-	//{{AFX_MSG_MAP(CDecompilerApp)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CDecompilerApp)
+// NOTE - the ClassWizard will add and remove mapping macros here.
+//    DO NOT EDIT what you see in these blocks of generated code!
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

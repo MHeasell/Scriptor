@@ -28,7 +28,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg dialog
 
-CFindTextDlg::CFindTextDlg(CCrystalTextView *pBuddy) : CDialog(CFindTextDlg::IDD, NULL)
+CFindTextDlg::CFindTextDlg(CCrystalTextView* pBuddy) : CDialog(CFindTextDlg::IDD, NULL)
 {
 	m_pBuddy = pBuddy;
 	//{{AFX_DATA_INIT(CFindTextDlg)
@@ -54,15 +54,15 @@ void CFindTextDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CFindTextDlg, CDialog)
-	//{{AFX_MSG_MAP(CFindTextDlg)
-	ON_EN_CHANGE(IDC_EDIT_TEXT, OnChangeEditText)
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CFindTextDlg)
+ON_EN_CHANGE(IDC_EDIT_TEXT, OnChangeEditText)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg message handlers
 
-void CFindTextDlg::OnOK() 
+void CFindTextDlg::OnOK()
 {
 	if (UpdateData())
 	{
@@ -76,7 +76,7 @@ void CFindTextDlg::OnOK()
 			dwSearchFlags |= FIND_DIRECTION_UP;
 
 		CPoint ptTextPos;
-		if (! m_pBuddy->FindText(m_sText, m_ptCurrentPos, dwSearchFlags, TRUE, &ptTextPos))
+		if (!m_pBuddy->FindText(m_sText, m_ptCurrentPos, dwSearchFlags, TRUE, &ptTextPos))
 		{
 			CString prompt;
 			prompt.Format(IDS_EDIT_TEXT_NOT_FOUND, m_sText);
@@ -91,14 +91,14 @@ void CFindTextDlg::OnOK()
 	}
 }
 
-void CFindTextDlg::OnChangeEditText() 
+void CFindTextDlg::OnChangeEditText()
 {
 	CString text;
 	GetDlgItem(IDC_EDIT_TEXT)->GetWindowText(text);
 	GetDlgItem(IDOK)->EnableWindow(text != _T(""));
 }
 
-BOOL CFindTextDlg::OnInitDialog() 
+BOOL CFindTextDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
@@ -107,7 +107,7 @@ BOOL CFindTextDlg::OnInitDialog()
 	return TRUE;
 }
 
-void CFindTextDlg::OnCancel() 
+void CFindTextDlg::OnCancel()
 {
 	VERIFY(UpdateData());
 

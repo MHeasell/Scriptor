@@ -23,19 +23,19 @@ static char THIS_FILE[] = __FILE__;
 // CScriptorApp
 
 BEGIN_MESSAGE_MAP(CScriptorApp, CWinApp)
-	//{{AFX_MSG_MAP(CScriptorApp)
-	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	ON_COMMAND(ID_EDIT_SETFONT, OnEditSetfont)
-	ON_COMMAND(ID_FILE_DESCRIPT, OnFileDescript)
-	ON_COMMAND(ID_FILE_UNITWIZARDS, OnFileUnitwizards)
-	//}}AFX_MSG_MAP
-	// Standard file based document commands
-	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
-	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
-	// Standard print setup command
-	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
-    // Custom message handlers
-    ON_MESSAGE( SCRIPTOR_OPENCOB, reinterpret_cast<LRESULT(CWnd::*)(WPARAM, LPARAM)>(OnOpenCob) )
+//{{AFX_MSG_MAP(CScriptorApp)
+ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+ON_COMMAND(ID_EDIT_SETFONT, OnEditSetfont)
+ON_COMMAND(ID_FILE_DESCRIPT, OnFileDescript)
+ON_COMMAND(ID_FILE_UNITWIZARDS, OnFileUnitwizards)
+//}}AFX_MSG_MAP
+// Standard file based document commands
+ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
+ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
+// Standard print setup command
+ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
+// Custom message handlers
+ON_MESSAGE(SCRIPTOR_OPENCOB, reinterpret_cast<LRESULT (CWnd::*)(WPARAM, LPARAM)>(OnOpenCob))
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,12 +52,12 @@ CScriptorApp::CScriptorApp()
 
 CScriptorApp theApp;
 
-LPVOID                  BosCom = NULL;
-LPVOID                  BosDec = NULL;
-BOS_KEYWORD_t*          g_BosKeywords = NULL;
-SETTINGS                CompilerSettings;
-DECOM_SETTINGS          DecompilerSettings;
-LOCAL_SETTINGS          LocalSettings;
+LPVOID BosCom = NULL;
+LPVOID BosDec = NULL;
+BOS_KEYWORD_t* g_BosKeywords = NULL;
+SETTINGS CompilerSettings;
+DECOM_SETTINGS DecompilerSettings;
+LOCAL_SETTINGS LocalSettings;
 
 /////////////////////////////////////////////////////////////////////////////
 // CScriptorApp initialization
@@ -71,7 +71,7 @@ BOOL CScriptorApp::InitInstance()
 	//  of your final executable, you should remove from the following
 	//  the specific initialization routines you do not need.
 
-    // initialized OLE 2.0 libraries
+	// initialized OLE 2.0 libraries
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDS_OLE_INIT_FAILED);
@@ -79,9 +79,9 @@ BOOL CScriptorApp::InitInstance()
 	}
 
 #ifdef _AFXDLL
-	Enable3dControls();			// Call this when using MFC in a shared DLL
+	Enable3dControls(); // Call this when using MFC in a shared DLL
 #else
-	Enable3dControlsStatic();	// Call this when linking to MFC statically
+	Enable3dControlsStatic(); // Call this when linking to MFC statically
 #endif
 
 	// Change the registry key under which our settings are stored.
@@ -89,9 +89,9 @@ BOOL CScriptorApp::InitInstance()
 	// such as the name of your company or organization.
 	SetRegistryKey(_T("KhalvKalash"));
 
-	LoadStdProfileSettings(5);  // Load standard INI file options (including MRU)
+	LoadStdProfileSettings(5); // Load standard INI file options (including MRU)
 
-    m_pDocManager = new CScriptManager;
+	m_pDocManager = new CScriptManager;
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
@@ -122,41 +122,41 @@ BOOL CScriptorApp::InitInstance()
 	ParseCommandLine(cmdInfo);
 
 	// Dispatch commands specified on the command line
-	if(cmdInfo.m_nShellCommand!=CCommandLineInfo::FileNew)
-	    if (!ProcessShellCommand(cmdInfo))
-		    return FALSE;
+	if (cmdInfo.m_nShellCommand != CCommandLineInfo::FileNew)
+		if (!ProcessShellCommand(cmdInfo))
+			return FALSE;
 
-    // Get the apps ececutable directory (from the command line arguments)
-    strncpy( m_AppDir, __argv[0], strrchr(__argv[0],'\\')-(__argv[0]) );
+	// Get the apps ececutable directory (from the command line arguments)
+	strncpy(m_AppDir, __argv[0], strrchr(__argv[0], '\\') - (__argv[0]));
 
-    // Get the apps starting directory (from the current directory)
-    GetCurrentDirectory( MAX_PATH, m_StartDir );
-/*
+	// Get the apps starting directory (from the current directory)
+	GetCurrentDirectory(MAX_PATH, m_StartDir);
+	/*
     char    strTemp[1024];
     sprintf( strTemp, "m_AppDir - \"%s\"\nm_StartDir - \"%s\"",
         m_AppDir,
         m_StartDir );
     AfxMessageBox( strTemp );
 */
-    // Get the apps settings
-    GetProfileSettings("Settings");
+	// Get the apps settings
+	GetProfileSettings("Settings");
 
-    // Get the font information
-    GetProfileFont( "Font", &m_OriginalFont );
-    // Set it as the current font
+	// Get the font information
+	GetProfileFont("Font", &m_OriginalFont);
+	// Set it as the current font
 	m_CurrentFont = m_OriginalFont;
 
 #ifndef _DEBUG
-    SetCurrentDirectory( m_AppDir );
+	SetCurrentDirectory(m_AppDir);
 #endif
 
-    // Get the list of bos keywords
-    LoadBosKeywords();
+	// Get the list of bos keywords
+	LoadBosKeywords();
 
-    // Initialize the compiler
-    BosCom = BOSCOM_Initialize();
+	// Initialize the compiler
+	BosCom = BOSCOM_Initialize();
 
-    // Initialize the decompiler
+	// Initialize the decompiler
 	BosDec = BOSDEC_Initialize();
 
 	// The main window has been initialized, so show and update it.
@@ -179,30 +179,32 @@ void CScriptorApp::GetProfileSettings(LPCTSTR szSec)
 
 	LocalSettings.LastCobArr.SetSize(0);
 	Str = GetProfileString(szSec, "LastCob");
-	if(!Str.IsEmpty())
+	if (!Str.IsEmpty())
 	{
 		LocalSettings.LastCobArr.Add(Str);
-		WriteProfileString(szSec, "LastCob",NULL);
+		WriteProfileString(szSec, "LastCob", NULL);
 	}
-	for(int x=1;true;x++)
+	for (int x = 1; true; x++)
 	{
-		Str.Format("DeCobFile%d",x);
+		Str.Format("DeCobFile%d", x);
 		Str = GetProfileString(szSec, Str, "");
-		if(Str.IsEmpty()) break;
+		if (Str.IsEmpty())
+			break;
 		LocalSettings.LastCobArr.Add(Str);
 	}
 	LocalSettings.LastBosArr.SetSize(0);
 	Str = GetProfileString(szSec, "LastBos");
-	if(!Str.IsEmpty())
+	if (!Str.IsEmpty())
 	{
 		LocalSettings.LastBosArr.Add(Str);
-		WriteProfileString(szSec, "LastBos",NULL);
+		WriteProfileString(szSec, "LastBos", NULL);
 	}
-	for(int x=1;true;x++)
+	for (int x = 1; true; x++)
 	{
-		Str.Format("DeBosFile%d",x);
+		Str.Format("DeBosFile%d", x);
 		Str = GetProfileString(szSec, Str, "");
-		if(Str.IsEmpty()) break;
+		if (Str.IsEmpty())
+			break;
 		LocalSettings.LastBosArr.Add(Str);
 	}
 
@@ -212,11 +214,11 @@ void CScriptorApp::GetProfileSettings(LPCTSTR szSec)
 	CompilerSettings.LinearConst = (float)atof(Linear);
 	CompilerSettings.TA = GetProfileInt(szSec, "TA", 1);
 
-    CString DefaultIncludeDirectory = m_StartDir;
-    DefaultIncludeDirectory += "\\include\\";
+	CString DefaultIncludeDirectory = m_StartDir;
+	DefaultIncludeDirectory += "\\include\\";
 	Str = GetProfileString(szSec, "Include", DefaultIncludeDirectory);
-	CompilerSettings.IncludeDirectory = new char[Str.GetLength()+1];
-	strcpy(CompilerSettings.IncludeDirectory,Str);
+	CompilerSettings.IncludeDirectory = new char[Str.GetLength() + 1];
+	strcpy(CompilerSettings.IncludeDirectory, Str);
 
 	CompilerSettings.CurrentDirectory = NULL;
 	CompilerSettings.CurrentFile = NULL;
@@ -247,22 +249,22 @@ void CScriptorApp::WriteProfileSettings(LPCTSTR szSec)
 	WriteProfileInt(szSec, "DeBos_SAC", LocalSettings.De_Bos_SA_Cob);
 
 	CString Str;
-	for(int x=0;x<LocalSettings.LastCobArr.GetSize();x++)
+	for (int x = 0; x < LocalSettings.LastCobArr.GetSize(); x++)
 	{
-		Str.Format("DeCobFile%d",x+1);
+		Str.Format("DeCobFile%d", x + 1);
 		WriteProfileString(szSec, Str, LocalSettings.LastCobArr[x]);
 	}
-	for(int x=0;x<LocalSettings.LastBosArr.GetSize();x++)
+	for (int x = 0; x < LocalSettings.LastBosArr.GetSize(); x++)
 	{
-		Str.Format("DeBosFile%d",x+1);
+		Str.Format("DeBosFile%d", x + 1);
 		WriteProfileString(szSec, Str, LocalSettings.LastBosArr[x]);
 	}
 
 	CString Angular;
-	Angular.Format("%f",CompilerSettings.AngularConst);
+	Angular.Format("%f", CompilerSettings.AngularConst);
 	WriteProfileString(szSec, "Angular", Angular);
 	CString Linear;
-	Linear.Format("%f",CompilerSettings.LinearConst);
+	Linear.Format("%f", CompilerSettings.LinearConst);
 	WriteProfileString(szSec, "Linear", Linear);
 	WriteProfileInt(szSec, "TA", CompilerSettings.TA);
 	WriteProfileString(szSec, "Include", CompilerSettings.IncludeDirectory);
@@ -282,7 +284,7 @@ void CScriptorApp::WriteProfileSettings(LPCTSTR szSec)
 
 void CScriptorApp::GetProfileFont(LPCTSTR szSec, LOGFONT* plf)
 {
-    ZeroMemory( plf, sizeof(LOGFONT) );
+	ZeroMemory(plf, sizeof(LOGFONT));
 	plf->lfHeight = GetProfileInt(szSec, "Height", 12);
 	plf->lfWeight = GetProfileInt(szSec, "Weight", FW_NORMAL);
 	plf->lfItalic = (BYTE)GetProfileInt(szSec, "Italic", 0);
@@ -291,8 +293,8 @@ void CScriptorApp::GetProfileFont(LPCTSTR szSec, LOGFONT* plf)
 	plf->lfCharSet = (BYTE)GetProfileInt(szSec, "CharSet", ANSI_CHARSET);
 	CString strFont = GetProfileString(szSec, "FaceName", "Courier");
 	lstrcpyn((TCHAR*)plf->lfFaceName, strFont, sizeof plf->lfFaceName);
-	plf->lfFaceName[sizeof plf->lfFaceName-1] = 0;
-    plf->lfQuality = DEFAULT_QUALITY;
+	plf->lfFaceName[sizeof plf->lfFaceName - 1] = 0;
+	plf->lfQuality = DEFAULT_QUALITY;
 	plf->lfOutPrecision = OUT_DEFAULT_PRECIS;
 	plf->lfClipPrecision = CLIP_DEFAULT_PRECIS;
 }
@@ -301,7 +303,7 @@ void CScriptorApp::WriteProfileFont(LPCTSTR szSec, const LOGFONT* plf, LOGFONT* 
 {
 	if (plf->lfHeight != plfOld->lfHeight)
 		WriteProfileInt(szSec, "Height", plf->lfHeight);
-    if (plf->lfHeight != plfOld->lfHeight)
+	if (plf->lfHeight != plfOld->lfHeight)
 		WriteProfileInt(szSec, "Height", plf->lfHeight);
 	if (plf->lfWeight != plfOld->lfWeight)
 		WriteProfileInt(szSec, "Weight", plf->lfWeight);
@@ -320,102 +322,106 @@ void CScriptorApp::WriteProfileFont(LPCTSTR szSec, const LOGFONT* plf, LOGFONT* 
 
 void CScriptorApp::LoadBosKeywords()
 {
-    char        CfgFilePath[MAX_PATH];
+	char CfgFilePath[MAX_PATH];
 
 #ifndef _DEBUG
-    sprintf( CfgFilePath, "%s\\Compiler.cfg", m_AppDir );
+	sprintf(CfgFilePath, "%s\\Compiler.cfg", m_AppDir);
 #else
-    sprintf( CfgFilePath, "%s\\Compiler.cfg", m_StartDir );
+	sprintf(CfgFilePath, "%s\\Compiler.cfg", m_StartDir);
 #endif
 
-    HANDLE hCfgFile = CreateFile(
-        CfgFilePath,
-        GENERIC_READ,
-        FILE_SHARE_READ,
-        NULL,
-        OPEN_EXISTING,
+	HANDLE hCfgFile = CreateFile(
+		CfgFilePath,
+		GENERIC_READ,
+		FILE_SHARE_READ,
+		NULL,
+		OPEN_EXISTING,
 		(FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS),
-		NULL );
-    if( hCfgFile==INVALID_HANDLE_VALUE ) return;
-    DWORD BR,Size = GetFileSize( hCfgFile, NULL );
-    BYTE* pFileBuffer = new BYTE[Size];
-    ReadFile( hCfgFile, pFileBuffer, Size, &BR, NULL );
-    CloseHandle(hCfgFile);
+		NULL);
+	if (hCfgFile == INVALID_HANDLE_VALUE)
+		return;
+	DWORD BR, Size = GetFileSize(hCfgFile, NULL);
+	BYTE* pFileBuffer = new BYTE[Size];
+	ReadFile(hCfgFile, pFileBuffer, Size, &BR, NULL);
+	CloseHandle(hCfgFile);
 
-    // Delete the old keywords (if any)
-    DestroyBosKeywords();
+	// Delete the old keywords (if any)
+	DestroyBosKeywords();
 
-    // Begin looking for keywords
-    Parse_Info      Info;
-    util_TxtParse   theCfgFile;
-    BOOL bValid = theCfgFile.Begin( pFileBuffer, Size, &Info );
+	// Begin looking for keywords
+	Parse_Info Info;
+	util_TxtParse theCfgFile;
+	BOOL bValid = theCfgFile.Begin(pFileBuffer, Size, &Info);
 
-    // Find the [COMMAND] block
-    while( bValid )
-    {
-        if( (Info.Type==PARSE_Header)&&(stricmp("COMMANDS",Info.Value)==0) )
-            break;
+	// Find the [COMMAND] block
+	while (bValid)
+	{
+		if ((Info.Type == PARSE_Header) && (stricmp("COMMANDS", Info.Value) == 0))
+			break;
 
-        bValid = theCfgFile.Continue( &Info );
-    }
-    if( bValid==FALSE ) { delete [] pFileBuffer; return; }
+		bValid = theCfgFile.Continue(&Info);
+	}
+	if (bValid == FALSE)
+	{
+		delete[] pFileBuffer;
+		return;
+	}
 
-    int Level = 0;
-    bValid = theCfgFile.Continue( &Info );
-    while( bValid )
-    {
-        switch( Info.Type )
-        {
-        case PARSE_LevelUp:
-            Level++; break;
-        case PARSE_LevelDown:
-            Level--; break;
-        case PARSE_VarVal:
-            // We are only interested if the level is 1 and the variable is 'Keyword'
-            if( (Level==1)&&(stricmp("Keyword",Info.Variable)==0) )
-            {
-                // If the first character is not '@', add it to the list
-                if( Info.Value[0]!='@' )
-                {
-                    BOS_KEYWORD_t* pKW;
-                    if( g_BosKeywords==NULL )
-                    {
-                        g_BosKeywords = new BOS_KEYWORD_t(Info.Value);
-                    }
-                    else
-                    {
-                        pKW = g_BosKeywords;
-                        while( pKW->Next ) pKW=pKW->Next;
-                        pKW->Next = new BOS_KEYWORD_t(Info.Value);
-                    }
-                }
-            }
-            break;
-        }
+	int Level = 0;
+	bValid = theCfgFile.Continue(&Info);
+	while (bValid)
+	{
+		switch (Info.Type)
+		{
+			case PARSE_LevelUp:
+				Level++;
+				break;
+			case PARSE_LevelDown:
+				Level--;
+				break;
+			case PARSE_VarVal:
+				// We are only interested if the level is 1 and the variable is 'Keyword'
+				if ((Level == 1) && (stricmp("Keyword", Info.Variable) == 0))
+				{
+					// If the first character is not '@', add it to the list
+					if (Info.Value[0] != '@')
+					{
+						BOS_KEYWORD_t* pKW;
+						if (g_BosKeywords == NULL)
+						{
+							g_BosKeywords = new BOS_KEYWORD_t(Info.Value);
+						}
+						else
+						{
+							pKW = g_BosKeywords;
+							while (pKW->Next)
+								pKW = pKW->Next;
+							pKW->Next = new BOS_KEYWORD_t(Info.Value);
+						}
+					}
+				}
+				break;
+		}
 
-        bValid = theCfgFile.Continue( &Info );
-    }
-    
+		bValid = theCfgFile.Continue(&Info);
+	}
 }
 
 
 /////////////////////////////////////////////////////////////////////////////
 // CScriptManager
 
-CScriptManager::CScriptManager():CDocManager()
-{}
+CScriptManager::CScriptManager() : CDocManager()
+{
+}
 
-static void AppendFilterSuffix(CString& filter, OPENFILENAME& ofn,
-	CDocTemplate* pTemplate, CString* pstrDefaultExt)
+static void AppendFilterSuffix(CString& filter, OPENFILENAME& ofn, CDocTemplate* pTemplate, CString* pstrDefaultExt)
 {
 	ASSERT_VALID(pTemplate);
 	ASSERT_KINDOF(CDocTemplate, pTemplate);
 
 	CString strFilterExt, strFilterName;
-	if (pTemplate->GetDocString(strFilterExt, CDocTemplate::filterExt) &&
-	 !strFilterExt.IsEmpty() &&
-	 pTemplate->GetDocString(strFilterName, CDocTemplate::filterName) &&
-	 !strFilterName.IsEmpty())
+	if (pTemplate->GetDocString(strFilterExt, CDocTemplate::filterExt) && !strFilterExt.IsEmpty() && pTemplate->GetDocString(strFilterName, CDocTemplate::filterName) && !strFilterName.IsEmpty())
 	{
 		// a file based document template - add to filter list
 #ifndef _MAC
@@ -425,23 +431,23 @@ static void AppendFilterSuffix(CString& filter, OPENFILENAME& ofn,
 		{
 			// set the default extension
 #ifndef _MAC
-			*pstrDefaultExt = ((LPCTSTR)strFilterExt) + 1;  // skip the '.'
+			*pstrDefaultExt = ((LPCTSTR)strFilterExt) + 1; // skip the '.'
 #else
 			*pstrDefaultExt = strFilterExt;
 #endif
 			ofn.lpstrDefExt = (LPTSTR)(LPCTSTR)(*pstrDefaultExt);
-			ofn.nFilterIndex = ofn.nMaxCustFilter + 1;  // 1 based number
+			ofn.nFilterIndex = ofn.nMaxCustFilter + 1; // 1 based number
 		}
 
 		// add to filter
 		filter += strFilterName;
-		ASSERT(!filter.IsEmpty());  // must have a file type name
-		filter += (TCHAR)'\0';  // next string please
+		ASSERT(!filter.IsEmpty()); // must have a file type name
+		filter += (TCHAR)'\0';	 // next string please
 #ifndef _MAC
 		filter += (TCHAR)'*';
 #endif
 		filter += strFilterExt;
-		filter += (TCHAR)'\0';  // next string please
+		filter += (TCHAR)'\0'; // next string please
 		ofn.nMaxCustFilter++;
 	}
 }
@@ -470,46 +476,45 @@ BOOL CScriptManager::DoPromptFileName(CString& fileName, UINT nIDSTitle, DWORD l
 		while (pos != NULL)
 		{
 			CDocTemplate* pTemplate = (CDocTemplate*)m_templateList.GetNext(pos);
-			AppendFilterSuffix(strFilter, dlgFile.m_ofn, pTemplate,
-				bFirst ? &strDefault : NULL);
+			AppendFilterSuffix(strFilter, dlgFile.m_ofn, pTemplate, bFirst ? &strDefault : NULL);
 			bFirst = FALSE;
 		}
 	}
 
-	if(bOpenFileDialog)
+	if (bOpenFileDialog)
 	{
-		CString BothFilter="Scriptor Files (*.bos;*.h)";
-		BothFilter += (TCHAR)'\0';   // next string please
+		CString BothFilter = "Scriptor Files (*.bos;*.h)";
+		BothFilter += (TCHAR)'\0'; // next string please
 		BothFilter += _T("*.bos;*.h");
-		BothFilter += (TCHAR)'\0';   // next string please
+		BothFilter += (TCHAR)'\0'; // next string please
 		strFilter = BothFilter + strFilter;
-	    strFilter += "Library Files (*.h)";
-	    strFilter += (TCHAR)'\0';   // next string please
-	    strFilter += _T("*.h");
-	    strFilter += (TCHAR)'\0';   // next string please
-	    strFilter += "Compiled Scripts (*.cob)";
-	    strFilter += (TCHAR)'\0';   // next string please
-	    strFilter += _T("*.cob");
-	    strFilter += (TCHAR)'\0';   // next string please
+		strFilter += "Library Files (*.h)";
+		strFilter += (TCHAR)'\0'; // next string please
+		strFilter += _T("*.h");
+		strFilter += (TCHAR)'\0'; // next string please
+		strFilter += "Compiled Scripts (*.cob)";
+		strFilter += (TCHAR)'\0'; // next string please
+		strFilter += _T("*.cob");
+		strFilter += (TCHAR)'\0'; // next string please
 	}
-    else
-    {
-	    strFilter += "Library Files (*.h)";
-	    strFilter += (TCHAR)'\0';   // next string please
-	    strFilter += _T("*.h");
-	    strFilter += (TCHAR)'\0';   // next string please
-    }
+	else
+	{
+		strFilter += "Library Files (*.h)";
+		strFilter += (TCHAR)'\0'; // next string please
+		strFilter += _T("*.h");
+		strFilter += (TCHAR)'\0'; // next string please
+	}
 	// append the "*.*" all files filter
 	CString allFilter;
 	VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
 	strFilter += allFilter;
-	strFilter += (TCHAR)'\0';   // next string please
+	strFilter += (TCHAR)'\0'; // next string please
 #ifndef _MAC
 	strFilter += _T("*.*");
 #else
 	strFilter += _T("****");
 #endif
-	strFilter += (TCHAR)'\0';   // last string
+	strFilter += (TCHAR)'\0'; // last string
 	dlgFile.m_ofn.nMaxCustFilter++;
 
 	dlgFile.m_ofn.lpstrFilter = strFilter;
@@ -536,25 +541,28 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-	CHyperLink	m_Author2;
-	CHyperLink	m_SizingControlBarLink;
-	CHyperLink	m_HyperlinkControlLink;
-	CHyperLink	m_DirDialogLink;
-	CHyperLink	m_CrystalEditLink;
-	CHyperLink	m_HomeLink;
-	CHyperLink	m_AuthorLink;
+	enum
+	{
+		IDD = IDD_ABOUTBOX
+	};
+	CHyperLink m_Author2;
+	CHyperLink m_SizingControlBarLink;
+	CHyperLink m_HyperlinkControlLink;
+	CHyperLink m_DirDialogLink;
+	CHyperLink m_CrystalEditLink;
+	CHyperLink m_HomeLink;
+	CHyperLink m_AuthorLink;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
 	virtual BOOL OnInitDialog();
@@ -583,9 +591,9 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CAboutDlg)
+// No message handlers
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -595,127 +603,124 @@ void CScriptorApp::OnAppAbout()
 	aboutDlg.DoModal();
 }
 
-BOOL CAboutDlg::OnInitDialog() 
+BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	
+
 	m_AuthorLink.SetURL("mailto:KhalvKalash@hotmail.com");
-    m_AuthorLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
-	
+	m_AuthorLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
+
 	m_Author2.SetURL("mailto:KhalvKalash@hotmail.com");
-    m_Author2.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
+	m_Author2.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
 
-    m_HomeLink.SetURL("http://webpages.acs.ttu.edu/lojones/TA/Apps.html");
-    m_HomeLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
+	m_HomeLink.SetURL("http://webpages.acs.ttu.edu/lojones/TA/Apps.html");
+	m_HomeLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
 
-    m_SizingControlBarLink.SetURL("http://www.datamekanix.com/");
-    m_SizingControlBarLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
+	m_SizingControlBarLink.SetURL("http://www.datamekanix.com/");
+	m_SizingControlBarLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
 
-    m_HyperlinkControlLink.SetURL("http://www.codeguru.com/controls/hyperlinkex.shtml");
-    m_HyperlinkControlLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
+	m_HyperlinkControlLink.SetURL("http://www.codeguru.com/controls/hyperlinkex.shtml");
+	m_HyperlinkControlLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
 
-    m_DirDialogLink.SetURL("http://www.codeguru.com/dialog/DirDialogPhillips.shtml");
-    m_DirDialogLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
+	m_DirDialogLink.SetURL("http://www.codeguru.com/dialog/DirDialogPhillips.shtml");
+	m_DirDialogLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
 
-    m_CrystalEditLink.SetURL("http://www.codetools.com/editctrl/crysedit.asp");
-    m_CrystalEditLink.ModifyLinkStyle( 0, CHyperLink::StyleUseHover );
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+	m_CrystalEditLink.SetURL("http://www.codetools.com/editctrl/crysedit.asp");
+	m_CrystalEditLink.ModifyLinkStyle(0, CHyperLink::StyleUseHover);
+
+	return TRUE; // return TRUE unless you set the focus to a control
+				 // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CScriptorApp message handlers
 
-void CScriptorApp::OnEditSetfont() 
+void CScriptorApp::OnEditSetfont()
 {
-    // Construct the font selection dialog
-	CFontDialog dlg( &m_CurrentFont,
-        CF_SCREENFONTS |
-        CF_INITTOLOGFONTSTRUCT |
-        CF_FIXEDPITCHONLY );
+	// Construct the font selection dialog
+	CFontDialog dlg(&m_CurrentFont,
+		CF_SCREENFONTS | CF_INITTOLOGFONTSTRUCT | CF_FIXEDPITCHONLY);
 
-    // Run the dialog and check if the user pressed [OK]
-    if( dlg.DoModal()==IDOK )
+	// Run the dialog and check if the user pressed [OK]
+	if (dlg.DoModal() == IDOK)
 	{
-        // Switch all the views of all open documents to the new font.
-        POSITION            Pos;
-        POSITION            DocPos;
-        POSITION            ViewPos;
-	    CDocTemplate*       pDTemp;
-	    CDocument*          pDoc;
-	    CScriptorView*      pView;
-		
+		// Switch all the views of all open documents to the new font.
+		POSITION Pos;
+		POSITION DocPos;
+		POSITION ViewPos;
+		CDocTemplate* pDTemp;
+		CDocument* pDoc;
+		CScriptorView* pView;
+
 		Pos = GetFirstDocTemplatePosition();
-		while(Pos)
+		while (Pos)
 		{
 			pDTemp = GetNextDocTemplate(Pos);
 			DocPos = pDTemp->GetFirstDocPosition();
-			while(DocPos)
+			while (DocPos)
 			{
 				pDoc = pDTemp->GetNextDoc(DocPos);
 				ViewPos = pDoc->GetFirstViewPosition();
-				while(ViewPos)
+				while (ViewPos)
 				{
 					pView = (CScriptorView*)pDoc->GetNextView(ViewPos);
-                    pView->SetFont( m_CurrentFont );
+					pView->SetFont(m_CurrentFont);
 
-				}// end while( ViewPos )
+				} // end while( ViewPos )
 
-			}// end while( DocPos )
+			} // end while( DocPos )
 
-		}// end while( Pos )
+		} // end while( Pos )
 
-    } // end if( IDOK )
-	
+	} // end if( IDOK )
 }
 
-int CScriptorApp::ExitInstance() 
-{    
-	BOSCOM_Destroy( BosCom );
+int CScriptorApp::ExitInstance()
+{
+	BOSCOM_Destroy(BosCom);
 
-	BOSDEC_Destroy( BosDec );
+	BOSDEC_Destroy(BosDec);
 
-    // Save the font settings
+	// Save the font settings
 	WriteProfileFont("Font", &m_CurrentFont, &m_OriginalFont);
 
-    // Save the app settings
+	// Save the app settings
 	WriteProfileSettings("Settings");
 
-    DestroyBosKeywords();
+	DestroyBosKeywords();
 
-    // Set the current directory to what it was when we came in
-    SetCurrentDirectory( m_StartDir );
-	
+	// Set the current directory to what it was when we came in
+	SetCurrentDirectory(m_StartDir);
+
 	return CWinApp::ExitInstance();
 }
 
-void CScriptorApp::OnFileDescript() 
+void CScriptorApp::OnFileDescript()
 {
-	CDescript       DeScriptDlg;
+	CDescript DeScriptDlg;
 
-	if( DeScriptDlg.DoModal()==IDOK )
+	if (DeScriptDlg.DoModal() == IDOK)
 	{
 		theApp.OpenDocumentFile(LocalSettings.LastBosArr[0]);
 	}
 }
 
-void CScriptorApp::OnFileUnitwizards() 
+void CScriptorApp::OnFileUnitwizards()
 {
-	CUnitWizards    UnitWizDlg;
+	CUnitWizards UnitWizDlg;
 
-	if( (UnitWizDlg.DoModal()==IDOK)&&(UnitWizDlg.m_WizardCompleted) )
+	if ((UnitWizDlg.DoModal() == IDOK) && (UnitWizDlg.m_WizardCompleted))
 	{
-        OpenDocumentFile( UnitWizDlg.m_FileToOpen );
+		OpenDocumentFile(UnitWizDlg.m_FileToOpen);
 	}
 }
 
-LRESULT CScriptorApp::OnOpenCob( WPARAM wParam, LPARAM lParam )
+LRESULT CScriptorApp::OnOpenCob(WPARAM wParam, LPARAM lParam)
 {
-	CDescript       DeScriptDlg;
+	CDescript DeScriptDlg;
 
-    strcpy( DeScriptDlg.m_FileToOpen, m_AllPurposeString );
-	if( DeScriptDlg.DoModal()==IDOK )
+	strcpy(DeScriptDlg.m_FileToOpen, m_AllPurposeString);
+	if (DeScriptDlg.DoModal() == IDOK)
 	{
 		theApp.OpenDocumentFile(LocalSettings.LastBosArr[0]);
 	}

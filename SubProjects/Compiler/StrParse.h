@@ -10,13 +10,12 @@
 #endif // _MSC_VER >= 1000
 
 #ifdef _DEBUG
- #include <fstream>
+#include <fstream>
 #endif
 
-class CStrParse  
+class CStrParse
 {
 protected:
-
 #ifdef _DEBUG
 	std::ofstream fout;
 #endif
@@ -26,7 +25,7 @@ public:
 	CStrParse();
 	virtual ~CStrParse();
 
-	virtual WORD ParseStr(CString& Str,DWORD* Arg1,DWORD* Arg2);
+	virtual WORD ParseStr(CString& Str, DWORD* Arg1, DWORD* Arg2);
 };
 
 #endif // !defined(AFX_STRPARSE_H__B04E66E3_9DA1_11D3_BA39_0080C8C11E51__INCLUDED_)

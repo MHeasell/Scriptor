@@ -12,30 +12,32 @@
 
 class CDescript : public CDialog
 {
-// Construction
+	// Construction
 public:
-	CDescript(CWnd* pParent = NULL);   // standard constructor
+	CDescript(CWnd* pParent = NULL); // standard constructor
 
-    char m_FileToOpen[MAX_PATH];
-    bool WasOK;
+	char m_FileToOpen[MAX_PATH];
+	bool WasOK;
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CDescript)
-	enum { IDD = IDD_DESCRIPT };
-		// NOTE: the ClassWizard will add data members here
+	enum
+	{
+		IDD = IDD_DESCRIPT
+	};
+	// NOTE: the ClassWizard will add data members here
 	//}}AFX_DATA
 
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDescript)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV support
+													 //}}AFX_VIRTUAL
 
+	// Implementation
+protected:
 	// Generated message map functions
 	//{{AFX_MSG(CDescript)
 	virtual BOOL OnInitDialog();

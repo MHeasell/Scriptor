@@ -9,10 +9,10 @@
 #endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"       // main symbols
+#include "resource.h" // main symbols
 
 #include "ScriptCompiler.h"
 #include "ScriptDeompiler.h"
@@ -20,24 +20,26 @@
 
 enum SYS_CUSTOM_SCRIPTOR_MESSAGES
 {
-    SCRIPTOR_OPENCOB =    ( WM_USER+0x200 ),
+	SCRIPTOR_OPENCOB = (WM_USER + 0x200),
 };
 
 struct BOS_KEYWORD_t
 {
-    char            Keyword[32];
-    BOS_KEYWORD_t*  Next;
+	char Keyword[32];
+	BOS_KEYWORD_t* Next;
 
-    BOS_KEYWORD_t( LPTSTR strWord=NULL, BOS_KEYWORD_t* pNext=NULL )
-    {
-        if( strWord ) strcpy( Keyword, strWord );
-        else Keyword[0]='\0';
-        Next = pNext;
-    }
-    ~BOS_KEYWORD_t()
-    {
-        delete Next;
-    }
+	BOS_KEYWORD_t(LPTSTR strWord = NULL, BOS_KEYWORD_t* pNext = NULL)
+	{
+		if (strWord)
+			strcpy(Keyword, strWord);
+		else
+			Keyword[0] = '\0';
+		Next = pNext;
+	}
+	~BOS_KEYWORD_t()
+	{
+		delete Next;
+	}
 };
 
 typedef struct LOCAL_SETTINGS
@@ -49,14 +51,14 @@ typedef struct LOCAL_SETTINGS
 	CStringArray LastCobArr;
 	CStringArray LastBosArr;
 	char De_Bos_SA_Cob;
-}* LPLOCAL_SETTINGS;
+} * LPLOCAL_SETTINGS;
 
-extern LPVOID               BosCom;
-extern LPVOID               BosDec;
-extern BOS_KEYWORD_t*       g_BosKeywords;
-extern SETTINGS             CompilerSettings;
-extern DECOM_SETTINGS       DecompilerSettings;
-extern LOCAL_SETTINGS       LocalSettings;
+extern LPVOID BosCom;
+extern LPVOID BosDec;
+extern BOS_KEYWORD_t* g_BosKeywords;
+extern SETTINGS CompilerSettings;
+extern DECOM_SETTINGS DecompilerSettings;
+extern LOCAL_SETTINGS LocalSettings;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,54 +69,52 @@ extern LOCAL_SETTINGS       LocalSettings;
 class CScriptorApp : public CWinApp
 {
 protected:
-
-    // The font obtained at loadtime from the registry
-    LOGFONT         m_OriginalFont;
+	// The font obtained at loadtime from the registry
+	LOGFONT m_OriginalFont;
 
 	void GetProfileFont(LPCTSTR szSec, LOGFONT* plf);
 	void WriteProfileFont(LPCTSTR szSec, const LOGFONT* plf, LOGFONT* plfOld);
 	void GetProfileSettings(LPCTSTR szSec);
 	void WriteProfileSettings(LPCTSTR szSec);
 
-    void LoadBosKeywords();
-    void DestroyBosKeywords()
-    {
-        delete g_BosKeywords;
-        g_BosKeywords = NULL;
-    }
+	void LoadBosKeywords();
+	void DestroyBosKeywords()
+	{
+		delete g_BosKeywords;
+		g_BosKeywords = NULL;
+	}
 
 public:
+	// The location of the executable
+	char m_AppDir[MAX_PATH];
 
-    // The location of the executable
-    char            m_AppDir[MAX_PATH];
+	// The current directory at startup
+	char m_StartDir[MAX_PATH];
 
-    // The current directory at startup
-    char            m_StartDir[MAX_PATH];
+	char m_AllPurposeString[MAX_PATH];
 
-    char            m_AllPurposeString[MAX_PATH];
+	// The font currently set for all the views
+	LOGFONT m_CurrentFont;
 
-    // The font currently set for all the views 
-    LOGFONT         m_CurrentFont;
-
-    // Constructor
+	// Constructor
 	CScriptorApp();
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CScriptorApp)
-	public:
+public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 	//{{AFX_MSG(CScriptorApp)
 	afx_msg void OnAppAbout();
 	afx_msg void OnEditSetfont();
 	afx_msg void OnFileDescript();
 	afx_msg void OnFileUnitwizards();
 	//}}AFX_MSG
-    afx_msg LRESULT OnOpenCob( WPARAM wParam, LPARAM lParam );
+	afx_msg LRESULT OnOpenCob(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 };
 

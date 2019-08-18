@@ -17,26 +17,26 @@ class CMainFrame : public CMDIFrameWnd
 public:
 	CMainFrame();
 
-// Attributes
+	// Attributes
 public:
-	CProgressCtrl       m_ScriptProgress;
-	BOOL                m_bScriptProgressCtrlCreated;
-    CDebugOutputBar     m_DebugOutputBar;
+	CProgressCtrl m_ScriptProgress;
+	BOOL m_bScriptProgressCtrlCreated;
+	CDebugOutputBar m_DebugOutputBar;
 
-// Operations
+	// Operations
 public:
-    void InitializeScriptControls();
-    void DestroyScriptControls();
+	void InitializeScriptControls();
+	void DestroyScriptControls();
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
-	public:
+public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL DestroyWindow();
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CMainFrame();
 #ifdef _DEBUG
@@ -44,16 +44,16 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-protected:  // control bar embedded members
-	CStatusBar      m_wndStatusBar;
-	CToolBar        m_wndToolBar;
-    CToolBar        m_EditBar;
-    CToolBar        m_CompilerTools;
+protected: // control bar embedded members
+	CStatusBar m_wndStatusBar;
+	CToolBar m_wndToolBar;
+	CToolBar m_EditBar;
+	CToolBar m_CompilerTools;
 
-    void DockControlBarLeftOf(CToolBar* Bar,CToolBar* LeftOf);
-    BOOL VerifyBarState(LPCTSTR lpszProfileName);
+	void DockControlBarLeftOf(CToolBar* Bar, CToolBar* LeftOf);
+	BOOL VerifyBarState(LPCTSTR lpszProfileName);
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

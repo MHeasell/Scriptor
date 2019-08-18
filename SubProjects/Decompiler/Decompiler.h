@@ -9,10 +9,10 @@
 #endif // _MSC_VER >= 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"		// main symbols
+#include "resource.h" // main symbols
 
 /////////////////////////////////////////////////////////////////////////////
 // CDecompilerApp
@@ -24,14 +24,14 @@ class CDecompilerApp : public CWinApp
 public:
 	CDecompilerApp();
 
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDecompilerApp)
 	//}}AFX_VIRTUAL
 
 	//{{AFX_MSG(CDecompilerApp)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
+	// NOTE - the ClassWizard will add and remove member functions here.
+	//    DO NOT EDIT what you see in these blocks of generated code !
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
