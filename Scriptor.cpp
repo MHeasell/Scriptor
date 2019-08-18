@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CScriptorApp, CWinApp)
 	// Standard print setup command
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
     // Custom message handlers
-    ON_MESSAGE( SCRIPTOR_OPENCOB, OnOpenCob )
+    ON_MESSAGE( SCRIPTOR_OPENCOB, reinterpret_cast<LRESULT(CWnd::*)(WPARAM, LPARAM)>(OnOpenCob) )
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -710,7 +710,7 @@ void CScriptorApp::OnFileUnitwizards()
 	}
 }
 
-void CScriptorApp::OnOpenCob( WPARAM wParam, LPARAM lParam )
+LRESULT CScriptorApp::OnOpenCob( WPARAM wParam, LPARAM lParam )
 {
 	CDescript       DeScriptDlg;
 
@@ -719,4 +719,6 @@ void CScriptorApp::OnOpenCob( WPARAM wParam, LPARAM lParam )
 	{
 		theApp.OpenDocumentFile(LocalSettings.LastBosArr[0]);
 	}
+
+	return 0;
 }

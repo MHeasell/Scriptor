@@ -114,7 +114,7 @@ public:
 	afx_msg void OnFileDescript();
 	afx_msg void OnFileUnitwizards();
 	//}}AFX_MSG
-    afx_msg void OnOpenCob( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnOpenCob( WPARAM wParam, LPARAM lParam );
 	DECLARE_MESSAGE_MAP()
 };
 
