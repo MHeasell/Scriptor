@@ -97,6 +97,7 @@
       <OutputFile>Debug/Compiler10.dll</OutputFile>
       <ImportLibrary>.\Debug\Compiler10.lib</ImportLibrary>
       <ModuleDefinitionFile>.\Compiler.def</ModuleDefinitionFile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
