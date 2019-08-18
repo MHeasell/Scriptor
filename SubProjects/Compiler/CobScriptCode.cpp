@@ -28,9 +28,9 @@ CCobValBuf::CCobValBuf(std::ofstream& ffout,int Child)
 	ChildBuf=0;
 	Operators.SetSize(0);
 	Holding=false;
-	fout=ffout;
+	fout=&ffout;
 	//fout.open("C:\\windows\\desktop\\debug\\debug_ValBuf.txt",ios::app);
-	fout<<"Created\n";
+	*fout<<"Created\n";
 }
 
 CCobValBuf::~CCobValBuf()
@@ -38,7 +38,7 @@ CCobValBuf::~CCobValBuf()
 	if(ChildBuf) delete ChildBuf;
 	Operators.RemoveAll();
 	if(Buffer) delete [] Buffer;
-	fout<<"Deleted\n";
+	*fout<<"Deleted\n";
 }
 
 #else
@@ -124,12 +124,12 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	int x;
 	OPERATOR Op;
 #ifdef _DEBUG
-	fout<<"Adding Item"<<Type<<" - "<<Val1<<" - "<<Val2<<std::endl;
+	*fout<<"Adding Item"<<Type<<" - "<<Val1<<" - "<<Val2<<std::endl;
 #endif
 	if(HaveChild)
 	{
 #ifdef _DEBUG
-		fout<<"Have Child\n";
+		*fout<<"Have Child\n";
 #endif
 		x=ChildBuf->AddItem(Type,Val1,Val2);
 		if(x==2)
@@ -146,13 +146,13 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	if(Type & TYP_MISC)
 	{
 #ifdef _DEBUG
-		fout<<"Got Type Misc "<<Val1<<std::endl;
+		*fout<<"Got Type Misc "<<Val1<<std::endl;
 #endif
 		if( Val1 == 1 ) // '('
 		{
 #ifdef _DEBUG
-			fout<<"Creating Child\n";
-			ChildBuf=new CCobValBuf(fout,true);
+			*fout<<"Creating Child\n";
+			ChildBuf=new CCobValBuf(*fout,true);
 #else
 			ChildBuf=new CCobValBuf(true);
 #endif
@@ -172,7 +172,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	else if(Type & TYP_OPERATOR)
 	{
 #ifdef _DEBUG
-		fout<<"Got Op "<<std::hex<<Val1<<std::dec<<std::endl;
+		*fout<<"Got Op "<<std::hex<<Val1<<std::dec<<std::endl;
 #endif
 		Op.Val=Val1;
 		Op.Priority=Val2;
@@ -204,7 +204,7 @@ int CCobValBuf::AddItem(WORD Type,long Val1,long Val2)
 	else
 	{
 #ifdef _DEBUG
-		fout<<"Got Val "<<Val2<<std::endl;
+		*fout<<"Got Val "<<Val2<<std::endl;
 #endif
 		if(Holding)
 		{

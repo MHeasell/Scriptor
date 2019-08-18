@@ -38,7 +38,7 @@ public:
 	long* Buffer;
 
 #ifdef _DEBUG
-	std::ofstream fout;
+	std::ofstream* fout;
 #endif
 
 	int AddItem(CCobValBuf* ValBuf);
