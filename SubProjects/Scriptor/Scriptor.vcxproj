@@ -239,13 +239,13 @@
     <CustomBuild Include="Scriptor.reg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SubProjects\Compiler\Compiler.vcxproj">
+    <ProjectReference Include="..\Compiler\Compiler.vcxproj">
       <Project>{4246f7ea-c0c9-45c6-b079-87b29d16a772}</Project>
     </ProjectReference>
-    <ProjectReference Include="SubProjects\Decompiler\Decompiler.vcxproj">
+    <ProjectReference Include="..\Decompiler\Decompiler.vcxproj">
       <Project>{7bc9919c-df29-4d43-b958-8b8e525f2f44}</Project>
     </ProjectReference>
-    <ProjectReference Include="SubProjects\TA Unit Wizard\TA Unit Wizard.vcxproj">
+    <ProjectReference Include="..\TA Unit Wizard\TA Unit Wizard.vcxproj">
       <Project>{cde7db99-5206-4960-936d-586b325c5259}</Project>
     </ProjectReference>
   </ItemGroup>
