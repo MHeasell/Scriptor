@@ -93,9 +93,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Compiler.def">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="res\Compiler.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>

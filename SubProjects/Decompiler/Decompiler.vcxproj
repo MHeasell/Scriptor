@@ -108,9 +108,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Release/Decompiler10.dll</OutputFile>
-      <ImportLibrary>.\Release\Decompiler10.lib</ImportLibrary>
-      <ModuleDefinitionFile>.\Decompiler.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -152,9 +149,6 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Debug/Decompiler10.dll</OutputFile>
-      <ImportLibrary>.\Debug\Decompiler10.lib</ImportLibrary>
-      <ModuleDefinitionFile>.\Decompiler.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -170,7 +164,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Decompiler.def" />
     <CustomBuild Include="res\Decompiler.rc2" />
   </ItemGroup>
   <ItemGroup>

@@ -63,9 +63,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Decompiler.def">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="res\Decompiler.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>

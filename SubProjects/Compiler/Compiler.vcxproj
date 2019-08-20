@@ -94,9 +94,6 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Debug/Compiler10.dll</OutputFile>
-      <ImportLibrary>.\Debug\Compiler10.lib</ImportLibrary>
-      <ModuleDefinitionFile>.\Compiler.def</ModuleDefinitionFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -137,9 +134,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Release/Compiler10.dll</OutputFile>
-      <ImportLibrary>.\Release\Compiler10.lib</ImportLibrary>
-      <ModuleDefinitionFile>.\Compiler.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,7 +154,6 @@
     <ClCompile Include="TxtParse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Compiler.def" />
     <CustomBuild Include="res\Compiler.rc2" />
   </ItemGroup>
   <ItemGroup>

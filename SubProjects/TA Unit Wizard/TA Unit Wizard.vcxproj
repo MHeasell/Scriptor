@@ -112,7 +112,6 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Debug/TA Unit Wizard.unw</OutputFile>
       <ImportLibrary>.\Debug\TA Unit Wizard.lib</ImportLibrary>
       <ModuleDefinitionFile>.\TA Unit Wizard.def</ModuleDefinitionFile>
     </Link>
@@ -153,7 +152,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>Release/TA Unit Wizard.unw</OutputFile>
       <ImportLibrary>.\Release\TA Unit Wizard.lib</ImportLibrary>
       <ModuleDefinitionFile>.\TA Unit Wizard.def</ModuleDefinitionFile>
     </Link>
