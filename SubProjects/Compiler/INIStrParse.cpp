@@ -35,7 +35,7 @@ CINIStrParse::CINIStrParse(CArray<CMD_TYPE, CMD_TYPE&>* Coms,
 	WantVal = false;
 
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\DEBUG\\debug_INI.txt");
+	fout.open("debug_INI.txt");
 #endif
 }
 

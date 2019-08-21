@@ -24,7 +24,7 @@ CBosSrcParse::CBosSrcParse() : CTxtParse()
 	LastPos = 0;
 	LastLine = 0;
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\DEBUG\\debug_src.txt");
+	fout.open("debug_src.txt");
 #endif
 }
 
@@ -34,7 +34,7 @@ CBosSrcParse::CBosSrcParse(PROGRESSCALLBACK pProgressCallback) : CTxtParse()
 	LastPos = 0;
 	LastLine = 0;
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\DEBUG\\debug_src.txt");
+	fout.open("debug_src.txt");
 #endif
 }
 

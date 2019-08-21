@@ -29,7 +29,7 @@ CCobValBuf::CCobValBuf(std::ofstream& ffout, int Child)
 	Operators.SetSize(0);
 	Holding = false;
 	fout = &ffout;
-	//fout.open("C:\\windows\\desktop\\debug\\debug_ValBuf.txt",ios::app);
+	//fout.open("debug_ValBuf.txt",ios::app);
 	*fout << "Created\n";
 }
 
@@ -257,7 +257,7 @@ CCobCmdBuf::CCobCmdBuf(int NoCmd)
 	CmdPos = 0;
 	Length = (NoCmdBuf ? 0 : 1);
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\debug\\debug_CmdBuf.txt", std::ios::app);
+	fout.open("debug_CmdBuf.txt", std::ios::app);
 	fout << "Created\n\n";
 #endif
 }

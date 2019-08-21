@@ -53,11 +53,11 @@ CBosCmdParse::CBosCmdParse()
 	OutputWin = 0;
 
 #ifdef _DEBUG
-	fout.open("C:\\windows\\desktop\\debug\\debug_CmdBuf.txt");
+	fout.open("debug_CmdBuf.txt");
 	fout.close();
-	vout.open("C:\\windows\\desktop\\debug\\debug_ValBuf.txt");
-	fout.open("C:\\windows\\desktop\\DEBUG\\debug_PostINI.txt");
-	PP.open("C:\\windows\\desktop\\DEBUG\\debug_PreProc.txt");
+	vout.open("debug_ValBuf.txt");
+	fout.open("debug_PostINI.txt");
+	PP.open("debug_PreProc.txt");
 	fout << "Operators: " << OpList.GetSize() << "\n";
 	for (int x = 0; x < OpList.GetSize(); x++)
 	{
@@ -91,8 +91,8 @@ CBosCmdParse::CBosCmdParse()
 		fout << Errors[x] << std::endl;
 	}
 	fout.close();
-	fout.open("C:\\windows\\desktop\\DEBUG\\debug_base.txt");
-	spin.open("C:\\windows\\desktop\\DEBUG\\debug_spin.txt");
+	fout.open("debug_base.txt");
+	spin.open("debug_spin.txt");
 #endif
 }
 
@@ -186,7 +186,7 @@ int CBosCmdParse::WriteCob(LPCTSTR Path)
 	unsigned long BR;
 #ifdef _DEBUG
 	std::ofstream fout2;
-	fout2.open("C:\\windows\\desktop\\DEBUG\\debug_out.txt");
+	fout2.open("debug_out.txt");
 	fout2 << "Lines " << Line_Count << std::endl;
 	fout2 << "\nSVars:\n";
 	for (x = 0; x < StaticVars.GetSize(); x++)
@@ -202,7 +202,7 @@ int CBosCmdParse::WriteCob(LPCTSTR Path)
 		fout2 << Constants[x].Name << " - " << Constants[x].Val << std::endl;
 	fout2 << "\nScriptCode - " << ScriptCode->CurOffset << std::endl;
 	fout2.close();
-	fout2.open("C:\\windows\\desktop\\DEBUG\\debug_cob.txt");
+	fout2.open("debug_cob.txt");
 	if (WasErrors)
 	{
 		fout2 << "There were Errors\n";
