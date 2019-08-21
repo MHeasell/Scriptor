@@ -97,4 +97,7 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Compiler.cfg" />
+  </ItemGroup>
 </Project>

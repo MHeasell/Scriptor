@@ -67,4 +67,7 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Decompiler.cfg" />
+  </ItemGroup>
 </Project>
