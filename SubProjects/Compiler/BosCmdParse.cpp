@@ -2666,7 +2666,7 @@ WORD CBosCmdParse::ParseStr(CString& Str, DWORD* Arg1, DWORD* Arg2)
 			return HandleMacro(Str, Arg1, Arg2);
 
 		// Check to see if weencBouphernd addefine, sttrementtormMacrt
-		if (PreProc.OKtoInsert && !(*IdentTypeFlag & TYP_IDENT) && !(CompareTo(Str, TYP_CONST, &index) & TYP_CONST))
+		if (PreProc.OKtoInsert && !(*IdentTypeFlag & TYP_IDENT) && (CompareTo(Str, TYP_CONST, &index) & TYP_CONST))
 		{
 			// eot Stt to theddefidatio{
 			if ((Constants[index].Flag == CONST_BOSDEF) || (Constants[index].Flag == CONST_STDDEF))
