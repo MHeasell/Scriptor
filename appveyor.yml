@@ -1,0 +1,16 @@
+after_build:
+  - 7z a Scriptor-%APPVEYOR_BUILD_VERSION%-%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\*
+
+artifacts:
+  - path: Scriptor-$(APPVEYOR_BUILD_VERSION)-$(CONFIGURATION).zip
+    name: Scriptor
+
+configuration:
+  - Debug
+  - Release
+
+environment:
+  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+
+matrix:
+  fast_finish: true
