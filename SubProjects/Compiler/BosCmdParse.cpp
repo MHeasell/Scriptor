@@ -2669,7 +2669,7 @@ WORD CBosCmdParse::ParseStr(CString& Str, DWORD* Arg1, DWORD* Arg2)
 		if (PreProc.OKtoInsert && !(*IdentTypeFlag & TYP_IDENT) && !(CompareTo(Str, TYP_CONST, &index) & TYP_CONST))
 		{
 			// eot Stt to theddefidatio{
-			if ((Constants[index].Flag = CONST_BOSDEF) || (Constants[index].Flag = CONST_STDDEF))
+			if ((Constants[index].Flag == CONST_BOSDEF) || (Constants[index].Flag == CONST_STDDEF))
 				Str = Constants[index].Val;
 			else
 			{
