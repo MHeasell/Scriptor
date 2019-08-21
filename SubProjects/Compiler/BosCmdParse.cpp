@@ -972,7 +972,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str, DWORD* Arg1, DWORD* Arg2)
 			LastFile = CurrentFile;
 			CurrentFile = Settings.CurrentDirectory + Str;
 #ifdef _DEBUG
-			PP << "Looking for " << Settings.CurrentFile << std::endl;
+			PP << "Looking for " << CurrentFile << std::endl;
 #endif
 			Bos = CreateFile(CurrentFile,
 				GENERIC_READ,
@@ -985,7 +985,7 @@ WORD CBosCmdParse::HandlePreProcessor(CString& Str, DWORD* Arg1, DWORD* Arg2)
 			{
 				CurrentFile = Settings.IncludeDirectory + Str;
 #ifdef _DEBUG
-				PP << "Looking for " << Settings.CurrentFile << std::endl;
+				PP << "Looking for " << CurrentFile << std::endl;
 #endif
 				Bos = CreateFile(CurrentFile,
 					GENERIC_READ,
