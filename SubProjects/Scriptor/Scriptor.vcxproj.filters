@@ -34,6 +34,9 @@
     <Filter Include="Additional Files\Hyperlink Control Files">
       <UniqueIdentifier>{f8491d1a-b7b4-424f-a117-e4490372b61b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script Includes">
+      <UniqueIdentifier>{4df87cf8-28f8-4a03-bba7-c5bf0b4df7d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildFrm.cpp">
@@ -233,5 +236,43 @@
     <CustomBuild Include="Additional Source\Crystal Edit\mg_cur.cur">
       <Filter>Additional Files\Crystal Edit Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Include\activatescr.bos">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\deactivatescr.bos">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\exptype.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\FlameUnit.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\HITWEAP.H">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\ROCKUNIT.H">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\sfxtype.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\smokeunit.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\statechg.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\stdtank.h">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\Wings.H">
+      <Filter>Script Includes</Filter>
+    </Content>
+    <Content Include="Include\yard.h">
+      <Filter>Script Includes</Filter>
+    </Content>
   </ItemGroup>
 </Project>
