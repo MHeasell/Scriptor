@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Decompiler", "SubProjects\D
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scriptor", "SubProjects\Scriptor\Scriptor.vcxproj", "{5F691B2A-2541-4BFB-B908-FE37200B1034}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TA Unit Wizard", "SubProjects\TA Unit Wizard\TA Unit Wizard.vcxproj", "{CDE7DB99-5206-4960-936D-586B325C5259}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,10 +27,6 @@ Global
 		{5F691B2A-2541-4BFB-B908-FE37200B1034}.Debug|x86.Build.0 = Debug|Win32
 		{5F691B2A-2541-4BFB-B908-FE37200B1034}.Release|x86.ActiveCfg = Release|Win32
 		{5F691B2A-2541-4BFB-B908-FE37200B1034}.Release|x86.Build.0 = Release|Win32
-		{CDE7DB99-5206-4960-936D-586B325C5259}.Debug|x86.ActiveCfg = Debug|Win32
-		{CDE7DB99-5206-4960-936D-586B325C5259}.Debug|x86.Build.0 = Debug|Win32
-		{CDE7DB99-5206-4960-936D-586B325C5259}.Release|x86.ActiveCfg = Release|Win32
-		{CDE7DB99-5206-4960-936D-586B325C5259}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
